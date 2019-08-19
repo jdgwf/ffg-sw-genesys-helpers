@@ -1,5 +1,6 @@
 {
   "name": "ffg-sw-genesys-helpers",
+  "homepage": "https://jdgwf.github.io/ffg-sw-genesys-helpers",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

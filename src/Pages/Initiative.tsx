@@ -212,6 +212,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                   variant="primary"
                   onClick={this.initBackward}
                   tabIndex={0}
+                  title="Move to the last initiative"
                 >
                   <FontAwesomeIcon icon={faAngleDoubleLeft} />
                 </Button>
@@ -221,6 +222,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                   variant="primary"
                   onClick={this.addPC}
                   tabIndex={1}
+                  title="Add a PC"
                 >
                   Add PC
                 </Button>
@@ -230,6 +232,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                   variant="primary"
                   onClick={this.sortInit}
                   tabIndex={2}
+                  title="Sort by Success, Advantages, then PC vs NPC"
                 >
                   Sort
                 </Button>
@@ -239,6 +242,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                   variant="primary"
                   onClick={this.addNPC}
                   tabIndex={3}
+                  title="Add an NPC"
                 >
                   Add NPC
                 </Button>
@@ -249,6 +253,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                   variant="primary"
                   onClick={this.initForward}
                   tabIndex={4}
+                  title="Move to the next initiative"
                 >
                   <FontAwesomeIcon icon={faAngleDoubleRight} />
                 </Button>
@@ -294,6 +299,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                     variant="primary"
                     tabIndex={mapIndex + this.initMap.length + 5}
                     onClick={() => this.removeSlot(mapIndex)}
+                    title="Remove this initiative slot"
                   >
                     <FontAwesomeIcon icon={faTrash} />
                   </Button>

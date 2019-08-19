@@ -17,7 +17,7 @@ export default class About extends React.Component<IAboutProps, IAboutState> {
 
     render() {
       return (
-        <UIPage current="home" appGlobals={this.props.appGlobals}>
+        <UIPage current="about" appGlobals={this.props.appGlobals}>
 
           <p>Genesys and its logo, and Genesys Foundry and its logo, are trademarks of Fantasy Flight Games in the U.S.A. and other countries. All Fantasy Flight Games characters and character names, and the distinctive likenesses thereof, are trademarks of Fantasy Flight Games. <a href="http://www.FantasyFlightGames.com">www.FantasyFlightGames.com</a>.</p>
 
