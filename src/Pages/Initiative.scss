@@ -1,0 +1,59 @@
+.control-bar {
+    display: flex;
+    margin: 0 0 1rem 0;
+    width: 100%;
+    div {
+        padding: 0 1rem;
+        &.grow {
+            flex-grow: 1;
+        }
+
+        button {
+            width: 100%;
+
+        }
+    }
+
+}
+.init-map-item {
+    display: flex;
+    font-size: 2rem;
+    width: 100%;
+    margin: 0 0 .25rem 0;
+    padding: .25rem;
+    border: solid 2px transparent;
+    border-radius: 1rem;
+    &.current {
+        border: solid 2px #fff;
+    }
+    .label {
+        border-radius: 1rem;
+        padding: .5rem 2rem;
+        text-align: center;
+        flex-grow: 1;
+        &.npc {
+            background-color: #900;
+            color: #fff;
+        }
+        &.pc {
+            background-color: #090;
+            color: #fff;
+        }
+    }
+    .successes,
+    .advantages {
+        margin: 0 1rem;
+        span {
+            font-size: .7rem;
+            display: block;
+            text-align: center;
+        }
+    }
+    .controls {
+        margin: 0;
+        svg {
+            height: 2rem;
+            width: 2rem;
+        }
+    }
+}

@@ -1,0 +1,247 @@
+@import "../common.scss";
+
+.topmenu {
+    position: relative;
+    z-index: 1000;
+    background: $headerFooterBG;
+    ul {
+        background: $headerFooterBG;
+        color: $headerFooterFG;
+        list-style: none;
+        // display: inline-block;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        border-bottom: solid 2px $primaryBG;
+        li {
+            margin: 0;
+            padding: 0;
+            // display: inline;
+
+            &.mobile-menu-button {
+                display: inline;
+                font-size: 2rem;
+                padding: 0 1rem;
+                cursor: pointer;
+            }
+            span, a {
+                display: block;
+                color: $primaryBG;
+                cursor: pointer;
+                text-decoration: none;
+                padding: .5rem .75rem;
+                font-size: .8rem;
+                border-top-left-radius: .5rem;
+                border-top-right-radius: .5rem;
+                margin: .25rem .125rem 0 0;
+                white-space: nowrap;
+                &:hover {
+                    background: $primaryBGHover;
+                    color: $primaryTextFG;
+                }
+
+                &.current {
+                    background: $primaryBG;
+                    color: $headerFooterBG;
+
+                    color: $primaryTextFG;
+                }
+            }
+            &:first-child {
+                a {
+                    border-left: 0;
+                }
+            }
+            &.logo {
+                // float: right;
+                text-align: right;
+                margin-left: auto;
+                a {
+                    border: 0 !important;
+                    margin: 0;
+                    &:hover {
+                        background-color: $bodyBG;
+                    }
+                    svg {
+                        height: 1.45rem;
+                        width: auto;
+                    }
+                }
+            }
+        }
+
+        // margin: 0 0 1rem 0;
+    }
+
+}
+
+.ui-page {
+    .mobile-menu {
+        width: 300px;
+        left: -302px;
+        border-right: solid 2px $primaryBG;
+        background: $headerFooterBG;
+        transition: left .5s;
+        height: 100vh;
+        top: 0;
+        position: fixed;
+        padding: 4rem 1rem;
+        ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            li {
+                padding: 0;
+                margin: 0;
+                a {
+                    border: solid 1px $primaryBG;
+                    color: $primaryTextFG;
+                    padding: .5rem 1rem;
+                    display: block;
+                    margin: 0 0 .5rem 0;
+                    border-radius: .5rem;
+                    &.current {
+
+                        color: $headerFooterBG;
+                        background: $primaryBG;
+                        color: $primaryTextFG;
+                    }
+
+                }
+            }
+        }
+    }
+    &.show-mobile {
+        .mobile-menu {
+            left: 0;
+        }
+        .content {
+            left: 302px;
+        }
+    }
+}
+
+
+body.desaturated {
+    .mobile-menu,
+    .topmenu {
+        ul {
+            li {
+                a {
+                    color: $desaturatedPrimaryBG;
+                    &.current {
+                        background: $desaturatedPrimaryBG;
+                        color: $desaturatedPrimaryTextFG;
+                    }
+                    &:hover {
+                        background: $desaturatedPrimaryBGHover;
+                        color: $desaturatedPrimaryTextFG;
+                    }
+                }
+            }
+        }
+    }
+    .topmenu {
+        ul {
+            border-bottom: solid 2px $desaturatedPrimaryBG;
+        }
+    }
+}
+
+body.retro {
+    .mobile-menu,
+    .topmenu {
+        ul {
+            li {
+                display: inline-block;
+                a {
+                    font-size: .55rem;
+                    color: $retroPrimaryBG;
+                    background: $headerFooterBG;
+                    border-right: dotted 2px $headerFooterBG;
+                    border-top: dotted 2px $headerFooterBG;
+                    border-left: dotted 2px $headerFooterBG;
+                    &.current {
+                        // background: $retroPrimaryBG;
+                        // color: $retroPrimaryTextFG;
+                        border-right: dotted 2px $retroPrimaryBG;
+                        border-top: dotted 2px $retroPrimaryBG;
+                        border-left: dotted 2px $retroPrimaryBG;
+                    }
+                    &:hover {
+                        // background: $retroPrimaryBGHover;
+                        // color: $retroPrimaryTextColo r;
+                        color: $retroPrimaryBGHover;
+                        border-right: dotted 2px $retroPrimaryBGHover;
+                        border-top: dotted 2px $retroPrimaryBGHover;
+                        border-left: dotted 2px $retroPrimaryBGHover;
+                    }
+                }
+
+                &.logo {
+                    a {
+                        svg {
+                            height: 1.25rem;
+                            width: auto;
+                            // max-width: 30%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .topmenu {
+        ul {
+            border-bottom: dotted 2px $retroPrimaryBG;
+        }
+    }
+}
+
+// Medium devices (tablets, 768px and up)
+// @media (min-width: 768px) {
+//     .topmenu {
+//         ul {
+//             li {
+//                 a {
+//                     font-size: .8rem;
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+    .topmenu {
+        ul {
+            li {
+                a {
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+
+
+    body.retro {
+        .mobile-menu,
+        .topmenu {
+            ul {
+                li {
+                    a {
+                        font-size: 1rem;
+                    }
+                    &.logo {
+                        a {
+                            svg {
+                                height: 1.75rem;
+                                width: auto;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
