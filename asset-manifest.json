@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.7fc4ca74.chunk.css",
-    "main.js": "/static/js/main.f14c875e.chunk.js",
-    "main.js.map": "/static/js/main.f14c875e.chunk.js.map",
-    "runtime~main.js": "/static/js/runtime~main.148c0d6d.js",
-    "runtime~main.js.map": "/static/js/runtime~main.148c0d6d.js.map",
-    "static/css/2.22a7d4ef.chunk.css": "/static/css/2.22a7d4ef.chunk.css",
-    "static/js/2.0b942ce3.chunk.js": "/static/js/2.0b942ce3.chunk.js",
-    "static/js/2.0b942ce3.chunk.js.map": "/static/js/2.0b942ce3.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.f2766c12b809a0c169dfaff8fa8e26a3.js": "/precache-manifest.f2766c12b809a0c169dfaff8fa8e26a3.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.22a7d4ef.chunk.css.map": "/static/css/2.22a7d4ef.chunk.css.map",
-    "static/css/main.7fc4ca74.chunk.css.map": "/static/css/main.7fc4ca74.chunk.css.map"
+    "main.css": "/ffg-sw-genesys-helpers/static/css/main.7fc4ca74.chunk.css",
+    "main.js": "/ffg-sw-genesys-helpers/static/js/main.97ecfc3d.chunk.js",
+    "main.js.map": "/ffg-sw-genesys-helpers/static/js/main.97ecfc3d.chunk.js.map",
+    "runtime~main.js": "/ffg-sw-genesys-helpers/static/js/runtime~main.fc4c98c2.js",
+    "runtime~main.js.map": "/ffg-sw-genesys-helpers/static/js/runtime~main.fc4c98c2.js.map",
+    "static/css/2.22a7d4ef.chunk.css": "/ffg-sw-genesys-helpers/static/css/2.22a7d4ef.chunk.css",
+    "static/js/2.0b942ce3.chunk.js": "/ffg-sw-genesys-helpers/static/js/2.0b942ce3.chunk.js",
+    "static/js/2.0b942ce3.chunk.js.map": "/ffg-sw-genesys-helpers/static/js/2.0b942ce3.chunk.js.map",
+    "index.html": "/ffg-sw-genesys-helpers/index.html",
+    "precache-manifest.3521094a6083ca3f27e59ca7ce93fbc1.js": "/ffg-sw-genesys-helpers/precache-manifest.3521094a6083ca3f27e59ca7ce93fbc1.js",
+    "service-worker.js": "/ffg-sw-genesys-helpers/service-worker.js",
+    "static/css/2.22a7d4ef.chunk.css.map": "/ffg-sw-genesys-helpers/static/css/2.22a7d4ef.chunk.css.map",
+    "static/css/main.7fc4ca74.chunk.css.map": "/ffg-sw-genesys-helpers/static/css/main.7fc4ca74.chunk.css.map"
   }
 }
