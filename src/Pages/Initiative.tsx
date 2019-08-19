@@ -100,9 +100,9 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
           } else if( a.advantages > b.advantages ) {
             return -1;
           } else {
-            if( a.label == "PC" && b.label == "NPC" ) {
+            if( a.label === "PC" && b.label === "NPC" ) {
               return -1;
-            } else if( a.label == "NPC" && b.label == "PC" ) {
+            } else if( a.label === "NPC" && b.label === "PC" ) {
               return 1;
             } else {
               return 0;
@@ -262,7 +262,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
 
           {this.initMap.map( (mapItem, mapIndex ) => {
             return (
-              <div className={mapIndex == this.currentInitiative ? "init-map-item current" : "init-map-item"} key={mapIndex}>
+              <div className={mapIndex === this.currentInitiative ? "init-map-item current" : "init-map-item"} key={mapIndex}>
                 <div className={mapItem.label === "PC" ? "label pc" : "label npc"}>
                   {mapItem.label}
                 </div>

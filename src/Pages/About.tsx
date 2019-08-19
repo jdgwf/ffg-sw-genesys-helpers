@@ -27,7 +27,7 @@ export default class About extends React.Component<IAboutProps, IAboutState> {
 
           <hr />
 
-          <p>This project is licensed under the GPL and you can contribute to the source at <a href="https://github.com/jdgwf/ffg-sw-genesys-helpers">its GitHub repository.</a></p>
+          <p className="text-center">This project is licensed under the GPL and you can contribute to the source at <a href="https://github.com/jdgwf/ffg-sw-genesys-helpers">its GitHub repository.</a></p>
 
         </UIPage>
       );

@@ -8,6 +8,7 @@ import { Modal, Button } from 'react-bootstrap';
 import SanitizedHTML from "./Components/SanitizedHTML";
 import { CONFIGSiteTitle } from "./config";
 import About from "./Pages/About";
+import Settings from "./Pages/Settings";
 
 
 
@@ -211,7 +212,11 @@ export default class AppRouter extends React.Component<IAppRouterProps, IAppRout
                         appGlobals={this.state.appGlobals}
                     />
                 </Route>
-
+                <Route path={`${process.env.PUBLIC_URL}/settings`} exact>
+                    <Settings
+                        appGlobals={this.state.appGlobals}
+                    />
+                </Route>
                 <Route>
                     <Error404
                         appGlobals={this.state.appGlobals}
