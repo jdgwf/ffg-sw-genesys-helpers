@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/ffg-sw-genesys-helpers/static/css/main.ae6d52e1.chunk.css",
+    "main.css": "/ffg-sw-genesys-helpers/static/css/main.b4c9728b.chunk.css",
     "main.js": "/ffg-sw-genesys-helpers/static/js/main.801d7522.chunk.js",
     "main.js.map": "/ffg-sw-genesys-helpers/static/js/main.801d7522.chunk.js.map",
     "runtime~main.js": "/ffg-sw-genesys-helpers/static/js/runtime~main.fc4c98c2.js",
@@ -9,9 +9,10 @@
     "static/js/2.c0ad8ea0.chunk.js": "/ffg-sw-genesys-helpers/static/js/2.c0ad8ea0.chunk.js",
     "static/js/2.c0ad8ea0.chunk.js.map": "/ffg-sw-genesys-helpers/static/js/2.c0ad8ea0.chunk.js.map",
     "index.html": "/ffg-sw-genesys-helpers/index.html",
-    "precache-manifest.409856c8a4cdcdfe677f30222c361483.js": "/ffg-sw-genesys-helpers/precache-manifest.409856c8a4cdcdfe677f30222c361483.js",
+    "precache-manifest.c52b0001407f7a5b225c6f1b63f26836.js": "/ffg-sw-genesys-helpers/precache-manifest.c52b0001407f7a5b225c6f1b63f26836.js",
     "service-worker.js": "/ffg-sw-genesys-helpers/service-worker.js",
     "static/css/2.22a7d4ef.chunk.css.map": "/ffg-sw-genesys-helpers/static/css/2.22a7d4ef.chunk.css.map",
-    "static/css/main.ae6d52e1.chunk.css.map": "/ffg-sw-genesys-helpers/static/css/main.ae6d52e1.chunk.css.map"
+    "static/css/main.b4c9728b.chunk.css.map": "/ffg-sw-genesys-helpers/static/css/main.b4c9728b.chunk.css.map",
+    "static/media/index.scss": "/ffg-sw-genesys-helpers/static/media/DotMatrixRegular.d157e2ba.woff2"
   }
 }

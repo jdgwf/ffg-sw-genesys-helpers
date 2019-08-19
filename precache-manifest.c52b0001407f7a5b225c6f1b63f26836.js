@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "fd4ff2f0791d6b4466d1f31a8d3b733e",
+    "revision": "fd949c4fe0b2e439583c72db4c9a1a2b",
     "url": "/ffg-sw-genesys-helpers/index.html"
   },
   {
@@ -8,19 +8,27 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ffg-sw-genesys-helpers/static/css/2.22a7d4ef.chunk.css"
   },
   {
-    "revision": "2009c7fcc672ae764db3",
-    "url": "/ffg-sw-genesys-helpers/static/css/main.ae6d52e1.chunk.css"
+    "revision": "2e7c188c18b65e11d043",
+    "url": "/ffg-sw-genesys-helpers/static/css/main.b4c9728b.chunk.css"
   },
   {
     "revision": "119d8bae34a05afa8467",
     "url": "/ffg-sw-genesys-helpers/static/js/2.c0ad8ea0.chunk.js"
   },
   {
-    "revision": "2009c7fcc672ae764db3",
+    "revision": "2e7c188c18b65e11d043",
     "url": "/ffg-sw-genesys-helpers/static/js/main.801d7522.chunk.js"
   },
   {
     "revision": "a7a81445a149e19e3dc6",
     "url": "/ffg-sw-genesys-helpers/static/js/runtime~main.fc4c98c2.js"
+  },
+  {
+    "revision": "6f73b23a35428904d1bc6b116e223985",
+    "url": "/ffg-sw-genesys-helpers/static/media/DotMatrixRegular.6f73b23a.woff"
+  },
+  {
+    "revision": "d157e2bac39bdd972f5027686f3f682e",
+    "url": "/ffg-sw-genesys-helpers/static/media/DotMatrixRegular.d157e2ba.woff2"
   }
 ]);
