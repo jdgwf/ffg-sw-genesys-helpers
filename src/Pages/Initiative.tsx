@@ -270,7 +270,8 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                 <label>
 
                     <input
-                      type="numeric"
+                      type="number"
+                      step="1"
                       value={mapItem.successes}
                       size={3}
                       className="text-center"
@@ -284,9 +285,10 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                   <label>
 
                     <input
-                      type="numeric"
+                      type="number"
+                      step="1"
                       value={mapItem.advantages}
-                      size={3}
+                      size={2}
                       className="text-center"
                       onChange={(event: React.FormEvent<HTMLInputElement>) => this.updateInitAdvantages( mapIndex, +event.currentTarget.value)}
                       tabIndex={mapIndex + 5}
