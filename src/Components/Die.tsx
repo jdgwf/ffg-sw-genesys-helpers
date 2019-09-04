@@ -1,14 +1,34 @@
 import React from 'react';
 import { IDieResult } from '../Classes/Dice';
+import { IAppGlobals } from '../AppRouter';
 
 export default class Die extends React.Component<IDieProps, {}> {
 
 
+
     render() {
+        let success = "s";
+        let advantage = "a";
+        let triumph = "t";
+
+        let failure = "f";
+        let threat= "h";
+        let despair = "d";
+
+        if( this.props.appGlobals.settings.dieIconClass === "starwars") {
+            success = "s";
+            advantage = "a";
+            triumph = "x";
+
+            failure = "f";
+            threat= "t";
+            despair = "y";
+        }
+
         return (
             <span
                 className={"die die-" + this.props.dieResult.type}
-                title={this.props.dieResult.type}
+                title={this.props.dieResult.title}
             >
                 <span className="die-bg">
                     {this.props.dieResult.type === "setback" ? (
@@ -42,26 +62,26 @@ export default class Die extends React.Component<IDieProps, {}> {
                         <></>
                     )}
                 </span>
-                <span className="die-face">
+                <span className={"die-face " + this.props.appGlobals.settings.dieIconClass }>
                     {this.props.dieResult.triumphs === 1 ?
                     (
-                        <span className="icon-single">t</span>
+                        <span className="icon-single">{triumph}</span>
                     ) : (
                         <>
                             {this.props.dieResult.despairs === 1 ?
                             (
-                              <span className="icon-single">d</span>
+                              <span className="icon-single">{despair}</span>
                             ) : (
                                 <>
                                     {this.props.dieResult.successes === 1 ? (
                                         <>
                                         {this.props.dieResult.advantages === 1 ? (
                                             <>
-                                                <span className="icon-1">s</span>
-                                                <span className="icon-2">a</span>
+                                                <span className="icon-1">{success}</span>
+                                                <span className="icon-2">{advantage}</span>
                                             </>
                                         ) : (
-                                            <span className="icon-single">s</span>
+                                            <span className="icon-single">{success}</span>
                                         )}
                                         </>
                                     ) : (
@@ -69,8 +89,8 @@ export default class Die extends React.Component<IDieProps, {}> {
                                     )}
                                     {this.props.dieResult.successes === 2 ? (
                                         <>
-                                            <span className="icon-1">s</span>
-                                            <span className="icon-2">s</span>
+                                            <span className="icon-1">{success}</span>
+                                            <span className="icon-2">{success}</span>
                                         </>
                                     ) : (
                                         <></>
@@ -80,11 +100,11 @@ export default class Die extends React.Component<IDieProps, {}> {
                                         <>
                                         {this.props.dieResult.successes === 1 ? (
                                             <>
-                                                <span className="icon-1">s</span>
-                                                <span className="icon-2">a</span>
+                                                <span className="icon-1">{success}</span>
+                                                <span className="icon-2">{advantage}</span>
                                             </>
                                         ) : (
-                                            <span className="icon-single">a</span>
+                                            <span className="icon-single">{advantage}</span>
                                         )}
                                         </>
                                     ) : (
@@ -92,8 +112,8 @@ export default class Die extends React.Component<IDieProps, {}> {
                                     )}
                                     {this.props.dieResult.advantages === 2 ? (
                                         <>
-                                            <span className="icon-1">a</span>
-                                            <span className="icon-2">a</span>
+                                            <span className="icon-1">{advantage}</span>
+                                            <span className="icon-2">{advantage}</span>
                                         </>
                                     ) : (
                                         <></>
@@ -103,11 +123,11 @@ export default class Die extends React.Component<IDieProps, {}> {
                                         <>
                                         {this.props.dieResult.threats === 1 ? (
                                             <>
-                                                <span className="icon-1">f</span>
-                                                <span className="icon-2">h</span>
+                                                <span className="icon-1">{failure}</span>
+                                                <span className="icon-2">{threat}</span>
                                             </>
                                         ) : (
-                                            <span className="icon-single">f</span>
+                                            <span className="icon-single">{failure}</span>
                                         )}
                                         </>
                                     ) : (
@@ -115,8 +135,8 @@ export default class Die extends React.Component<IDieProps, {}> {
                                     )}
                                     {this.props.dieResult.failures === 2 ? (
                                         <>
-                                            <span className="icon-1">f</span>
-                                            <span className="icon-2">f</span>
+                                            <span className="icon-1">{failure}</span>
+                                            <span className="icon-2">{failure}</span>
                                         </>
                                     ) : (
                                         <></>
@@ -126,11 +146,11 @@ export default class Die extends React.Component<IDieProps, {}> {
                                         <>
                                         {this.props.dieResult.failures === 1 ? (
                                             <>
-                                                <span className="icon-1">f</span>
-                                                <span className="icon-2">h</span>
+                                                <span className="icon-1">{failure}</span>
+                                                <span className="icon-2">{threat}</span>
                                             </>
                                         ) : (
-                                            <span className="icon-single">h</span>
+                                            <span className="icon-single">{threat}</span>
                                         )}
                                         </>
                                     ) : (
@@ -138,8 +158,8 @@ export default class Die extends React.Component<IDieProps, {}> {
                                     )}
                                     {this.props.dieResult.threats === 2 ? (
                                         <>
-                                            <span className="icon-1">h</span>
-                                            <span className="icon-2">h</span>
+                                            <span className="icon-1">{threat}</span>
+                                            <span className="icon-2">{threat}</span>
                                         </>
                                     ) : (
                                         <></>
@@ -157,6 +177,7 @@ export default class Die extends React.Component<IDieProps, {}> {
 
 
 interface IDieProps {
-    dieResult: IDieResult
+    appGlobals: IAppGlobals;
+    dieResult: IDieResult;
 }
 

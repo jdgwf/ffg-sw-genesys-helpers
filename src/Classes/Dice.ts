@@ -22,6 +22,7 @@ export interface IDiceResults {
 
 export interface IDieResult {
     type: string;
+    title: string;
     numSides: number;
     rawRoll: number;
     successes: number;
@@ -82,6 +83,7 @@ export default class Dice {
             let roll = this.rollDie(8);
             let rawRoll = {
                 type: "ability",
+                title: "",
                 numSides: 8,
                 rawRoll: roll,
                 successes: 0,
@@ -96,44 +98,52 @@ export default class Dice {
             switch( roll ) {
                 case 1: {
                     // Do nothing, blank side
+                    rawRoll.title = "( nothing )";
                     break;
                 }
                 case 2: {
                     // one success
                     rawRoll.successes++;
+                    rawRoll.title = "One Success";
                     break;
                 }
                 case 3: {
                     // one success
                     rawRoll.successes++;
+                    rawRoll.title = "One Success";
                     break;
                 }
                 case 4: {
                     // two successes
                     rawRoll.successes++;
                     rawRoll.successes++;
+                    rawRoll.title = "Two Successes";
                     break;
                 }
                 case 5: {
                     // one advantage
                     rawRoll.advantages++;
+                    rawRoll.title = "One Advantage";
                     break;
                 }
                 case 6: {
                     // one advantage
                     rawRoll.advantages++;
+                    rawRoll.title = "One Advantage";
                     break;
                 }
                 case 7: {
                     // one advantage, one success
                     rawRoll.advantages++;
                     rawRoll.successes++;
+                    rawRoll.title = "One Advantage, One Success";
                     break;
                 }
                 case 8: {
                     // one advantages
                     rawRoll.advantages++;
                     rawRoll.advantages++;
+                    rawRoll.title = "Two Advantages";
                     break;
                 }
             }
@@ -145,6 +155,7 @@ export default class Dice {
             let roll = this.rollDie(8);
             let rawRoll = {
                 type: "difficulty",
+                title: "",
                 numSides: 8,
                 rawRoll: roll,
                 successes: 0,
@@ -159,38 +170,45 @@ export default class Dice {
             switch( roll ) {
                 case 1: {
                     // Do nothing, blank side
+                    rawRoll.title = "(nothing)";
                     break;
                 }
                 case 2: {
                     // one failure
                     rawRoll.failures++;
+                    rawRoll.title = "One Failure";
                     break;
                 }
                 case 3: {
                     // two failures
                     rawRoll.failures++;
                     rawRoll.failures++;
+                    rawRoll.title = "Two Failures";
                     break;
                 }
                 case 4: {
-                    // one theat
+                    // one threat
                     rawRoll.threats++;
+                    rawRoll.title = "One Threat";
                     break;
                 }
                 case 5: {
-                    // one theat
+                    // one threat
                     rawRoll.threats++;
+                    rawRoll.title = "One Threat";
                     break;
                 }
                 case 6: {
-                    // one theat
+                    // one threat
                     rawRoll.threats++;
+                    rawRoll.title = "One Threat";
                     break;
                 }
                 case 7: {
                     // two threats
                     rawRoll.threats++;
                     rawRoll.threats++;
+                    rawRoll.title = "Two Threats";
 
                     break;
                 }
@@ -198,6 +216,7 @@ export default class Dice {
                     // one threat, one failure
                     rawRoll.threats++;
                     rawRoll.failures++;
+                    rawRoll.title = "One Threat, One Failure";
                     break;
                 }
             }
@@ -209,6 +228,7 @@ export default class Dice {
             let roll = this.rollDie(6);
             let rawRoll = {
                 type: "boost",
+                title: "",
                 numSides: 8,
                 rawRoll: roll,
                 successes: 0,
@@ -223,32 +243,38 @@ export default class Dice {
             switch( roll ) {
                 case 1: {
                     // Do nothing, blank side
+                    rawRoll.title = "(nothing)";
                     break;
                 }
                 case 2: {
                     // Do nothing, blank side
+                    rawRoll.title = "(nothing)";
                     break;
                 }
                 case 3: {
                     // one success
                     rawRoll.successes++;
+                    rawRoll.title = "One Success";
                     break;
                 }
                 case 4: {
                     // one success, one advantage
                     rawRoll.successes++;
                     rawRoll.advantages++;
+                    rawRoll.title = "One Success, One Advantage";
                     break;
                 }
                 case 5: {
                     // two advantages
                     rawRoll.advantages++;
                     rawRoll.advantages++;
+                    rawRoll.title = "Two Advantages";
                     break;
                 }
                 case 6: {
                     // one advantage
                     rawRoll.advantages++;
+                    rawRoll.title = "One Advantage";
                     break;
                 }
             }
@@ -260,6 +286,7 @@ export default class Dice {
             let roll = this.rollDie(6);
             let rawRoll = {
                 type: "setback",
+                title: "",
                 numSides: 8,
                 rawRoll: roll,
                 successes: 0,
@@ -274,30 +301,36 @@ export default class Dice {
             switch( roll ) {
                 case 1: {
                     // Do nothing, blank side
+                    rawRoll.title = "(nothing)";
                     break;
                 }
                 case 2: {
                     // Do nothing, blank side
+                    rawRoll.title = "(nothing)";
                     break;
                 }
                 case 3: {
                     // one failure
                     rawRoll.failures++;
+                    rawRoll.title = "One Failure";
                     break;
                 }
                 case 4: {
                     // one failure
                     rawRoll.failures++;
+                    rawRoll.title = "One Failure";
                     break;
                 }
                 case 5: {
                     // one threat
                     rawRoll.threats++;
+                    rawRoll.title = "One Threat";
                     break;
                 }
                 case 6: {
                     // one threat
                     rawRoll.threats++;
+                    rawRoll.title = "One Threat";
                     break;
                 }
             }
@@ -309,6 +342,7 @@ export default class Dice {
             let roll = this.rollDie(12);
             let rawRoll = {
                 type: "proficiency",
+                title: "",
                 numSides: 8,
                 rawRoll: roll,
                 successes: 0,
@@ -323,45 +357,53 @@ export default class Dice {
             switch( roll ) {
                 case 1: {
                     // Do nothing, blank side
+                    rawRoll.title = "(nothing)";
                     break;
                 }
                 case 2: {
                     // one success
                     rawRoll.successes++;
+                    rawRoll.title = "One Success";
                     break;
                 }
                 case 3: {
                     // one success
                     rawRoll.successes++;
+                    rawRoll.title = "One Success";
                     break;
                 }
                 case 4: {
                     // two successes
                     rawRoll.successes++;
                     rawRoll.successes++;
+                    rawRoll.title = "Two Successes";
                     break;
                 }
                 case 5: {
                     // two successes
                     rawRoll.successes++;
                     rawRoll.successes++;
+                    rawRoll.title = "Two Successes";
                     break;
                 }
                 case 6: {
                     // one advantage
                     rawRoll.advantages++;
+                    rawRoll.title = "One Advantage";
                     break;
                 }
                 case 7: {
                     // one advantage, one success
                     rawRoll.advantages++;
                     rawRoll.successes++;
+                    rawRoll.title = "One Advantage, one success";
                     break;
                 }
                 case 8: {
                     // one advantage, one success
                     rawRoll.advantages++;
                     rawRoll.successes++;
+                    rawRoll.title = "One Advantage, one success";
 
                     break;
                 }
@@ -369,24 +411,28 @@ export default class Dice {
                     // one advantage, one success
                     rawRoll.advantages++;
                     rawRoll.successes++;
+                    rawRoll.title = "One Advantage, one success";
                     break;
                 }
                 case 10: {
                     // two advantages
                     rawRoll.advantages++;
                     rawRoll.advantages++;
+                    rawRoll.title = "Two Advantages";
                     break;
                 }
                 case 11: {
                     // two advantages
                     rawRoll.advantages++;
                     rawRoll.advantages++;
+                    rawRoll.title = "Two Advantages";
                     break;
                 }
                 case 12: {
                     // one success and a triumph
                     rawRoll.successes++;
                     rawRoll.triumphs++;
+                    rawRoll.title = "One Triumph (counts as success)";
                     break;
                 }
             }
@@ -399,6 +445,7 @@ export default class Dice {
             let roll = this.rollDie(8);
             let rawRoll = {
                 type: "challenge",
+                title: "",
                 numSides: 8,
                 rawRoll: roll,
                 successes: 0,
@@ -413,69 +460,80 @@ export default class Dice {
             switch( roll ) {
                 case 1: {
                     // Do nothing, blank side
+                    rawRoll.title = "(nothing)";
                     break;
                 }
                 case 2: {
                     // one failure
                     rawRoll.failures++;
+                    rawRoll.title = "One Failure";
                     break;
                 }
                 case 3: {
                     // one failure
                     rawRoll.failures++;
+                    rawRoll.title = "One Failure";
                     break;
                 }
                 case 4: {
                     // two failures
                     rawRoll.failures++;
                     rawRoll.failures++;
+                    rawRoll.title = "Two Failures";
                     break;
                 }
                 case 5: {
                     // two failures
                     rawRoll.failures++;
                     rawRoll.failures++;
+                    rawRoll.title = "Two Failures";
                     break;
                 }
                 case 6: {
-                    // one theat
+                    // one threat
                     rawRoll.threats++;
+                    rawRoll.title = "One Threat";
                     break;
                 }
                 case 7: {
-                    // one theat
+                    // one threat
                     rawRoll.threats++;
-
+                    rawRoll.title = "One Threat";
                     break;
                 }
                 case 8: {
                     // one threat, one failure
                     rawRoll.threats++;
                     rawRoll.failures++;
+                    rawRoll.title = "One Threat, One Failure";
                     break;
                 }
                 case 9: {
                     // one threat, one failure
                     rawRoll.threats++;
                     rawRoll.failures++;
+                    rawRoll.title = "One Threat, One Failure";
                     break;
                 }
                 case 10: {
                     // two threats
                     rawRoll.threats++;
                     rawRoll.threats++;
+                    rawRoll.title = "Two Threats";
                     break;
                 }
                 case 11: {
                     // two threats
                     rawRoll.threats++;
                     rawRoll.threats++;
+                    rawRoll.title = "Two Threats";
                     break;
                 }
                 case 12: {
                     // one failure and a despair
                     rawRoll.failures++;
                     rawRoll.despairs++;
+                    rawRoll.title = "One Despair (counts as failure)";
                     break;
                 }
             }
@@ -488,6 +546,7 @@ export default class Dice {
             let roll = this.rollDie(8);
             let rawRoll = {
                 type: "force",
+                title: "",
                 numSides: 8,
                 rawRoll: roll,
                 successes: 0,
@@ -508,61 +567,72 @@ export default class Dice {
                 case 2: {
                     // one dark side
                     rawRoll.darkSide++;
+                    rawRoll.title = "One Dark Side Point";
                     break;
                 }
                 case 3: {
                     // one dark side
                     rawRoll.darkSide++;
+                    rawRoll.title = "One Dark Side Point";
                     break;
                 }
                 case 4: {
                     // one dark side
                     rawRoll.darkSide++;
+                    rawRoll.title = "One Dark Side Point";
                     break;
                 }
                 case 5: {
                     // one dark side
                     rawRoll.darkSide++;
+                    rawRoll.title = "One Dark Side Point";
                     break;
                 }
                 case 6: {
                     // one dark side
                     rawRoll.darkSide++;
+                    rawRoll.title = "One Dark Side Point";
                     break;
                 }
                 case 7: {
                     // two dark side
                     rawRoll.darkSide++;
                     rawRoll.darkSide++;
+                    rawRoll.title = "Two Dark Side Points";
 
                     break;
                 }
                 case 8: {
                     // one light side
                     rawRoll.lightSide++;
+                    rawRoll.title = "One Light Side Point";
                     break;
                 }
                 case 9: {
                     // one light side
                     rawRoll.lightSide++;
+                    rawRoll.title = "One Light Side Point";
                     break;
                 }
                 case 10: {
                     // two light side
                     rawRoll.lightSide++;
                     rawRoll.lightSide++;
+                    rawRoll.title = "Two Light Side Points";
                     break;
                 }
                 case 11: {
                     // two light side
                     rawRoll.lightSide++;
                     rawRoll.lightSide++;
+                    rawRoll.title = "Two Light Side Points";
                     break;
                 }
                 case 12: {
                     // two light side
                     rawRoll.lightSide++;
                     rawRoll.lightSide++;
+                    rawRoll.title = "Two Light Side Points";
                     break;
                 }
             }
@@ -583,9 +653,9 @@ export default class Dice {
         }
 
         if( netSuccesses > netFailures ) {
-            grossFailures = netSuccesses - netFailures;
+            grossSuccesses = netSuccesses - netFailures;
         } else {
-            grossSuccesses = netFailures - netSuccesses;
+            grossFailures = netFailures - netSuccesses;
         }
 
         if( netThreats > netAdvantages ) {

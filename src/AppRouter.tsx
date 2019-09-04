@@ -38,11 +38,18 @@ export default class AppRouter extends React.Component<IAppRouterProps, IAppRout
         }
 
 
+        let dieIconClass: string = "genesys";
+        let lsDieIconClass = localStorage.getItem("dieIconClass");
+        if( lsDieIconClass ) {
+            dieIconClass = lsDieIconClass;
+        }
+
         this.state = {
             updated: false,
             appGlobals: {
                 settings: {
                     uiTheme: uiTheme,
+                    dieIconClass: dieIconClass,
                 },
                 currentPageTitle: "",
                 siteAlerts: new Alerts( this ),
@@ -79,6 +86,7 @@ export default class AppRouter extends React.Component<IAppRouterProps, IAppRout
         }
 
         localStorage.setItem("uiTheme", settings.uiTheme);
+        localStorage.setItem("dieIconClass", settings.dieIconClass);
     }
 
     toggleMobile(): void {
@@ -247,6 +255,7 @@ interface IAppRouterProps {
 
 interface ISettings {
     uiTheme: string;
+    dieIconClass: string;
 }
 
 interface IAppRouterState {
@@ -279,6 +288,7 @@ export interface IAppGlobals {
         confirmNoLabel: string,
         confirmCallback: Function,
     ): void;
+
 
     saveSettings( settings: ISettings ): void;
 }

@@ -10,11 +10,18 @@ export default class Settings extends React.Component<ISettingsProps, ISettingsS
         }
 
         this.setUITheme = this.setUITheme.bind(this);
+        this.setDieIconClass = this.setDieIconClass.bind(this);
     }
 
     setUITheme( event: React.FormEvent<HTMLSelectElement>) {
       let settings = this.props.appGlobals.settings;
       settings.uiTheme = event.currentTarget.value;
+      this.props.appGlobals.saveSettings( settings );
+    }
+
+    setDieIconClass( event: React.FormEvent<HTMLSelectElement>) {
+      let settings = this.props.appGlobals.settings;
+      settings.dieIconClass = event.currentTarget.value;
       this.props.appGlobals.saveSettings( settings );
     }
 
@@ -43,6 +50,24 @@ export default class Settings extends React.Component<ISettingsProps, ISettingsS
                     <option value="">Default</option>
                     <option value="desaturated">Desaturated</option>
                     <option value="retro">Retro</option>
+                  </select>
+                </fieldset>
+
+                <fieldset className="fieldset">
+                  <legend>Die Icons</legend>
+                  {/* <label>
+                    <input
+                      type="checkbox"
+                      checked={this.props.appGlobals.settings.uiDesaturated}
+                      onChange={this.toggleDesaturated}
+                    />&nbsp;Desaturated UI
+                  </label> */}
+                  <select
+                      value={this.props.appGlobals.settings.dieIconClass}
+                      onChange={this.setDieIconClass}
+                  >
+                    <option value="">Genesys</option>
+                    <option value="starwars">Star Wars</option>
                   </select>
                 </fieldset>
               </div>

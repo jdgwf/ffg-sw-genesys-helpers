@@ -85,6 +85,9 @@ src: url('./fonts/eote-font.woff');
         display: inline-block;
         font-family: Genesys;
         color: #fff;
+        &.starwars {
+            font-family: EOTE !important;
+        }
         .icon-single {
             position: absolute;
             font-size: 1.5rem;
