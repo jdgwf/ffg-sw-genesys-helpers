@@ -188,6 +188,31 @@ export default class DicePage extends React.Component<IDiceProps, IDiceState> {
         <UIPage current="dice" appGlobals={this.props.appGlobals}>
 
         <div className="dice-select-container">
+
+        <div className="text-center dice-select">
+              <span className="title">Proficiency</span>
+              <span className="bigger-font">
+                <span className="dice die-proficiency">c</span>&nbsp;x{this.state.proficiencyDice}<br />
+              </span>
+              <Button
+                variant="primary"
+                className="btn-xs"
+                onClick={() => this.incrementDie("proficiency", -1)}
+                disabled={this.state.proficiencyDice < 1}
+              >
+                <FontAwesomeIcon icon={faMinus} />
+              </Button>
+              &nbsp;
+
+              <Button
+                variant="primary"
+                className="btn-xs"
+                onClick={() => this.incrementDie("proficiency", 1)}
+              >
+                <FontAwesomeIcon icon={faPlus} />
+              </Button>
+          </div>
+
           <div className="text-center dice-select">
               <span className="title">Ability</span>
               <span className="bigger-font">
@@ -212,29 +237,6 @@ export default class DicePage extends React.Component<IDiceProps, IDiceState> {
               </Button>
           </div>
 
-          <div className="text-center dice-select">
-              <span className="title">Difficulty</span>
-              <span className="bigger-font">
-                <span className="dice die-difficulty">d</span>&nbsp;x{this.state.difficultyDice}<br />
-              </span>
-              <Button
-                variant="primary"
-                className="btn-xs"
-                onClick={() => this.incrementDie("difficulty", -1)}
-                disabled={this.state.difficultyDice < 1}
-              >
-                <FontAwesomeIcon icon={faMinus} />
-              </Button>
-              &nbsp;
-
-              <Button
-                variant="primary"
-                className="btn-xs"
-                onClick={() => this.incrementDie("difficulty", 1)}
-              >
-                <FontAwesomeIcon icon={faPlus} />
-              </Button>
-          </div>
 
           <div className="text-center dice-select">
               <span className="title">Boost</span>
@@ -284,16 +286,17 @@ export default class DicePage extends React.Component<IDiceProps, IDiceState> {
               </Button>
           </div>
 
+
           <div className="text-center dice-select">
-              <span className="title">Proficiency</span>
+              <span className="title">Difficulty</span>
               <span className="bigger-font">
-                <span className="dice die-proficiency">c</span>&nbsp;x{this.state.proficiencyDice}<br />
+                <span className="dice die-difficulty">d</span>&nbsp;x{this.state.difficultyDice}<br />
               </span>
               <Button
                 variant="primary"
                 className="btn-xs"
-                onClick={() => this.incrementDie("proficiency", -1)}
-                disabled={this.state.proficiencyDice < 1}
+                onClick={() => this.incrementDie("difficulty", -1)}
+                disabled={this.state.difficultyDice < 1}
               >
                 <FontAwesomeIcon icon={faMinus} />
               </Button>
@@ -302,11 +305,12 @@ export default class DicePage extends React.Component<IDiceProps, IDiceState> {
               <Button
                 variant="primary"
                 className="btn-xs"
-                onClick={() => this.incrementDie("proficiency", 1)}
+                onClick={() => this.incrementDie("difficulty", 1)}
               >
                 <FontAwesomeIcon icon={faPlus} />
               </Button>
           </div>
+
           <div className="text-center dice-select">
             <span className="title">Challenge</span>
               <span className="bigger-font">
