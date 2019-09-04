@@ -8,6 +8,11 @@
     display: flex;
     justify-content: center;
     .dice-select {
+        .title {
+            display: block;
+            font-size: .8rem;
+            border-bottom: solid 1px $primaryBG;
+        }
         border: solid 1px $primaryBG;
         margin: .25rem;
         border-radius: .5rem;
@@ -19,6 +24,9 @@ body.retro {
     .dice-select-container {
         .dice-select {
             border: solid 1px $retroPrimaryBG;
+            .title {
+                border-bottom: solid 1px $retroPrimaryBG;
+            }
         }
     }
 }
@@ -27,6 +35,9 @@ body.desaturated {
     .dice-select-container {
         .dice-select {
             border: solid 1px $desaturatedPrimaryBG;
+            .title {
+                border-bottom: solid 1px $desaturatedPrimaryBG;
+            }
         }
     }
 }

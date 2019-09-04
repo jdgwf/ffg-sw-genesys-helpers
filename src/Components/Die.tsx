@@ -4,7 +4,14 @@ import { IAppGlobals } from '../AppRouter';
 
 export default class Die extends React.Component<IDieProps, {}> {
 
+    className: string = "";
 
+    constructor(props: IDieProps) {
+        super(props);
+        if( this.props.className ) {
+            this.className = this.props.className;
+        }
+    }
 
     render() {
         let success = "s";
@@ -27,7 +34,7 @@ export default class Die extends React.Component<IDieProps, {}> {
 
         return (
             <span
-                className={"die die-" + this.props.dieResult.type}
+                className={"die die-" + this.props.dieResult.type + " " + this.className}
                 title={this.props.dieResult.title}
             >
                 <span className="die-bg">
@@ -179,5 +186,6 @@ export default class Die extends React.Component<IDieProps, {}> {
 interface IDieProps {
     appGlobals: IAppGlobals;
     dieResult: IDieResult;
+    className?: string;
 }
 

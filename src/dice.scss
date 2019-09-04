@@ -79,6 +79,8 @@ src: url('./fonts/eote-font.woff');
         z-index: 100;
         top: 0;
         left: 0;
+        padding: 0;
+        margin: 0;
         width: 4rem;
         height: 4rem;
         // border: solid 1px green;
@@ -111,6 +113,40 @@ src: url('./fonts/eote-font.woff');
             margin: 0;
             top: 1.5rem;
             left: 1.75rem;
+        }
+    }
+    &.bigger {
+        width: 8rem;
+        height: 8rem;
+        // border: solid 1px green;
+        .die-bg {
+            width: 8rem;
+            height: 8rem;
+            font-size: 7.5rem;
+            line-height: 7.5rem;
+            // border: solid 1px red;
+        }
+        .die-face {
+            width: 8rem;
+            height: 8rem;
+            // border: solid 1px blue;
+            .icon-single {
+                font-size: 3.5rem;
+                top: 2rem;
+                left: 0;
+                // border: solid 2px black;
+                width: 8rem;
+            }
+            .icon-1 {
+                font-size: 2rem;
+                top: 2rem;
+                left: 2.2rem;
+            }
+            .icon-2 {
+                font-size: 2rem;
+                top: 3.5rem;
+                left: 3.75rem;
+            }
         }
     }
 }

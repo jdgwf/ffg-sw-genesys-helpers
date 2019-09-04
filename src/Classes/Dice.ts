@@ -78,264 +78,6 @@ export default class Dice {
 
         let rolls: IDieResult[] = [];
 
-        // Ability Dice
-        for( let dieCount = 0; dieCount < ability; dieCount++) {
-            let roll = this.rollDie(8);
-            let rawRoll = {
-                type: "ability",
-                title: "",
-                numSides: 8,
-                rawRoll: roll,
-                successes: 0,
-                advantages: 0,
-                failures: 0,
-                threats: 0,
-                triumphs: 0,
-                despairs: 0,
-                lightSide: 0,
-                darkSide: 0,
-            }
-            switch( roll ) {
-                case 1: {
-                    // Do nothing, blank side
-                    rawRoll.title = "( nothing )";
-                    break;
-                }
-                case 2: {
-                    // one success
-                    rawRoll.successes++;
-                    rawRoll.title = "One Success";
-                    break;
-                }
-                case 3: {
-                    // one success
-                    rawRoll.successes++;
-                    rawRoll.title = "One Success";
-                    break;
-                }
-                case 4: {
-                    // two successes
-                    rawRoll.successes++;
-                    rawRoll.successes++;
-                    rawRoll.title = "Two Successes";
-                    break;
-                }
-                case 5: {
-                    // one advantage
-                    rawRoll.advantages++;
-                    rawRoll.title = "One Advantage";
-                    break;
-                }
-                case 6: {
-                    // one advantage
-                    rawRoll.advantages++;
-                    rawRoll.title = "One Advantage";
-                    break;
-                }
-                case 7: {
-                    // one advantage, one success
-                    rawRoll.advantages++;
-                    rawRoll.successes++;
-                    rawRoll.title = "One Advantage, One Success";
-                    break;
-                }
-                case 8: {
-                    // one advantages
-                    rawRoll.advantages++;
-                    rawRoll.advantages++;
-                    rawRoll.title = "Two Advantages";
-                    break;
-                }
-            }
-            rolls.push( rawRoll );
-        }
-
-        // Difficulty Dice
-        for( let dieCount = 0; dieCount < difficulty; dieCount++) {
-            let roll = this.rollDie(8);
-            let rawRoll = {
-                type: "difficulty",
-                title: "",
-                numSides: 8,
-                rawRoll: roll,
-                successes: 0,
-                advantages: 0,
-                failures: 0,
-                threats: 0,
-                triumphs: 0,
-                despairs: 0,
-                lightSide: 0,
-                darkSide: 0,
-            }
-            switch( roll ) {
-                case 1: {
-                    // Do nothing, blank side
-                    rawRoll.title = "(nothing)";
-                    break;
-                }
-                case 2: {
-                    // one failure
-                    rawRoll.failures++;
-                    rawRoll.title = "One Failure";
-                    break;
-                }
-                case 3: {
-                    // two failures
-                    rawRoll.failures++;
-                    rawRoll.failures++;
-                    rawRoll.title = "Two Failures";
-                    break;
-                }
-                case 4: {
-                    // one threat
-                    rawRoll.threats++;
-                    rawRoll.title = "One Threat";
-                    break;
-                }
-                case 5: {
-                    // one threat
-                    rawRoll.threats++;
-                    rawRoll.title = "One Threat";
-                    break;
-                }
-                case 6: {
-                    // one threat
-                    rawRoll.threats++;
-                    rawRoll.title = "One Threat";
-                    break;
-                }
-                case 7: {
-                    // two threats
-                    rawRoll.threats++;
-                    rawRoll.threats++;
-                    rawRoll.title = "Two Threats";
-
-                    break;
-                }
-                case 8: {
-                    // one threat, one failure
-                    rawRoll.threats++;
-                    rawRoll.failures++;
-                    rawRoll.title = "One Threat, One Failure";
-                    break;
-                }
-            }
-            rolls.push( rawRoll );
-        }
-
-        // Boost Dice
-        for( let dieCount = 0; dieCount < boosts; dieCount++) {
-            let roll = this.rollDie(6);
-            let rawRoll = {
-                type: "boost",
-                title: "",
-                numSides: 8,
-                rawRoll: roll,
-                successes: 0,
-                advantages: 0,
-                failures: 0,
-                threats: 0,
-                triumphs: 0,
-                despairs: 0,
-                lightSide: 0,
-                darkSide: 0,
-            }
-            switch( roll ) {
-                case 1: {
-                    // Do nothing, blank side
-                    rawRoll.title = "(nothing)";
-                    break;
-                }
-                case 2: {
-                    // Do nothing, blank side
-                    rawRoll.title = "(nothing)";
-                    break;
-                }
-                case 3: {
-                    // one success
-                    rawRoll.successes++;
-                    rawRoll.title = "One Success";
-                    break;
-                }
-                case 4: {
-                    // one success, one advantage
-                    rawRoll.successes++;
-                    rawRoll.advantages++;
-                    rawRoll.title = "One Success, One Advantage";
-                    break;
-                }
-                case 5: {
-                    // two advantages
-                    rawRoll.advantages++;
-                    rawRoll.advantages++;
-                    rawRoll.title = "Two Advantages";
-                    break;
-                }
-                case 6: {
-                    // one advantage
-                    rawRoll.advantages++;
-                    rawRoll.title = "One Advantage";
-                    break;
-                }
-            }
-            rolls.push( rawRoll );
-        }
-
-        // Setback Dice
-        for( let dieCount = 0; dieCount < setback; dieCount++) {
-            let roll = this.rollDie(6);
-            let rawRoll = {
-                type: "setback",
-                title: "",
-                numSides: 8,
-                rawRoll: roll,
-                successes: 0,
-                advantages: 0,
-                failures: 0,
-                threats: 0,
-                triumphs: 0,
-                despairs: 0,
-                lightSide: 0,
-                darkSide: 0,
-            }
-            switch( roll ) {
-                case 1: {
-                    // Do nothing, blank side
-                    rawRoll.title = "(nothing)";
-                    break;
-                }
-                case 2: {
-                    // Do nothing, blank side
-                    rawRoll.title = "(nothing)";
-                    break;
-                }
-                case 3: {
-                    // one failure
-                    rawRoll.failures++;
-                    rawRoll.title = "One Failure";
-                    break;
-                }
-                case 4: {
-                    // one failure
-                    rawRoll.failures++;
-                    rawRoll.title = "One Failure";
-                    break;
-                }
-                case 5: {
-                    // one threat
-                    rawRoll.threats++;
-                    rawRoll.title = "One Threat";
-                    break;
-                }
-                case 6: {
-                    // one threat
-                    rawRoll.threats++;
-                    rawRoll.title = "One Threat";
-                    break;
-                }
-            }
-            rolls.push( rawRoll );
-        }
 
         // Proficiency Dice
         for( let dieCount = 0; dieCount < proficiency; dieCount++) {
@@ -439,6 +181,266 @@ export default class Dice {
             rolls.push( rawRoll );
         }
 
+
+
+        // Ability Dice
+        for( let dieCount = 0; dieCount < ability; dieCount++) {
+            let roll = this.rollDie(8);
+            let rawRoll = {
+                type: "ability",
+                title: "",
+                numSides: 8,
+                rawRoll: roll,
+                successes: 0,
+                advantages: 0,
+                failures: 0,
+                threats: 0,
+                triumphs: 0,
+                despairs: 0,
+                lightSide: 0,
+                darkSide: 0,
+            }
+            switch( roll ) {
+                case 1: {
+                    // Do nothing, blank side
+                    rawRoll.title = "( nothing )";
+                    break;
+                }
+                case 2: {
+                    // one success
+                    rawRoll.successes++;
+                    rawRoll.title = "One Success";
+                    break;
+                }
+                case 3: {
+                    // one success
+                    rawRoll.successes++;
+                    rawRoll.title = "One Success";
+                    break;
+                }
+                case 4: {
+                    // two successes
+                    rawRoll.successes++;
+                    rawRoll.successes++;
+                    rawRoll.title = "Two Successes";
+                    break;
+                }
+                case 5: {
+                    // one advantage
+                    rawRoll.advantages++;
+                    rawRoll.title = "One Advantage";
+                    break;
+                }
+                case 6: {
+                    // one advantage
+                    rawRoll.advantages++;
+                    rawRoll.title = "One Advantage";
+                    break;
+                }
+                case 7: {
+                    // one advantage, one success
+                    rawRoll.advantages++;
+                    rawRoll.successes++;
+                    rawRoll.title = "One Advantage, One Success";
+                    break;
+                }
+                case 8: {
+                    // one advantages
+                    rawRoll.advantages++;
+                    rawRoll.advantages++;
+                    rawRoll.title = "Two Advantages";
+                    break;
+                }
+            }
+            rolls.push( rawRoll );
+        }
+
+        // Boost Dice
+        for( let dieCount = 0; dieCount < boosts; dieCount++) {
+            let roll = this.rollDie(6);
+            let rawRoll = {
+                type: "boost",
+                title: "",
+                numSides: 8,
+                rawRoll: roll,
+                successes: 0,
+                advantages: 0,
+                failures: 0,
+                threats: 0,
+                triumphs: 0,
+                despairs: 0,
+                lightSide: 0,
+                darkSide: 0,
+            }
+            switch( roll ) {
+                case 1: {
+                    // Do nothing, blank side
+                    rawRoll.title = "(nothing)";
+                    break;
+                }
+                case 2: {
+                    // Do nothing, blank side
+                    rawRoll.title = "(nothing)";
+                    break;
+                }
+                case 3: {
+                    // one success
+                    rawRoll.successes++;
+                    rawRoll.title = "One Success";
+                    break;
+                }
+                case 4: {
+                    // one success, one advantage
+                    rawRoll.successes++;
+                    rawRoll.advantages++;
+                    rawRoll.title = "One Success, One Advantage";
+                    break;
+                }
+                case 5: {
+                    // two advantages
+                    rawRoll.advantages++;
+                    rawRoll.advantages++;
+                    rawRoll.title = "Two Advantages";
+                    break;
+                }
+                case 6: {
+                    // one advantage
+                    rawRoll.advantages++;
+                    rawRoll.title = "One Advantage";
+                    break;
+                }
+            }
+            rolls.push( rawRoll );
+        }
+
+        // Difficulty Dice
+        for( let dieCount = 0; dieCount < difficulty; dieCount++) {
+            let roll = this.rollDie(8);
+            let rawRoll = {
+                type: "difficulty",
+                title: "",
+                numSides: 8,
+                rawRoll: roll,
+                successes: 0,
+                advantages: 0,
+                failures: 0,
+                threats: 0,
+                triumphs: 0,
+                despairs: 0,
+                lightSide: 0,
+                darkSide: 0,
+            }
+            switch( roll ) {
+                case 1: {
+                    // Do nothing, blank side
+                    rawRoll.title = "(nothing)";
+                    break;
+                }
+                case 2: {
+                    // one failure
+                    rawRoll.failures++;
+                    rawRoll.title = "One Failure";
+                    break;
+                }
+                case 3: {
+                    // two failures
+                    rawRoll.failures++;
+                    rawRoll.failures++;
+                    rawRoll.title = "Two Failures";
+                    break;
+                }
+                case 4: {
+                    // one threat
+                    rawRoll.threats++;
+                    rawRoll.title = "One Threat";
+                    break;
+                }
+                case 5: {
+                    // one threat
+                    rawRoll.threats++;
+                    rawRoll.title = "One Threat";
+                    break;
+                }
+                case 6: {
+                    // one threat
+                    rawRoll.threats++;
+                    rawRoll.title = "One Threat";
+                    break;
+                }
+                case 7: {
+                    // two threats
+                    rawRoll.threats++;
+                    rawRoll.threats++;
+                    rawRoll.title = "Two Threats";
+
+                    break;
+                }
+                case 8: {
+                    // one threat, one failure
+                    rawRoll.threats++;
+                    rawRoll.failures++;
+                    rawRoll.title = "One Threat, One Failure";
+                    break;
+                }
+            }
+            rolls.push( rawRoll );
+        }
+
+        // Setback Dice
+        for( let dieCount = 0; dieCount < setback; dieCount++) {
+            let roll = this.rollDie(6);
+            let rawRoll = {
+                type: "setback",
+                title: "",
+                numSides: 8,
+                rawRoll: roll,
+                successes: 0,
+                advantages: 0,
+                failures: 0,
+                threats: 0,
+                triumphs: 0,
+                despairs: 0,
+                lightSide: 0,
+                darkSide: 0,
+            }
+            switch( roll ) {
+                case 1: {
+                    // Do nothing, blank side
+                    rawRoll.title = "(nothing)";
+                    break;
+                }
+                case 2: {
+                    // Do nothing, blank side
+                    rawRoll.title = "(nothing)";
+                    break;
+                }
+                case 3: {
+                    // one failure
+                    rawRoll.failures++;
+                    rawRoll.title = "One Failure";
+                    break;
+                }
+                case 4: {
+                    // one failure
+                    rawRoll.failures++;
+                    rawRoll.title = "One Failure";
+                    break;
+                }
+                case 5: {
+                    // one threat
+                    rawRoll.threats++;
+                    rawRoll.title = "One Threat";
+                    break;
+                }
+                case 6: {
+                    // one threat
+                    rawRoll.threats++;
+                    rawRoll.title = "One Threat";
+                    break;
+                }
+            }
+            rolls.push( rawRoll );
+        }
 
         // Challenge Dice
         for( let dieCount = 0; dieCount < challlenge; dieCount++) {

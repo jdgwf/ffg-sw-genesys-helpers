@@ -189,6 +189,7 @@ export default class DicePage extends React.Component<IDiceProps, IDiceState> {
 
         <div className="dice-select-container">
           <div className="text-center dice-select">
+              <span className="title">Ability</span>
               <span className="bigger-font">
                 <span className="dice die-ability">d</span>&nbsp;x{this.state.abilityDice}<br />
               </span>
@@ -212,6 +213,7 @@ export default class DicePage extends React.Component<IDiceProps, IDiceState> {
           </div>
 
           <div className="text-center dice-select">
+              <span className="title">Difficulty</span>
               <span className="bigger-font">
                 <span className="dice die-difficulty">d</span>&nbsp;x{this.state.difficultyDice}<br />
               </span>
@@ -235,6 +237,7 @@ export default class DicePage extends React.Component<IDiceProps, IDiceState> {
           </div>
 
           <div className="text-center dice-select">
+              <span className="title">Boost</span>
               <span className="bigger-font">
                 <span className="dice die-boost">b</span>&nbsp;x{this.state.boostsDice}<br />
               </span>
@@ -258,6 +261,7 @@ export default class DicePage extends React.Component<IDiceProps, IDiceState> {
           </div>
 
           <div className="text-center dice-select">
+            <span className="title">Setback</span>
               <span className="bigger-font">
                 <span className="dice die-setback">b</span>&nbsp;x{this.state.setbackDice}<br />
               </span>
@@ -281,6 +285,7 @@ export default class DicePage extends React.Component<IDiceProps, IDiceState> {
           </div>
 
           <div className="text-center dice-select">
+              <span className="title">Proficiency</span>
               <span className="bigger-font">
                 <span className="dice die-proficiency">c</span>&nbsp;x{this.state.proficiencyDice}<br />
               </span>
@@ -303,6 +308,7 @@ export default class DicePage extends React.Component<IDiceProps, IDiceState> {
               </Button>
           </div>
           <div className="text-center dice-select">
+            <span className="title">Challenge</span>
               <span className="bigger-font">
                 <span className="dice die-challenge">c</span>&nbsp;x{this.state.challengeDice}<br />
               </span>
@@ -341,6 +347,7 @@ export default class DicePage extends React.Component<IDiceProps, IDiceState> {
                 <Die
                   appGlobals={this.props.appGlobals}
                   dieResult={result}
+                  className="bigger"
                 />
               )
             })}
