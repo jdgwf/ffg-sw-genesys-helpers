@@ -269,7 +269,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                 <div className="successes">
                 <label>
 
-                    <input
+                    {/* <input
                       type="number"
                       step="1"
                       value={mapItem.successes}
@@ -277,14 +277,30 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                       className="text-center"
                       onChange={(event: React.FormEvent<HTMLInputElement>) => this.updateInitSuccesses( mapIndex, +event.currentTarget.value)}
                       tabIndex={mapIndex + 5}
-                    />
+                    /> */}
+                    <select
+                      value={mapItem.successes}
+                      className="text-center"
+                      onChange={(event: React.FormEvent<HTMLSelectElement>) => this.updateInitSuccesses( mapIndex, +event.currentTarget.value)}
+                      tabIndex={mapIndex + 5}
+                    >
+                      <option value={0}>0</option>
+                      <option value={1}>1</option>
+                      <option value={2}>2</option>
+                      <option value={3}>3</option>
+                      <option value={4}>4</option>
+                      <option value={5}>5</option>
+                      <option value={6}>6</option>
+                      <option value={7}>7</option>
+                      <option value={8}>8</option>
+                    </select>
                     <span>Successes</span>
                   </label>
                 </div>
                 <div className="advantages">
                   <label>
 
-                    <input
+                    {/* <input
                       type="number"
                       step="1"
                       value={mapItem.advantages}
@@ -292,7 +308,23 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                       className="text-center"
                       onChange={(event: React.FormEvent<HTMLInputElement>) => this.updateInitAdvantages( mapIndex, +event.currentTarget.value)}
                       tabIndex={mapIndex + 5}
-                    />
+                    /> */}
+                    <select
+                      value={mapItem.advantages}
+                      className="text-center"
+                      onChange={(event: React.FormEvent<HTMLSelectElement>) => this.updateInitAdvantages( mapIndex, +event.currentTarget.value)}
+                      tabIndex={mapIndex + 5}
+                    >
+                      <option value={0}>0</option>
+                      <option value={1}>1</option>
+                      <option value={2}>2</option>
+                      <option value={3}>3</option>
+                      <option value={4}>4</option>
+                      <option value={5}>5</option>
+                      <option value={6}>6</option>
+                      <option value={7}>7</option>
+                      <option value={8}>8</option>
+                    </select>
                     <span>Advantages</span>
                   </label>
                 </div>

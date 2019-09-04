@@ -1,3 +1,5 @@
+@import '../common.scss';
+
 .control-bar {
     display: flex;
     margin: 0 0 1rem 0;
@@ -51,8 +53,14 @@
             display: block;
             text-align: center;
         }
-        input[type=number] {
+        select {
             max-width: 3rem;
+            padding: .5rem .5rem;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            appearance: none;
+            background: $bodyBG;
+            color: $bodyFG;
         }
     }
     .controls {
@@ -80,8 +88,8 @@
         .successes,
         .advantages {
             margin: 0 1rem;
-            input[type=number] {
-                max-width: 3rem;
+            select {
+                max-width: 4rem;
             }
         }
     }
