@@ -13,7 +13,7 @@ src: url('./fonts/eote-font.woff');
 .dice {
     font-family: EOTE;
 }
-.setback {
+.die-setback {
     font-family: EOTE;
     color: black;
     text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;
@@ -24,28 +24,90 @@ src: url('./fonts/eote-font.woff');
 .note  td > .setback, .note td > .boost, .note td > .challenge, .note td > .proficiency, .note td >  .difficulty, .note td.ability {
     text-shadow:  -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;
 }
-.boost {
+.die-boost {
     font-family: EOTE;
     color: #76CDDB;
     text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;
 }
-.challenge {
+.die-challenge {
     font-family: EOTE;
     color: #751317;
     text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;
 }
-.proficiency {
+.die-proficiency {
     font-family: EOTE;
     color: #FEF035;
     text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;
 }
-.difficulty {
+.die-difficulty {
     font-family: EOTE;
     color: #52287E;
     text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;
 }
-.ability {
+.die-ability {
     font-family: EOTE;
     color: #46AC4E;
     text-shadow: -1px 0 #000000,0 1px #000000,1px 0 #000000,0 -1px #000000;
+}
+
+.die {
+
+    position: relative;
+    width: 4rem;
+    height: 4rem;
+    // border: solid 1px red;
+    display: inline-block;
+    .die-bg {
+        font-family: EOTE;
+        text-align: center;
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        left: 0;
+        width: 4rem;
+        height: 4rem;
+        // border: solid 1px blue;
+        display: inline-block;
+        font-size: 3.25rem;
+        padding: 0;
+        margin: 0;
+        line-height: 3.25rem;
+    }
+    .die-face {
+        text-align: center;
+        position: absolute;
+        z-index: 100;
+        top: 0;
+        left: 0;
+        width: 4rem;
+        height: 4rem;
+        // border: solid 1px green;
+        display: inline-block;
+        font-family: Genesys;
+        color: #fff;
+        .icon-single {
+            position: absolute;
+            font-size: 1.5rem;
+            padding: 0;
+            margin: 0;
+            top: .75rem;
+            left: 1.2rem;
+        }
+        .icon-1 {
+            position: absolute;
+            font-size: 1rem;
+            padding: 0;
+            margin: 0;
+            top: 1rem;
+            left: 1.1rem;
+        }
+        .icon-2 {
+            position: absolute;
+            font-size: 1rem;
+            padding: 0;
+            margin: 0;
+            top: 1.5rem;
+            left: 1.75rem;
+        }
+    }
 }

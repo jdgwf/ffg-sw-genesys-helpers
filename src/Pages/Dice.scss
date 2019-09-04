@@ -1,0 +1,32 @@
+@import '../common.scss';
+
+.bigger-font {
+    font-size: 2rem;
+}
+
+.dice-select-container {
+    display: flex;
+    justify-content: center;
+    .dice-select {
+        border: solid 1px $primaryBG;
+        margin: .25rem;
+        border-radius: .5rem;
+        padding: 0 .25rem;
+    }
+}
+
+body.retro {
+    .dice-select-container {
+        .dice-select {
+            border: solid 1px $retroPrimaryBG;
+        }
+    }
+}
+
+body.desaturated {
+    .dice-select-container {
+        .dice-select {
+            border: solid 1px $desaturatedPrimaryBG;
+        }
+    }
+}
