@@ -351,7 +351,7 @@ export default class DicePage extends React.Component<IDiceProps, IDiceState> {
                 <Die
                   appGlobals={this.props.appGlobals}
                   dieResult={result}
-                  className="bigger"
+                  className=""
                 />
               )
             })}
