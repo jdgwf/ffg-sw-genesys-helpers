@@ -204,6 +204,8 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
     }
 
     render() {
+      let npcCount = 0;
+      let pcCount = 0;
       return (
         <UIPage current="initiative" appGlobals={this.props.appGlobals}>
             <div className="text-center control-bar">
@@ -261,9 +263,14 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
             </div>
 
           {this.initMap.map( (mapItem, mapIndex ) => {
+            if( mapItem.label.toLowerCase() === "npc" ) {
+              npcCount++;
+            } else {
+              pcCount++;
+            }
             return (
               <div className={mapIndex === this.currentInitiative ? "init-map-item current" : "init-map-item"} key={mapIndex}>
-                <div className={mapItem.label === "PC" ? "label pc" : "label npc"}>
+                <div className={mapItem.label.toLowerCase() === "pc" ? "label pc" : "label npc"}>
                   {mapItem.label}
                 </div>
                 <div className="successes">
@@ -283,6 +290,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                       className="text-center"
                       onChange={(event: React.FormEvent<HTMLSelectElement>) => this.updateInitSuccesses( mapIndex, +event.currentTarget.value)}
                       tabIndex={mapIndex + 5}
+                      title={mapItem.label.toLowerCase() === "npc" ? "NPC #" + npcCount + " successes" : "PC #" + pcCount + " successes" }
                     >
                       <option value={0}>0</option>
                       <option value={1}>1</option>
@@ -314,6 +322,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                       className="text-center"
                       onChange={(event: React.FormEvent<HTMLSelectElement>) => this.updateInitAdvantages( mapIndex, +event.currentTarget.value)}
                       tabIndex={mapIndex + 5}
+                      title={mapItem.label.toLowerCase() === "npc" ? "NPC #" + npcCount + " advantages" : "PC #" + pcCount + " advantages" }
                     >
                       <option value={0}>0</option>
                       <option value={1}>1</option>
