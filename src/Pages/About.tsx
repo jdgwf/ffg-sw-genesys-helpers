@@ -23,8 +23,9 @@ export default class About extends React.Component<IAboutProps, IAboutState> {
 
           <p>All other original material in this work is copyright 2019 by Jeffrey Gordon and published under the GPL. </p>
 
-          <p>Star Wars and its logo are owned by Lucasfilm.</p>
+          <p>Star Wars and its logo are owned by Lucasfilm/Disney.</p>
 
+          <p>Die icons are owned by Fantasy Flight Games and/or Lucasfilm/Disney.</p>
           <hr />
 
           <p className="text-center">This project is licensed under the GPL and you can contribute to the source at <a href="https://github.com/jdgwf/ffg-sw-genesys-helpers">its GitHub repository.</a></p>
