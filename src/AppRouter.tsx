@@ -9,6 +9,7 @@ import SanitizedHTML from "./Components/SanitizedHTML";
 import { CONFIGSiteTitle } from "./config";
 import About from "./Pages/About";
 import Settings from "./Pages/Settings";
+import Temp from "./Pages/Temp";
 
 
 
@@ -209,6 +210,11 @@ export default class AppRouter extends React.Component<IAppRouterProps, IAppRout
                 </Route>
                 <Route path={`${process.env.PUBLIC_URL}/about`} exact>
                     <About
+                        appGlobals={this.state.appGlobals}
+                    />
+                </Route>
+                <Route path={`${process.env.PUBLIC_URL}/temp`} exact>
+                    <Temp
                         appGlobals={this.state.appGlobals}
                     />
                 </Route>

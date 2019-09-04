@@ -284,6 +284,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                       className="text-center"
                       onChange={(event: React.FormEvent<HTMLInputElement>) => this.updateInitSuccesses( mapIndex, +event.currentTarget.value)}
                       tabIndex={mapIndex + 5}
+                      title={mapItem.label.toLowerCase() === "npc" ? "NPC #" + npcCount + " successes" : "PC #" + pcCount + " successes" }
                     /> */}
                     <select
                       value={mapItem.successes}
@@ -316,6 +317,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                       className="text-center"
                       onChange={(event: React.FormEvent<HTMLInputElement>) => this.updateInitAdvantages( mapIndex, +event.currentTarget.value)}
                       tabIndex={mapIndex + 5}
+                      title={mapItem.label.toLowerCase() === "npc" ? "NPC #" + npcCount + " advantages" : "PC #" + pcCount + " advantages" }
                     /> */}
                     <select
                       value={mapItem.advantages}
