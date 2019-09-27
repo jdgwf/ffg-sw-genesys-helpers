@@ -13,7 +13,7 @@
         margin: 0;
         padding: 0;
         width: 100%;
-        border-bottom: solid 2px $primaryBG;
+        border-bottom: solid 2px $headerFooterSecondary;
         li {
             margin: 0;
             padding: 0;
@@ -27,7 +27,7 @@
             }
             span, a {
                 display: block;
-                color: $primaryBG;
+                color: $headerFooterFG;
                 cursor: pointer;
                 text-decoration: none;
                 padding: .5rem .75rem;
@@ -37,12 +37,12 @@
                 margin: .25rem .125rem 0 0;
                 white-space: nowrap;
                 &:hover {
-                    background: $primaryBGHover;
+                    background: $headerFooterSecondaryHover;
                     color: $primaryTextFG;
                 }
 
                 &.current {
-                    background: $primaryBG;
+                    background: $headerFooterSecondary;
                     color: $headerFooterBG;
 
                     color: $primaryTextFG;
@@ -81,7 +81,7 @@
         z-index: 1000;
         width: 300px;
         left: -302px;
-        border-right: solid 2px $primaryBG;
+        border-right: solid 2px $headerFooterSecondary;
         background: $headerFooterBG;
         transition: left .5s;
         height: 100vh;
@@ -96,7 +96,7 @@
                 padding: 0;
                 margin: 0;
                 a {
-                    border: solid 1px $primaryBG;
+                    border: solid 1px $headerFooterSecondary;
                     color: $primaryTextFG;
                     padding: .5rem 1rem;
                     display: block;
@@ -105,7 +105,7 @@
                     &.current {
 
                         color: $headerFooterBG;
-                        background: $primaryBG;
+                        background: $headerFooterSecondary;
                         color: $primaryTextFG;
                     }
 

@@ -22,14 +22,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: $bodyBG;
+  background: $bodyBG url('./images/genesys-bg.png');
+  background-size: cover;
   color: $bodyFG;
   .content {
     padding: 1rem;
   }
 
   .die-box {
-    background: #333;
+    // background: #333;
     padding: 2rem;
     display: block;
   }

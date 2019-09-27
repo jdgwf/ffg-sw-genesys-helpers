@@ -19,13 +19,15 @@ $fontFG: #fdfde3;
 $desaturatedFontFG: #fefefe;
 $retroFontFG: #0c0;
 
-$headerFooterBG: #111;
+$headerFooterBG: rgb(243, 108, 32); // rgb(83, 44, 127);
 $headerFooterFG: #fff;
-$bodyBG: #333;
-$bodyFG: #fff;
+$headerFooterSecondary: rgb(46, 110, 165) ;
+$headerFooterSecondaryHover: rgb(46, 110, 165);
+$bodyBG: #fff;
+$bodyFG: #333;
 
-$primaryBG: rgb(0, 123, 255);;
-$primaryBGHover: rgb(0, 143, 255);;
+$primaryBG: rgb(46, 110, 165) ;
+$primaryBGHover: rgb(46, 110, 165) ;
 $primaryTextFG: #fff;
 
 $desaturatedPrimaryBG: #666;
