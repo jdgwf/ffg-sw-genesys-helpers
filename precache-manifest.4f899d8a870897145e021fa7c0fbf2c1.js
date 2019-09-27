@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0824158bc0e215ceeeafb0607b0e7d51",
+    "revision": "e5c0ed5449cd25246dd1a0eedc8c1da9",
     "url": "/ffg-sw-genesys-helpers/index.html"
   },
   {
@@ -8,15 +8,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ffg-sw-genesys-helpers/static/css/2.22a7d4ef.chunk.css"
   },
   {
-    "revision": "bc315cae2048f50c6472",
-    "url": "/ffg-sw-genesys-helpers/static/css/main.c81d1c0f.chunk.css"
+    "revision": "cbe83badbc1ce6371169",
+    "url": "/ffg-sw-genesys-helpers/static/css/main.cb34c7e2.chunk.css"
   },
   {
     "revision": "ea1bdafde16d03388c08",
     "url": "/ffg-sw-genesys-helpers/static/js/2.be86e796.chunk.js"
   },
   {
-    "revision": "bc315cae2048f50c6472",
+    "revision": "cbe83badbc1ce6371169",
     "url": "/ffg-sw-genesys-helpers/static/js/main.d42ccdf2.chunk.js"
   },
   {
@@ -34,6 +34,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "d685ce18df9a501e611997631f6e738d",
     "url": "/ffg-sw-genesys-helpers/static/media/eote-font.d685ce18.woff"
+  },
+  {
+    "revision": "e854a717f699b7dc3ca519f09bd73007",
+    "url": "/ffg-sw-genesys-helpers/static/media/genesys-bg.e854a717.png"
   },
   {
     "revision": "b0d58337d540bbdffd29e73f811ab65e",
