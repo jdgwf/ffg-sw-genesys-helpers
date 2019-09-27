@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7525b9778cb0bcf45b6591e6587a2d34",
+    "revision": "04f753955a006ebe5d16e94fa2b4aa52",
     "url": "/ffg-sw-genesys-helpers/index.html"
   },
   {
@@ -8,15 +8,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/ffg-sw-genesys-helpers/static/css/2.22a7d4ef.chunk.css"
   },
   {
-    "revision": "0d26988a42862b539d26",
-    "url": "/ffg-sw-genesys-helpers/static/css/main.3025026e.chunk.css"
+    "revision": "7ba831b95f650c9dc24f",
+    "url": "/ffg-sw-genesys-helpers/static/css/main.44615f8b.chunk.css"
   },
   {
     "revision": "ea1bdafde16d03388c08",
     "url": "/ffg-sw-genesys-helpers/static/js/2.be86e796.chunk.js"
   },
   {
-    "revision": "0d26988a42862b539d26",
+    "revision": "7ba831b95f650c9dc24f",
     "url": "/ffg-sw-genesys-helpers/static/js/main.8d51ad21.chunk.js"
   },
   {
