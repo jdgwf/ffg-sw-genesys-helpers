@@ -22,6 +22,7 @@ export default class Settings extends React.Component<ISettingsProps, ISettingsS
     setDieIconClass( event: React.FormEvent<HTMLSelectElement>) {
       let settings = this.props.appGlobals.settings;
       settings.dieIconClass = event.currentTarget.value;
+      localStorage.setItem("forceDice", "0");
       this.props.appGlobals.saveSettings( settings );
     }
 
