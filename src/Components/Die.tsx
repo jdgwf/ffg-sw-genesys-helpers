@@ -23,6 +23,9 @@ export default class Die extends React.Component<IDieProps, {}> {
         let threat= "h";
         let despair = "d";
 
+        let darkSide = "";
+        let lightSide = "";
+
         if( this.props.appGlobals.settings.dieIconClass === "starwars") {
             success = "s";
             advantage = "a";
@@ -31,6 +34,9 @@ export default class Die extends React.Component<IDieProps, {}> {
             failure = "f";
             threat= "t";
             despair = "y";
+
+            darkSide = "z";
+            lightSide = "Z";
         }
 
         return (
@@ -68,6 +74,11 @@ export default class Die extends React.Component<IDieProps, {}> {
                     )}
                     {this.props.dieResult.type === "proficiency" ? (
                         <span className="proficiency">c</span>
+                    ) : (
+                        <></>
+                    )}
+                    {this.props.dieResult.type === "force" ? (
+                        <span className="force">c</span>
                     ) : (
                         <></>
                     )}
@@ -170,6 +181,37 @@ export default class Die extends React.Component<IDieProps, {}> {
                                         <>
                                             <span className="icon-1">{threat}</span>
                                             <span className="icon-2">{threat}</span>
+                                        </>
+                                    ) : (
+                                        <></>
+                                    )}
+
+                                    {this.props.dieResult.darkSide === 1 ? (
+                                        <>
+                                            <span className="icon-single">{darkSide}</span>
+                                        </>
+                                    ) : (
+                                        <></>
+                                    )}
+                                    {this.props.dieResult.darkSide === 2 ? (
+                                        <>
+                                            <span className="icon-1">{darkSide}</span>
+                                            <span className="icon-2">{darkSide}</span>
+                                        </>
+                                    ) : (
+                                        <></>
+                                    )}
+                                    {this.props.dieResult.lightSide === 1 ? (
+                                        <>
+                                            <span className="icon-single">{lightSide}</span>
+                                        </>
+                                    ) : (
+                                        <></>
+                                    )}
+                                    {this.props.dieResult.lightSide === 2 ? (
+                                        <>
+                                            <span className="icon-1">{lightSide}</span>
+                                            <span className="icon-2">{lightSide}</span>
                                         </>
                                     ) : (
                                         <></>

@@ -545,11 +545,11 @@ export default class Dice {
 
         // Force Dice
         for( let dieCount = 0; dieCount < force; dieCount++) {
-            let roll = this.rollDie(8);
+            let roll = this.rollDie(12);
             let rawRoll = {
                 type: "force",
                 title: "",
-                numSides: 8,
+                numSides: 12,
                 rawRoll: roll,
                 successes: 0,
                 advantages: 0,
@@ -672,11 +672,11 @@ export default class Dice {
             grossTriumphs = netTriumphs - netDespairs;
         }
 
-        if( netDarkSide > netLightSide ) {
-            grossDarkSide = netDarkSide - netLightSide;
-        } else {
-            grossLightSide = netLightSide - netDarkSide;
-        }
+        // if( netDarkSide > netLightSide ) {
+            grossDarkSide = netDarkSide; // - netLightSide;
+        // } else {
+            grossLightSide = netLightSide; // - netDarkSide;
+        // }
 
         return {
             rolls: rolls,

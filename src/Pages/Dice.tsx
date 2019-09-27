@@ -335,6 +335,38 @@ export default class DicePage extends React.Component<IDiceProps, IDiceState> {
               </Button>
           </div>
 
+{this.props.appGlobals.settings.dieIconClass === "starwars" ? (
+  <>
+          <div className="text-center dice-select">
+            <span className="title">Force</span>
+              <span className="bigger-font">
+                <span className="dice die-force">c</span>&nbsp;x{this.state.forceDice}<br />
+              </span>
+              <Button
+                variant="primary"
+                className="btn-xs"
+                onClick={() => this.incrementDie("force", -1)}
+                disabled={this.state.forceDice < 1}
+              >
+                <FontAwesomeIcon icon={faMinus} />
+              </Button>
+              &nbsp;
+
+              <Button
+                variant="primary"
+                className="btn-xs"
+                onClick={() => this.incrementDie("force", 1)}
+              >
+                <FontAwesomeIcon icon={faPlus} />
+              </Button>
+          </div>
+  </>
+) :
+(
+  <></>
+)}
+
+
         </div>
         <div className="text-center">
           <Button
@@ -348,12 +380,14 @@ export default class DicePage extends React.Component<IDiceProps, IDiceState> {
           <div className="die-box text-center">
             {this.dieRolls.rolls.map( (result, resultIndex) => {
               return (
+                <>
                 <Die
                   key={resultIndex}
                   appGlobals={this.props.appGlobals}
                   dieResult={result}
                   className=""
                 />
+                </>
               )
             })}
             <p>
@@ -407,6 +441,24 @@ export default class DicePage extends React.Component<IDiceProps, IDiceState> {
               {this.dieRolls.grossDespairs !== 0 ? (
                 <>
                   Despairs: {this.dieRolls.grossDespairs}<br />
+                </>
+              ) :
+              (
+                <></>
+              )}
+
+              {this.dieRolls.grossLightSide !== 0 ? (
+                <>
+                  Light Side: {this.dieRolls.grossLightSide}<br />
+                </>
+              ) :
+              (
+                <></>
+              )}
+
+              {this.dieRolls.grossDarkSide !== 0 ? (
+                <>
+                  Dark Side: {this.dieRolls.grossDarkSide}<br />
                 </>
               ) :
               (
