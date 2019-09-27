@@ -444,11 +444,11 @@ export default class Dice {
 
         // Challenge Dice
         for( let dieCount = 0; dieCount < challlenge; dieCount++) {
-            let roll = this.rollDie(8);
+            let roll = this.rollDie(12);
             let rawRoll = {
                 type: "challenge",
                 title: "",
-                numSides: 8,
+                numSides: 12,
                 rawRoll: roll,
                 successes: 0,
                 advantages: 0,

@@ -349,6 +349,7 @@ export default class DicePage extends React.Component<IDiceProps, IDiceState> {
             {this.dieRolls.rolls.map( (result, resultIndex) => {
               return (
                 <Die
+                  key={resultIndex}
                   appGlobals={this.props.appGlobals}
                   dieResult={result}
                   className=""

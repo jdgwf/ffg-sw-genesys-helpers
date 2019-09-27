@@ -1,6 +1,7 @@
 import React from 'react';
 import { IDieResult } from '../Classes/Dice';
 import { IAppGlobals } from '../AppRouter';
+import './Die.scss';
 
 export default class Die extends React.Component<IDieProps, {}> {
 
@@ -33,11 +34,13 @@ export default class Die extends React.Component<IDieProps, {}> {
         }
 
         return (
-            <span
+            <>
+            <div
                 className={"die die-" + this.props.dieResult.type + " " + this.className}
-                title={this.props.dieResult.title}
+                title={this.props.dieResult.title + " (raw #" + this.props.dieResult.rawRoll + ")" }
             >
-                <span className="die-bg">
+
+                <div className="die-bg">
                     {this.props.dieResult.type === "setback" ? (
                         <span className="setback">b</span>
                     ) : (
@@ -68,8 +71,8 @@ export default class Die extends React.Component<IDieProps, {}> {
                     ) : (
                         <></>
                     )}
-                </span>
-                <span className={"die-face " + this.props.appGlobals.settings.dieIconClass }>
+                </div>
+                <div className={"die-face " + this.props.appGlobals.settings.dieIconClass }>
                     {this.props.dieResult.triumphs === 1 ?
                     (
                         <span className="icon-single">{triumph}</span>
@@ -176,8 +179,11 @@ export default class Die extends React.Component<IDieProps, {}> {
                         </>
                     )}
 
-                </span>
-            </span>
+                </div>
+
+                <div className="raw-roll">{"#" + this.props.dieResult.rawRoll}</div>
+            </div>
+            </>
         )
     }
 }
