@@ -2,7 +2,7 @@
 
 .topmenu {
     position: relative;
-    z-index: 1000;
+    z-index: 1001;
     background: $headerFooterBG;
     ul {
         background: $headerFooterBG;
@@ -78,6 +78,7 @@
 
 .ui-page {
     .mobile-menu {
+        z-index: 1000;
         width: 300px;
         left: -302px;
         border-right: solid 2px $primaryBG;

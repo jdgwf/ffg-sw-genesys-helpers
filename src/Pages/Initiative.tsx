@@ -45,12 +45,14 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
               label: "PC",
               successes: 0,
               advantages: 0,
+              triumphs: 0,
             });
           }
         }
 
         this.updateInitSuccesses = this.updateInitSuccesses.bind(this);
         this.updateInitAdvantages = this.updateInitAdvantages.bind(this);
+        this.updateInitTriumphs = this.updateInitTriumphs.bind(this);
         this.updateNumPCs = this.updateNumPCs.bind(this);
         this.addNPC = this.addNPC.bind(this);
         this.addPC = this.addPC.bind(this);
@@ -123,6 +125,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
         label: "NPC",
         successes: 0,
         advantages: 0,
+        triumphs: 0,
       });
 
       localStorage.setItem("initMap", JSON.stringify( this.initMap) );
@@ -137,6 +140,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
         label: "PC",
         successes: 0,
         advantages: 0,
+        triumphs: 0,
       });
 
       localStorage.setItem("initMap", JSON.stringify( this.initMap) );
@@ -165,6 +169,21 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
     ) {
       if( this.initMap.length > indexNumber ) {
         this.initMap[indexNumber].advantages = newValue;
+      }
+
+      localStorage.setItem("initMap", JSON.stringify( this.initMap) );
+
+      this.setState({
+        updated: true,
+      })
+    }
+
+    updateInitTriumphs(
+      indexNumber: number,
+      newValue: number
+    ) {
+      if( this.initMap.length > indexNumber ) {
+        this.initMap[indexNumber].triumphs = newValue;
       }
 
       localStorage.setItem("initMap", JSON.stringify( this.initMap) );
@@ -339,6 +358,39 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                     <span>Advantages</span>
                   </label>
                 </div>
+                <div className="triumphs">
+                  <label>
+
+                    {/* <input
+                      type="number"
+                      step="1"
+                      value={mapItem.advantages}
+                      size={2}
+                      className="text-center"
+                      onChange={(event: React.FormEvent<HTMLInputElement>) => this.updateInitAdvantages( mapIndex, +event.currentTarget.value)}
+                      tabIndex={mapIndex + 5}
+                      title={mapItem.label.toLowerCase() === "npc" ? "NPC #" + npcCount + " advantages" : "PC #" + pcCount + " advantages" }
+                    /> */}
+                    <select
+                      value={mapItem.triumphs}
+                      className="text-center"
+                      onChange={(event: React.FormEvent<HTMLSelectElement>) => this.updateInitTriumphs( mapIndex, +event.currentTarget.value)}
+                      tabIndex={mapIndex + 5}
+                      title={mapItem.label.toLowerCase() === "npc" ? "NPC #" + npcCount + " triumphs" : "PC #" + pcCount + " triumphs" }
+                    >
+                      <option value={0}>0</option>
+                      <option value={1}>1</option>
+                      <option value={2}>2</option>
+                      <option value={3}>3</option>
+                      <option value={4}>4</option>
+                      <option value={5}>5</option>
+                      <option value={6}>6</option>
+                      <option value={7}>7</option>
+                      <option value={8}>8</option>
+                    </select>
+                    <span>Triumphs</span>
+                  </label>
+                </div>
                 <div className="controls">
                   <Button
                     variant="primary"
@@ -361,6 +413,7 @@ interface IInitMapItem {
   label: string;
   successes: number;
   advantages: number;
+  triumphs: number;
 }
 
 interface IInitiativeProps {
