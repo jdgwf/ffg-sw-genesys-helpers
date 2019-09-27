@@ -264,16 +264,9 @@ body.desaturated {
   //   -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
   //   filter: grayscale(100%);
   // }
-  .mech-tro {
-    color: $desaturatedFontFG;
-    tbody, thead, tfoot {
-      tr {
-        th, td {
-          color: $desaturatedFontFG;
-        }
-      }
-    }
-  }
+  background: #222;
+  color: #ccc;
+
   hr {
     border-color: $desaturatedPrimaryBG;
   }
@@ -430,22 +423,12 @@ body.retro {
   //   filter: grayscale(100%);
   // }
 
-  background: $headerFooterBG;
+  background: #222;
+  color: #ccc;
   font-size: .8rem;
-
   font-family: "DotMatrix" !important;
-  .mech-tro {
-    color: $retroFontFG;
-    background: $headerFooterBG;
-    tbody, thead, tfoot {
-      tr {
-        th, td {
-          background: $headerFooterBG;
-          color: $retroFontFG;
-        }
-      }
-    }
-  }
+
+
   hr {
     border-bottom: dotted 2px $retroPrimaryBG;
   }
@@ -455,7 +438,7 @@ body.retro {
   input[type=search],
   input[type=number] {
 
-    background: $headerFooterBG;
+    background: #222;
     color: $retroFontFG;
     border: solid 1px $retroPrimaryBG;
     &:focus {
@@ -486,7 +469,7 @@ body.retro {
     border: dotted 2px $retroPrimaryBG;
     color: $retroFontFG;
     legend {
-      background-color: $headerFooterBG;
+      background-color: #222;
       border: dotted 2px $retroPrimaryBG;
     }
   }
@@ -494,7 +477,7 @@ body.retro {
   .text-section {
     border: dotted 2px $retroPrimaryBG;
     color: $retroFontFG;
-    background-color: $headerFooterBG;
+    background-color: #222;
 
     h2 {
       border-bottom: dotted 2px $retroPrimaryBG;

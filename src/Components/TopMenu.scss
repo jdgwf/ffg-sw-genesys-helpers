@@ -127,7 +127,9 @@
 body.desaturated {
     .mobile-menu,
     .topmenu {
+        background: #222;
         ul {
+            background: #222;
             li {
                 a {
                     color: $desaturatedPrimaryBG;
@@ -153,16 +155,18 @@ body.desaturated {
 body.retro {
     .mobile-menu,
     .topmenu {
+        background: #222;
         ul {
+            background: #222;
             li {
                 display: inline-block;
                 a {
                     font-size: .55rem;
                     color: $retroPrimaryBG;
-                    background: $headerFooterBG;
-                    border-right: dotted 2px $headerFooterBG;
-                    border-top: dotted 2px $headerFooterBG;
-                    border-left: dotted 2px $headerFooterBG;
+                    background: #222;
+                    border-right: dotted 2px #222;
+                    border-top: dotted 2px #222;
+                    border-left: dotted 2px #222;
                     &.current {
                         // background: $retroPrimaryBG;
                         // color: $retroPrimaryTextFG;
