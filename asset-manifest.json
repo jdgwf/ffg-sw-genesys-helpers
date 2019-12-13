@@ -1,19 +1,27 @@
 {
   "files": {
-    "main.css": "/ffg-sw-genesys-helpers/static/css/main.44615f8b.chunk.css",
-    "main.js": "/ffg-sw-genesys-helpers/static/js/main.8d51ad21.chunk.js",
-    "main.js.map": "/ffg-sw-genesys-helpers/static/js/main.8d51ad21.chunk.js.map",
-    "runtime~main.js": "/ffg-sw-genesys-helpers/static/js/runtime~main.fc4c98c2.js",
-    "runtime~main.js.map": "/ffg-sw-genesys-helpers/static/js/runtime~main.fc4c98c2.js.map",
-    "static/css/2.22a7d4ef.chunk.css": "/ffg-sw-genesys-helpers/static/css/2.22a7d4ef.chunk.css",
-    "static/js/2.be86e796.chunk.js": "/ffg-sw-genesys-helpers/static/js/2.be86e796.chunk.js",
-    "static/js/2.be86e796.chunk.js.map": "/ffg-sw-genesys-helpers/static/js/2.be86e796.chunk.js.map",
+    "main.css": "/ffg-sw-genesys-helpers/static/css/main.249db8be.chunk.css",
+    "main.js": "/ffg-sw-genesys-helpers/static/js/main.6b7f42b9.chunk.js",
+    "main.js.map": "/ffg-sw-genesys-helpers/static/js/main.6b7f42b9.chunk.js.map",
+    "runtime-main.js": "/ffg-sw-genesys-helpers/static/js/runtime-main.5b0fbea0.js",
+    "runtime-main.js.map": "/ffg-sw-genesys-helpers/static/js/runtime-main.5b0fbea0.js.map",
+    "static/css/2.833dd627.chunk.css": "/ffg-sw-genesys-helpers/static/css/2.833dd627.chunk.css",
+    "static/js/2.1fc28b0e.chunk.js": "/ffg-sw-genesys-helpers/static/js/2.1fc28b0e.chunk.js",
+    "static/js/2.1fc28b0e.chunk.js.map": "/ffg-sw-genesys-helpers/static/js/2.1fc28b0e.chunk.js.map",
     "index.html": "/ffg-sw-genesys-helpers/index.html",
-    "precache-manifest.2dbacb2cdf5fad6010d77b7fd4a089de.js": "/ffg-sw-genesys-helpers/precache-manifest.2dbacb2cdf5fad6010d77b7fd4a089de.js",
+    "precache-manifest.dc29c537e7df9dc5a4711e04a21c7f59.js": "/ffg-sw-genesys-helpers/precache-manifest.dc29c537e7df9dc5a4711e04a21c7f59.js",
     "service-worker.js": "/ffg-sw-genesys-helpers/service-worker.js",
-    "static/css/2.22a7d4ef.chunk.css.map": "/ffg-sw-genesys-helpers/static/css/2.22a7d4ef.chunk.css.map",
-    "static/css/main.44615f8b.chunk.css.map": "/ffg-sw-genesys-helpers/static/css/main.44615f8b.chunk.css.map",
+    "static/css/2.833dd627.chunk.css.map": "/ffg-sw-genesys-helpers/static/css/2.833dd627.chunk.css.map",
+    "static/css/main.249db8be.chunk.css.map": "/ffg-sw-genesys-helpers/static/css/main.249db8be.chunk.css.map",
+    "static/js/2.1fc28b0e.chunk.js.LICENSE": "/ffg-sw-genesys-helpers/static/js/2.1fc28b0e.chunk.js.LICENSE",
     "static/media/index.scss": "/ffg-sw-genesys-helpers/static/media/genesys-bg.e854a717.png",
     "static/media/Die.scss": "/ffg-sw-genesys-helpers/static/media/genesys-font.b0d58337.woff"
-  }
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5b0fbea0.js",
+    "static/css/2.833dd627.chunk.css",
+    "static/js/2.1fc28b0e.chunk.js",
+    "static/css/main.249db8be.chunk.css",
+    "static/js/main.6b7f42b9.chunk.js"
+  ]
 }
