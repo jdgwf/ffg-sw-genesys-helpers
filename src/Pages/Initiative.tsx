@@ -228,7 +228,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
       return (
         <UIPage current="initiative" appGlobals={this.props.appGlobals}>
             <div className="text-center control-bar">
-              <div className="text-left grow">
+              <div className="text-left">
                 <Button
                   variant="primary"
                   onClick={this.initBackward}
@@ -248,16 +248,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                   Add PC
                 </Button>
               </div>
-              <div className="grow">
-                <Button
-                  variant="primary"
-                  onClick={this.sortInit}
-                  tabIndex={2}
-                  title="Sort by Success, Advantages, then PC vs NPC"
-                >
-                  Sort
-                </Button>
-              </div>
+
               <div className="">
                 <Button
                   variant="primary"
@@ -276,7 +267,9 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                   tabIndex={4}
                   title="Move to the next initiative"
                 >
-                  <FontAwesomeIcon icon={faAngleDoubleRight} />
+                  Next Turn
+                  &nbsp;<FontAwesomeIcon icon={faAngleDoubleRight} />&nbsp;
+                  {/* Next Turn */}
                 </Button>
               </div>
             </div>

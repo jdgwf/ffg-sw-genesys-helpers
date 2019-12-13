@@ -26,7 +26,8 @@
     border: solid 2px transparent;
     border-radius: 1rem;
     &.current {
-        border: solid 2px #fff;
+        border: solid 2px $headerFooterBG;
+        background: $headerFooterBG;
     }
     .label {
         border-radius: 1rem;
@@ -71,6 +72,26 @@
             width: 2rem;
         }
     }
+}
+
+body.retro {
+    .init-map-item {
+        &.current {
+            border: dotted 2px $retroPrimaryBG;
+            background: transparent;
+        }
+    }
+
+}
+
+body.desaturated {
+    .init-map-item {
+        &.current {
+            border: solid 2px $desaturatedSecondaryBGHover;
+            background: $desaturatedSecondaryBGHover;
+        }
+    }
+
 }
 
 // Medium devices (tablets, 768px and up)
