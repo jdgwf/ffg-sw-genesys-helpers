@@ -40,6 +40,7 @@ export default class SkillSelect extends React.Component<ISkillSelectProps, ISki
 
             proficiencySelectUI.push(
                 <span
+                    key={"ps" + proficiencySelectNumber}
                     onClick={() => this.updateProficiencyDie(proficiencySelectNumber)}
                     className={this.props.value.skillDice === proficiencySelectNumber ? "selected" : ""}
                 >
@@ -54,6 +55,7 @@ export default class SkillSelect extends React.Component<ISkillSelectProps, ISki
 
             abilitySelectUI.push(
                 <span
+                    key={"as" + abilitySelectNumber}
                     onClick={() => this.updateAbilityDie(abilitySelectNumber)}
                     className={this.props.value.abilityDice === abilitySelectNumber ? "selected" : ""}
                 >
@@ -76,11 +78,11 @@ export default class SkillSelect extends React.Component<ISkillSelectProps, ISki
         for( let lCount = 0; lCount < maxValue; lCount++ ) {
             if( lCount < minValue ) {
                 skillDieView.push(
-                    <span className="dice die-proficiency">c</span>
+                    <span key={"p" + lCount} className="dice die-proficiency">c</span>
                 )
             } else {
                 skillDieView.push(
-                    <span className="dice die-ability">c</span>
+                    <span key={"a" + lCount} className="dice die-ability">c</span>
                 )
             }
         }

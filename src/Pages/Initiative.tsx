@@ -90,13 +90,13 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
     updateNPC( event: React.FormEvent<HTMLInputElement> ) {
       if( this.state.editItem && this.state.editItemIndex < this.initMap.length ) {
         this.initMap[ this.state.editItemIndex].npc = event.currentTarget.checked;
-        this.state.editItem.npc = event.currentTarget.checked;
+        // this.state.editItem.npc = event.currentTarget.checked;
         if( event.currentTarget.checked ) {
           this.initMap[ this.state.editItemIndex].label = "NPC";
-          this.state.editItem.label = "NPC";
+          // this.state.editItem.label = "NPC";
         } else {
           this.initMap[ this.state.editItemIndex].label = "PC";
-          this.state.editItem.label = "PC";
+          // this.state.editItem.label = "PC";
         }
         this.setState({
           updated: true,
