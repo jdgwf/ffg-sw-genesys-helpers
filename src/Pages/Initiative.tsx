@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 import './Initiative.scss';
 import {IAppGlobals} from '../AppRouter';
 import UIPage from '../Components/UIPage';
-import { Button } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faAngleDoubleLeft, faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faAngleDoubleLeft, faAngleDoubleRight, faCog, faDice } from '@fortawesome/free-solid-svg-icons';
+import NumberSelect from '../Components/NumberSelect';
+import SkillSelect from '../Components/SkillSelect';
+import Dice from '../Classes/Dice';
 
 export default class Initiative extends React.Component<IInitiativeProps, IInitiativeState> {
     numPCs = 4;
@@ -17,7 +20,9 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
         super(props);
         this.state = {
             updated: false,
-        }
+            editItem: null,
+            editItemIndex: -1,
+        };
 
         const lsNumPCs = localStorage.getItem("numPCs");
         const lsInitMap = localStorage.getItem("initMap");
@@ -46,6 +51,15 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
               successes: 0,
               advantages: 0,
               triumphs: 0,
+              npc: false,
+              skillCool: {
+                skillDice: 0,
+                abilityDice: 0,
+              },
+              skillVigilanice: {
+                skillDice: 0,
+                abilityDice: 0,
+              },
             });
           }
         }
@@ -54,14 +68,143 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
         this.updateInitAdvantages = this.updateInitAdvantages.bind(this);
         this.updateInitTriumphs = this.updateInitTriumphs.bind(this);
         this.updateNumPCs = this.updateNumPCs.bind(this);
-        this.addNPC = this.addNPC.bind(this);
-        this.addPC = this.addPC.bind(this);
+        this.addItem = this.addItem.bind(this);
         this.sortInit = this.sortInit.bind(this);
 
         this.initForward = this.initForward.bind(this);
         this.initBackward = this.initBackward.bind(this);
 
         this.removeSlot = this.removeSlot.bind(this);
+
+        this.handleClose = this.handleClose.bind(this);
+        this.editSlot = this.editSlot.bind(this);
+
+        this.updateCoolValue = this.updateCoolValue.bind(this);
+        this.updateVigilanceValue = this.updateVigilanceValue.bind(this);
+
+        this.rollVigilance = this.rollVigilance.bind(this);
+        this.rollCool = this.rollCool.bind(this);
+        this.updateNPC = this.updateNPC.bind(this);
+    }
+
+    updateNPC( event: React.FormEvent<HTMLInputElement> ) {
+      if( this.state.editItem && this.state.editItemIndex < this.initMap.length ) {
+        this.initMap[ this.state.editItemIndex].npc = event.currentTarget.checked;
+        this.state.editItem.npc = event.currentTarget.checked;
+        if( event.currentTarget.checked ) {
+          this.initMap[ this.state.editItemIndex].label = "NPC";
+          this.state.editItem.label = "NPC";
+        } else {
+          this.initMap[ this.state.editItemIndex].label = "PC";
+          this.state.editItem.label = "PC";
+        }
+        this.setState({
+          updated: true,
+        })
+        localStorage.setItem("initMap", JSON.stringify( this.initMap) );
+      }
+
+    }
+    rollCool(
+      indexNumber: number,
+    ): void {
+      if( indexNumber < this.initMap.length && this.initMap[indexNumber]) {
+        let diceRoll = new Dice();
+        let dieResults = diceRoll.rollFGDice(
+          this.getAbilityDice( this.initMap[indexNumber].skillCool), // ability: number = 0,
+          this.getProcidiencyDice( this.initMap[indexNumber].skillCool),// proficiency: number = 0,
+        );
+
+        this.initMap[indexNumber].triumphs = dieResults.netTriumphs;
+        this.initMap[indexNumber].successes = dieResults.netSuccesses;
+        this.initMap[indexNumber].advantages = dieResults.netAdvantages;
+        this.setState({
+          updated: true,
+        });
+        localStorage.setItem("initMap", JSON.stringify( this.initMap) );
+      }
+
+    }
+
+    rollVigilance(
+      indexNumber: number,
+    ): void {
+      if( indexNumber < this.initMap.length && this.initMap[indexNumber]) {
+        let diceRoll = new Dice();
+        let dieResults = diceRoll.rollFGDice(
+          this.getAbilityDice( this.initMap[indexNumber].skillVigilanice), // ability: number = 0,
+          this.getProcidiencyDice( this.initMap[indexNumber].skillVigilanice),// proficiency: number = 0,
+        );
+
+        this.initMap[indexNumber].triumphs = dieResults.netTriumphs;
+        this.initMap[indexNumber].successes = dieResults.netSuccesses;
+        this.initMap[indexNumber].advantages = dieResults.netAdvantages;
+        this.setState({
+          updated: true,
+        })
+        localStorage.setItem("initMap", JSON.stringify( this.initMap) );
+      }
+    }
+
+    getAbilityDice( skill: ISKillValue ): number {
+      let maxValue = 0;
+      let minValue = 0;
+      if( skill.abilityDice > skill.skillDice  ) {
+          maxValue =  skill.abilityDice;
+          minValue =  skill.skillDice;
+      } else {
+          maxValue =  skill.skillDice;
+          minValue =  skill.abilityDice;
+      }
+      return (maxValue - minValue);
+    }
+
+    getProcidiencyDice( skill: ISKillValue ): number {
+      let minValue = 0;
+      if( skill.abilityDice > skill.skillDice  ) {
+          minValue =  skill.skillDice;
+      } else {
+          minValue =  skill.abilityDice;
+      }
+
+      return minValue;
+    }
+
+    updateCoolValue(
+      indexNumber: number,
+      newValue: ISKillValue
+    ): void {
+      if( this.initMap.length > indexNumber ) {
+        this.initMap[indexNumber].skillCool = newValue;
+      }
+
+      localStorage.setItem("initMap", JSON.stringify( this.initMap) );
+
+      this.setState({
+        updated: true,
+      })
+    }
+
+    updateVigilanceValue(
+      indexNumber: number,
+      newValue: ISKillValue
+    ): void {
+      if( this.initMap.length > indexNumber ) {
+        this.initMap[indexNumber].skillVigilanice = newValue;
+      }
+
+      localStorage.setItem("initMap", JSON.stringify( this.initMap) );
+
+      this.setState({
+        updated: true,
+      })
+    }
+
+    editSlot( editItem: IInitMapItem, editItemIndex: number ) {
+      this.setState({
+        editItem: editItem,
+        editItemIndex: editItemIndex,
+      })
     }
 
     initForward() {
@@ -120,33 +263,31 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
       })
     }
 
-    addNPC() {
-      this.initMap.push( {
-        label: "NPC",
-        successes: 0,
-        advantages: 0,
-        triumphs: 0,
-      });
 
-      localStorage.setItem("initMap", JSON.stringify( this.initMap) );
-
-      this.setState({
-        updated: true,
-      })
-    }
-
-    addPC() {
+    addItem() {
       this.initMap.push( {
         label: "PC",
         successes: 0,
         advantages: 0,
         triumphs: 0,
+        npc: false,
+        skillCool: {
+          skillDice: 0,
+          abilityDice: 0,
+        },
+        skillVigilanice: {
+          skillDice: 0,
+          abilityDice: 0,
+        },
       });
 
       localStorage.setItem("initMap", JSON.stringify( this.initMap) );
 
+
       this.setState({
         updated: true,
+        editItem: this.initMap[ this.initMap.length - 1],
+        editItemIndex: this.initMap.length - 1,
       })
     }
 
@@ -166,7 +307,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
     updateInitAdvantages(
       indexNumber: number,
       newValue: number
-    ) {
+    ): void {
       if( this.initMap.length > indexNumber ) {
         this.initMap[indexNumber].advantages = newValue;
       }
@@ -181,7 +322,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
     updateInitTriumphs(
       indexNumber: number,
       newValue: number
-    ) {
+    ): void {
       if( this.initMap.length > indexNumber ) {
         this.initMap[indexNumber].triumphs = newValue;
       }
@@ -196,7 +337,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
     updateInitSuccesses(
       indexNumber: number,
       newValue: number
-    ) {
+    ): void {
       if( this.initMap.length > indexNumber ) {
         this.initMap[indexNumber].successes = newValue;
       }
@@ -218,15 +359,104 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
       })
     }
 
+    handleClose() {
+      this.setState({
+        editItem: null,
+      })
+    }
+
     componentDidMount ()  {
       this.props.appGlobals.makeDocumentTitle("Initiative");
     }
 
     render() {
-      let npcCount = 0;
-      let pcCount = 0;
+      let success = "s";
+      let advantage = "a";
+      let triumph = "t";
+
+
+      if( this.props.appGlobals.settings.dieIconClass === "starwars") {
+          success = "s";
+          advantage = "a";
+          triumph = "x";
+      }
+
       return (
         <UIPage current="initiative" appGlobals={this.props.appGlobals}>
+            <Modal onHide={this.handleClose} show={this.state.editItem != null}>
+              <Modal.Header closeButton >
+                {this.state.editItem && this.state.editItem.npc ? (
+                  <>NPC Edit</>
+                ) : (
+                  <>PC Edit</>
+                )}
+              </Modal.Header>
+              <Modal.Body>
+              {this.state.editItem ? (
+                <div className="form">
+                  <label>
+                    NPC:&nbsp;
+                    <input
+                      type="checkbox"
+                      checked={this.state.editItem.npc}
+                      onChange={this.updateNPC}
+                    />
+                  </label><br />
+                  <label>
+                    Successes:&nbsp;
+                    <NumberSelect
+                      value={this.state.editItem.successes}
+                      max={8}
+                      index={this.state.editItemIndex}
+                      onChange={this.updateInitSuccesses}
+                    />
+                  </label><br />
+                  <label>
+                    Advantages:&nbsp;
+                    <NumberSelect
+                      value={this.state.editItem.advantages}
+                      max={8}
+                      index={this.state.editItemIndex}
+                      onChange={this.updateInitAdvantages}
+                    />
+                  </label><br />
+                  <label>
+                    Triumphs:&nbsp;
+                    <NumberSelect
+                      value={this.state.editItem.triumphs}
+                      max={8}
+                      index={this.state.editItemIndex}
+                      onChange={this.updateInitTriumphs}
+                    />
+                  </label><br />
+                  <hr />
+                  <SkillSelect
+                      value={this.state.editItem.skillCool}
+                      index={this.state.editItemIndex}
+                      onChange={this.updateCoolValue}
+                      label="Cool"
+                  />
+                  <SkillSelect
+                    value={this.state.editItem.skillVigilanice}
+                    index={this.state.editItemIndex}
+                    onChange={this.updateVigilanceValue}
+                    label="Vigilance"
+                  />
+                </div>
+              ) : (
+                <></>
+              )}
+              </Modal.Body>
+              <Modal.Footer>
+                <Button
+                  variant="primary"
+                  onClick={this.handleClose}
+                >
+                  Close
+                </Button>
+              </Modal.Footer>
+
+            </Modal>
             <div className="text-center control-bar">
               <div className="text-left">
                 <Button
@@ -241,22 +471,22 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
               <div className="">
                 <Button
                   variant="primary"
-                  onClick={this.addPC}
+                  onClick={this.addItem}
                   tabIndex={1}
                   title="Add a PC"
                 >
-                  Add PC
+                  Add
                 </Button>
               </div>
 
               <div className="">
                 <Button
                   variant="primary"
-                  onClick={this.addNPC}
-                  tabIndex={3}
-                  title="Add an NPC"
+                  onClick={this.sortInit}
+                  tabIndex={2}
+                  title="Sort"
                 >
-                  Add NPC
+                  Sort
                 </Button>
               </div>
 
@@ -269,122 +499,144 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                 >
                   Next Turn
                   &nbsp;<FontAwesomeIcon icon={faAngleDoubleRight} />&nbsp;
-                  {/* Next Turn */}
                 </Button>
               </div>
             </div>
 
           {this.initMap.map( (mapItem, mapIndex ) => {
-            if( mapItem.label.toLowerCase() === "npc" ) {
-              npcCount++;
-            } else {
-              pcCount++;
+            let dieResults: ReactElement[] = [];
+
+            for( let successCount = 0; successCount < mapItem.successes; successCount++ ) {
+              dieResults.push(
+                <span title="Success" key={"s" + successCount} className={this.props.appGlobals.settings.dieIconClass + " icon-single"}>{success}</span>
+              )
             }
+
+            for( let successCount = 0; successCount < mapItem.advantages; successCount++ ) {
+              dieResults.push(
+                <span title="Advantage" key={"a" + successCount} className={this.props.appGlobals.settings.dieIconClass + " icon-single"}>{advantage}</span>
+              )
+            }
+
+            for( let successCount = 0; successCount < mapItem.triumphs; successCount++ ) {
+              dieResults.push(
+                <span title="Triumph" key={"t" + successCount} className={this.props.appGlobals.settings.dieIconClass + " icon-single"}>{triumph}</span>
+              )
+            }
+
+            let skillCoolDieView: ReactElement[] = [];
+            let maxValue = 0;
+            let minValue = 0;
+            if( mapItem.skillCool.abilityDice > mapItem.skillCool.skillDice  ) {
+                maxValue =  mapItem.skillCool.abilityDice;
+                minValue =  mapItem.skillCool.skillDice;
+            } else {
+                maxValue =  mapItem.skillCool.skillDice;
+                minValue =  mapItem.skillCool.abilityDice;
+            }
+
+            for( let lCount = 0; lCount < maxValue; lCount++ ) {
+                if( lCount < minValue ) {
+                  skillCoolDieView.push(
+                        <span key={lCount} className="dice die-proficiency">c</span>
+                    )
+                } else {
+                  skillCoolDieView.push(
+                        <span key={lCount} className="dice die-ability">c</span>
+                    )
+                }
+            }
+
+            let skillVigilanceDieView: ReactElement[] = [];
+            maxValue = 0;
+            minValue = 0;
+            if( mapItem.skillVigilanice.abilityDice > mapItem.skillVigilanice.skillDice  ) {
+                maxValue =  mapItem.skillVigilanice.abilityDice;
+                minValue =  mapItem.skillVigilanice.skillDice;
+            } else {
+                maxValue =  mapItem.skillVigilanice.skillDice;
+                minValue =  mapItem.skillVigilanice.abilityDice;
+            }
+
+            for( let lCount = 0; lCount < maxValue; lCount++ ) {
+                if( lCount < minValue ) {
+                  skillVigilanceDieView.push(
+                        <span key={lCount} className="dice die-proficiency">c</span>
+                    )
+                } else {
+                  skillVigilanceDieView.push(
+                        <span key={lCount} className="dice die-ability">c</span>
+                    )
+                }
+            }
+
             return (
               <div className={mapIndex === this.currentInitiative ? "init-map-item current" : "init-map-item"} key={mapIndex}>
-                <div className={mapItem.label.toLowerCase() === "pc" ? "label pc" : "label npc"}>
-                  {mapItem.label}
-                </div>
-                <div className="successes">
-                <label>
+                <div className={mapItem.npc ? "label npc" : "label pc"}>
+                  <div className="name-results">
+                    {mapItem.label}<br />
+                    &nbsp;{dieResults}
+                  </div>
+                  {
+                    mapItem.skillCool.abilityDice > 0
+                    || mapItem.skillCool.skillDice > 0
+                    || mapItem.skillVigilanice.abilityDice > 0
+                    || mapItem.skillVigilanice.skillDice > 0
 
-                    {/* <input
-                      type="number"
-                      step="1"
-                      value={mapItem.successes}
-                      size={3}
-                      className="text-center"
-                      onChange={(event: React.FormEvent<HTMLInputElement>) => this.updateInitSuccesses( mapIndex, +event.currentTarget.value)}
-                      tabIndex={mapIndex + 5}
-                      title={mapItem.label.toLowerCase() === "npc" ? "NPC #" + npcCount + " successes" : "PC #" + pcCount + " successes" }
-                    /> */}
-                    <select
-                      value={mapItem.successes}
-                      className="text-center"
-                      onChange={(event: React.FormEvent<HTMLSelectElement>) => this.updateInitSuccesses( mapIndex, +event.currentTarget.value)}
-                      tabIndex={mapIndex + 5}
-                      title={mapItem.label.toLowerCase() === "npc" ? "NPC #" + npcCount + " successes" : "PC #" + pcCount + " successes" }
-                    >
-                      <option value={0}>0</option>
-                      <option value={1}>1</option>
-                      <option value={2}>2</option>
-                      <option value={3}>3</option>
-                      <option value={4}>4</option>
-                      <option value={5}>5</option>
-                      <option value={6}>6</option>
-                      <option value={7}>7</option>
-                      <option value={8}>8</option>
-                    </select>
-                    <span>Successes</span>
-                  </label>
-                </div>
-                <div className="advantages">
-                  <label>
+                    ? (
+                      <>
+                      <div className="skill-values">
+                        <table>
+                          <tbody>
+                            <tr>
+                              <td className="text-right">
 
-                    {/* <input
-                      type="number"
-                      step="1"
-                      value={mapItem.advantages}
-                      size={2}
-                      className="text-center"
-                      onChange={(event: React.FormEvent<HTMLInputElement>) => this.updateInitAdvantages( mapIndex, +event.currentTarget.value)}
-                      tabIndex={mapIndex + 5}
-                      title={mapItem.label.toLowerCase() === "npc" ? "NPC #" + npcCount + " advantages" : "PC #" + pcCount + " advantages" }
-                    /> */}
-                    <select
-                      value={mapItem.advantages}
-                      className="text-center"
-                      onChange={(event: React.FormEvent<HTMLSelectElement>) => this.updateInitAdvantages( mapIndex, +event.currentTarget.value)}
-                      tabIndex={mapIndex + 5}
-                      title={mapItem.label.toLowerCase() === "npc" ? "NPC #" + npcCount + " advantages" : "PC #" + pcCount + " advantages" }
-                    >
-                      <option value={0}>0</option>
-                      <option value={1}>1</option>
-                      <option value={2}>2</option>
-                      <option value={3}>3</option>
-                      <option value={4}>4</option>
-                      <option value={5}>5</option>
-                      <option value={6}>6</option>
-                      <option value={7}>7</option>
-                      <option value={8}>8</option>
-                    </select>
-                    <span>Advantages</span>
-                  </label>
-                </div>
-                <div className="triumphs">
-                  <label>
+                                Cool:&nbsp;
+                                <Button
+                                  variant="primary"
+                                  onClick={() => this.rollCool( mapIndex )}
+                                  className="btn-xs"
+                                >
+                                  <FontAwesomeIcon icon={faDice} />
+                                </Button>&nbsp;
+                              </td>
+                              <td className="text-left">{skillCoolDieView}</td>
+                            </tr>
+                            <tr>
+                              <td className="text-right">
 
-                    {/* <input
-                      type="number"
-                      step="1"
-                      value={mapItem.advantages}
-                      size={2}
-                      className="text-center"
-                      onChange={(event: React.FormEvent<HTMLInputElement>) => this.updateInitAdvantages( mapIndex, +event.currentTarget.value)}
-                      tabIndex={mapIndex + 5}
-                      title={mapItem.label.toLowerCase() === "npc" ? "NPC #" + npcCount + " advantages" : "PC #" + pcCount + " advantages" }
-                    /> */}
-                    <select
-                      value={mapItem.triumphs}
-                      className="text-center"
-                      onChange={(event: React.FormEvent<HTMLSelectElement>) => this.updateInitTriumphs( mapIndex, +event.currentTarget.value)}
-                      tabIndex={mapIndex + 5}
-                      title={mapItem.label.toLowerCase() === "npc" ? "NPC #" + npcCount + " triumphs" : "PC #" + pcCount + " triumphs" }
-                    >
-                      <option value={0}>0</option>
-                      <option value={1}>1</option>
-                      <option value={2}>2</option>
-                      <option value={3}>3</option>
-                      <option value={4}>4</option>
-                      <option value={5}>5</option>
-                      <option value={6}>6</option>
-                      <option value={7}>7</option>
-                      <option value={8}>8</option>
-                    </select>
-                    <span>Triumphs</span>
-                  </label>
+                                Vigilance:&nbsp;
+                                <Button
+                                  variant="primary"
+                                  onClick={() => this.rollVigilance( mapIndex )}
+                                  className="btn-xs"
+                                >
+                                  <FontAwesomeIcon icon={faDice} />
+                                </Button>&nbsp;
+                              </td>
+                              <td className="text-right">{skillVigilanceDieView}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      </>
+                    ) : (
+                      <></>
+                    )
+                  }
+
+
                 </div>
+
                 <div className="controls">
+                <Button
+                    variant="primary"
+                    // tabIndex={mapIndex + this.initMap.length + 5}
+                    onClick={() => this.editSlot(mapItem, mapIndex)}
+                    title="Edit this initiative slot"
+                  >
+                    <FontAwesomeIcon icon={faCog} />
+                  </Button>
                   <Button
                     variant="primary"
                     tabIndex={mapIndex + this.initMap.length + 5}
@@ -402,11 +654,23 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
     }
 }
 
+
 interface IInitMapItem {
   label: string;
   successes: number;
   advantages: number;
   triumphs: number;
+  npc: boolean;
+  skillVigilanice: {
+    abilityDice: number;
+    skillDice: number;
+  };
+  skillCool: ISKillValue;
+}
+
+export interface ISKillValue {
+  abilityDice: number;
+  skillDice: number;
 }
 
 interface IInitiativeProps {
@@ -415,5 +679,6 @@ interface IInitiativeProps {
 
 interface IInitiativeState {
     updated: boolean;
-
+    editItem: IInitMapItem | null;
+    editItemIndex: number;
 }

@@ -16,60 +16,7 @@ export default class Temp extends React.Component<ITempProps, ITempState> {
     }
 
     render() {
-      let letters = [
-        "a",
-        "b",
-        "c",
-        "d",
-        "e",
-        "f",
-        "g",
-        "h",
-        "i",
-        "j",
-        "k",
-        "l",
-        "m",
-        "n",
-        "o",
-        "p",
-        "q",
-        "r",
-        "s",
-        "t",
-        "u",
-        "v",
-        "w",
-        "x",
-        "y",
-        "z",
-        "A",
-        "B",
-        "C",
-        "D",
-        "E",
-        "F",
-        "G",
-        "H",
-        "I",
-        "J",
-        "K",
-        "L",
-        "M",
-        "N",
-        "O",
-        "P",
-        "Q",
-        "R",
-        "S",
-        "T",
-        "U",
-        "V",
-        "W",
-        "X",
-        "Y",
-        "Z",
-      ]
+
       return (
         <UIPage current="Temp" appGlobals={this.props.appGlobals}>
 
@@ -98,11 +45,6 @@ export default class Temp extends React.Component<ITempProps, ITempState> {
 
             <span className='dice'>z</span> = Dark Side<br />
             <span className='dice'>Z</span> = Light Side<br />
-            {/* {letters.map( (char, charINdex) => {
-              return (
-                <div><span className="dice">{char}</span> = {char}</div>
-              )
-            })} */}
           </p>
         </UIPage>
       );

@@ -1,0 +1,50 @@
+@import "../common.scss";
+
+body {
+    .number-select {
+        & > span {
+            display: inline-block;
+            text-align: center;
+            border-radius: 1rem;
+            margin-right: .125rem;
+            width: 2rem;
+            height: 2rem;
+            padding: .125rem;
+            border: solid 1px $bodyFG;
+            color: $bodyFG;
+            &.selected {
+                border: solid 1px $bodyBG;
+                color: $bodyBG;
+                background: $bodyFG;
+            }
+        }
+    }
+
+    &.retro {
+        .number-select {
+            & > span {
+                border: solid 1px $retroPrimaryTextFG;
+                color: $retroPrimaryTextFG;
+                &.selected {
+                    border: solid 1px $retroPrimaryBG;
+                    color: $retroPrimaryBG;
+                    background: $retroPrimaryTextFG;
+                }
+            }
+        }
+    }
+
+    &.desaturated {
+        .number-select {
+            & > span {
+                border: solid 1px $desaturatedPrimaryTextFG;
+                color: $desaturatedPrimaryTextFG;
+                &.selected {
+                    border: solid 1px $desaturatedPrimaryBG;
+                    color: $desaturatedPrimaryBG;
+                    background: $desaturatedPrimaryTextFG;
+                }
+            }
+        }
+    }
+}

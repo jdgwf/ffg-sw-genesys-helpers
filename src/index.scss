@@ -133,10 +133,11 @@ body {
         }
       }
     }
+    .modal-body,
     .modal-content {
       background: $bodyBG;
-      border: solid 2px $primaryBG;
-      color: $fontFG;
+      // border: solid 2px $primaryBG;
+      color: $bodyFG;
       max-height: 80vh;
       svg {
         max-height: 75vh;
