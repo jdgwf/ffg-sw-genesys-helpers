@@ -22,6 +22,7 @@ export default class NumberSelect extends React.Component<INumberSelectProps, IN
         for( let numberSelect = 0; numberSelect < this.max; numberSelect++) {
             numberSelectUI.push(
                 <span
+                    key={"ns" + numberSelect}
                 onClick={() => this.props.onChange(this.props.index, numberSelect)}
                 className={this.props.value === numberSelect ? "selected" : ""}
             >
