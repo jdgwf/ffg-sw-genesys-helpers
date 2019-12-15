@@ -144,6 +144,56 @@ body {
       }
     }
   }
+  &.retro {
+    .modal-dialog {
+      background: #222 !important;
+      .modal-footer {
+        background: #222 !important;
+      }
+      .modal-header {
+        background: #222 !important;
+
+        .close {
+          color: $retroPrimaryBG;
+
+          &:hover {
+            color: $retroPrimaryBGHover;
+          }
+        }
+      }
+      .modal-body,
+      .modal-content {
+        background: #222;
+        color: $retroFontFG;
+
+      }
+    }
+  }
+  &.desaturated {
+    .modal-dialog {
+      background: #222 !important;
+      .modal-footer {
+        background: #222 !important;
+      }
+      .modal-header {
+        background: #222 !important;
+
+        .close {
+          color: $desaturatedPrimaryBG;
+
+          &:hover {
+            color: $desaturatedPrimaryBGHover;
+          }
+        }
+      }
+      .modal-body,
+      .modal-content {
+        background: #222;
+        color: $desaturatedFontFG;
+
+      }
+    }
+  }
 
   .pull-right,
   .float-right {
@@ -592,11 +642,11 @@ body.retro {
   }
 
   .modal-dialog {
-    // .modal-footer {
-    //   background: $headerFooterBG;
-    // }
+    .modal-footer {
+      background: $headerFooterBG;
+    }
     .modal-header {
-      // background: $headerFooterBG;
+      background: $headerFooterBG;
       .close {
         color: $retroPrimaryBG;
         &:hover {
