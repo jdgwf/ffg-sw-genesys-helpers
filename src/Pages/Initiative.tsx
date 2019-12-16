@@ -18,15 +18,30 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
     initMap: IInitMapItem[] = [];
     constructor(props: IInitiativeProps) {
         super(props);
-        this.state = {
-            updated: false,
-            editItem: null,
-            editItemIndex: -1,
-        };
 
         const lsNumPCs = localStorage.getItem("numPCs");
         const lsInitMap = localStorage.getItem("initMap");
         const lsCurrentInitiative = localStorage.getItem("currentInitiative");
+        const lsHideControls = localStorage.getItem("hideControls");
+
+        let hideControls = false;
+        if( lsHideControls && +lsHideControls > 0 ) {
+          hideControls = true;
+        }
+
+        const lsHideRolls = localStorage.getItem("hideRolls");
+
+        let hideRolls = false;
+        if( lsHideRolls && +lsHideRolls > 0 ) {
+          hideRolls = true;
+        }
+        this.state = {
+            updated: false,
+            editItem: null,
+            editItemIndex: -1,
+            hideControls: hideControls,
+            hideRolls: hideRolls,
+        };
 
         if( lsCurrentInitiative ) {
           this.currentInitiative = +lsCurrentInitiative;
@@ -54,13 +69,39 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
               npc: false,
               skillCool: {
                 skillDice: 0,
-                abilityDice: 0,
+                attributeDice: 0,
               },
-              skillVigilanice: {
+              skillVigilance: {
                 skillDice: 0,
-                abilityDice: 0,
+                attributeDice: 0,
               },
             });
+          }
+        }
+
+        for( let item of this.initMap ) {
+          if(!item.skillCool) {
+            item.skillCool = {
+              skillDice: 0,
+              attributeDice: 0,
+            }
+          }
+
+          if(!item.skillVigilance) {
+            item.skillVigilance = {
+              skillDice: 0,
+              attributeDice: 0,
+            }
+          }
+
+          if(!item.skillCool.attributeDice) {
+            item.skillCool.attributeDice = 0
+            
+          }
+
+          if(!item.skillVigilance.attributeDice) {
+            item.skillVigilance.attributeDice = 0
+            
           }
         }
 
@@ -85,6 +126,34 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
         this.rollVigilance = this.rollVigilance.bind(this);
         this.rollCool = this.rollCool.bind(this);
         this.updateNPC = this.updateNPC.bind(this);
+        this.toggleHideControls = this.toggleHideControls.bind(this);
+        this.toggleHideRolls = this.toggleHideRolls.bind(this);
+    }
+
+    toggleHideRolls() {
+      let hideRolls = !this.state.hideRolls;
+
+      if( hideRolls ) {
+          localStorage.setItem("hideRolls", "1");
+      } else {
+          localStorage.setItem("hideRolls", "0");
+      }
+      this.setState({
+        hideRolls: hideRolls,
+      })
+    }
+
+    toggleHideControls() {
+      let hideControls = !this.state.hideControls;
+
+      if( hideControls ) {
+          localStorage.setItem("hideControls", "1");
+      } else {
+          localStorage.setItem("hideControls", "0");
+      }
+      this.setState({
+        hideControls: hideControls,
+      })
     }
 
     updateNPC( event: React.FormEvent<HTMLInputElement> ) {
@@ -111,7 +180,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
       if( indexNumber < this.initMap.length && this.initMap[indexNumber]) {
         let diceRoll = new Dice();
         let dieResults = diceRoll.rollFGDice(
-          this.getAbilityDice( this.initMap[indexNumber].skillCool), // ability: number = 0,
+          this.getattributeDice( this.initMap[indexNumber].skillCool), // ability: number = 0,
           this.getProcidiencyDice( this.initMap[indexNumber].skillCool),// proficiency: number = 0,
         );
 
@@ -132,8 +201,8 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
       if( indexNumber < this.initMap.length && this.initMap[indexNumber]) {
         let diceRoll = new Dice();
         let dieResults = diceRoll.rollFGDice(
-          this.getAbilityDice( this.initMap[indexNumber].skillVigilanice), // ability: number = 0,
-          this.getProcidiencyDice( this.initMap[indexNumber].skillVigilanice),// proficiency: number = 0,
+          this.getattributeDice( this.initMap[indexNumber].skillVigilance), // ability: number = 0,
+          this.getProcidiencyDice( this.initMap[indexNumber].skillVigilance),// proficiency: number = 0,
         );
 
         this.initMap[indexNumber].triumphs = dieResults.netTriumphs;
@@ -146,25 +215,25 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
       }
     }
 
-    getAbilityDice( skill: ISKillValue ): number {
+    getattributeDice( skill: ISKillValue ): number {
       let maxValue = 0;
       let minValue = 0;
-      if( skill.abilityDice > skill.skillDice  ) {
-          maxValue =  skill.abilityDice;
+      if( skill.attributeDice > skill.skillDice  ) {
+          maxValue =  skill.attributeDice;
           minValue =  skill.skillDice;
       } else {
           maxValue =  skill.skillDice;
-          minValue =  skill.abilityDice;
+          minValue =  skill.attributeDice;
       }
       return (maxValue - minValue);
     }
 
     getProcidiencyDice( skill: ISKillValue ): number {
       let minValue = 0;
-      if( skill.abilityDice > skill.skillDice  ) {
+      if( skill.attributeDice > skill.skillDice  ) {
           minValue =  skill.skillDice;
       } else {
-          minValue =  skill.abilityDice;
+          minValue =  skill.attributeDice;
       }
 
       return minValue;
@@ -190,7 +259,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
       newValue: ISKillValue
     ): void {
       if( this.initMap.length > indexNumber ) {
-        this.initMap[indexNumber].skillVigilanice = newValue;
+        this.initMap[indexNumber].skillVigilance = newValue;
       }
 
       localStorage.setItem("initMap", JSON.stringify( this.initMap) );
@@ -273,11 +342,11 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
         npc: false,
         skillCool: {
           skillDice: 0,
-          abilityDice: 0,
+          attributeDice: 0,
         },
-        skillVigilanice: {
+        skillVigilance: {
           skillDice: 0,
-          abilityDice: 0,
+          attributeDice: 0,
         },
       });
 
@@ -437,7 +506,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                       label="Cool"
                   />
                   <SkillSelect
-                    value={this.state.editItem.skillVigilanice}
+                    value={this.state.editItem.skillVigilance}
                     index={this.state.editItemIndex}
                     onChange={this.updateVigilanceValue}
                     label="Vigilance"
@@ -468,6 +537,9 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                   <FontAwesomeIcon icon={faAngleDoubleLeft} />
                 </Button>
               </div>
+
+{!this.state.hideControls ? (
+  <>
               <div className="">
                 <Button
                   variant="primary"
@@ -489,7 +561,10 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                   Sort
                 </Button>
               </div>
-
+  </>
+) : (
+  <></>
+)}
               <div className="grow text-right">
                 <Button
                   variant="primary"
@@ -503,6 +578,25 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
               </div>
             </div>
 
+          <div className="text-center">
+              <label>
+                <input 
+                  type="checkbox"
+                  checked={this.state.hideControls}
+                  onChange={this.toggleHideControls}
+                />&nbsp;Hide Edit Controls
+              </label>
+              &nbsp;|&nbsp;
+              <label>
+                <input 
+                  type="checkbox"
+                  checked={this.state.hideRolls}
+                  onChange={this.toggleHideRolls}
+                />&nbsp;Hide Rolls
+              </label>              
+          </div>
+
+          <div className="init-labels">
           {this.initMap.map( (mapItem, mapIndex ) => {
             let dieResults: ReactElement[] = [];
 
@@ -527,12 +621,12 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
             let skillCoolDieView: ReactElement[] = [];
             let maxValue = 0;
             let minValue = 0;
-            if( mapItem.skillCool.abilityDice > mapItem.skillCool.skillDice  ) {
-                maxValue =  mapItem.skillCool.abilityDice;
+            if( mapItem.skillCool.attributeDice > mapItem.skillCool.skillDice  ) {
+                maxValue =  mapItem.skillCool.attributeDice;
                 minValue =  mapItem.skillCool.skillDice;
             } else {
                 maxValue =  mapItem.skillCool.skillDice;
-                minValue =  mapItem.skillCool.abilityDice;
+                minValue =  mapItem.skillCool.attributeDice;
             }
 
             for( let lCount = 0; lCount < maxValue; lCount++ ) {
@@ -550,12 +644,12 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
             let skillVigilanceDieView: ReactElement[] = [];
             maxValue = 0;
             minValue = 0;
-            if( mapItem.skillVigilanice.abilityDice > mapItem.skillVigilanice.skillDice  ) {
-                maxValue =  mapItem.skillVigilanice.abilityDice;
-                minValue =  mapItem.skillVigilanice.skillDice;
+            if( mapItem.skillVigilance.attributeDice > mapItem.skillVigilance.skillDice  ) {
+                maxValue =  mapItem.skillVigilance.attributeDice;
+                minValue =  mapItem.skillVigilance.skillDice;
             } else {
-                maxValue =  mapItem.skillVigilanice.skillDice;
-                minValue =  mapItem.skillVigilanice.abilityDice;
+                maxValue =  mapItem.skillVigilance.skillDice;
+                minValue =  mapItem.skillVigilance.attributeDice;
             }
 
             for( let lCount = 0; lCount < maxValue; lCount++ ) {
@@ -575,14 +669,23 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                 <div className={mapItem.npc ? "label npc" : "label pc"}>
                   <div className="name-results">
                     {mapItem.label}<br />
-                    &nbsp;{dieResults}
+{!this.state.hideRolls || !this.state.hideControls ? (
+<>
+  &nbsp;{dieResults}
+</>
+) : (
+  <>
+  </>
+)}
+                    
                   </div>
-                  {
-                    mapItem.skillCool.abilityDice > 0
-                    || mapItem.skillCool.skillDice > 0
-                    || mapItem.skillVigilanice.abilityDice > 0
-                    || mapItem.skillVigilanice.skillDice > 0
-
+                    {
+                      !this.state.hideControls && (
+                      mapItem.skillCool.attributeDice > 0
+                      || mapItem.skillCool.skillDice > 0
+                      || mapItem.skillVigilance.attributeDice > 0
+                      || mapItem.skillVigilance.skillDice > 0
+                      )
                     ? (
                       <>
                       <div className="skill-values">
@@ -591,7 +694,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                             <tr>
                               <td className="text-right">
 
-                                Cool:&nbsp;
+                                Cool:<br />
                                 <Button
                                   variant="primary"
                                   onClick={() => this.rollCool( mapIndex )}
@@ -605,7 +708,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                             <tr>
                               <td className="text-right">
 
-                                Vigilance:&nbsp;
+                                Vigilance:<br />
                                 <Button
                                   variant="primary"
                                   onClick={() => this.rollVigilance( mapIndex )}
@@ -629,6 +732,8 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                 </div>
 
                 <div className="controls">
+                {!this.state.hideControls ? (
+                  <>
                 <Button
                     variant="primary"
                     // tabIndex={mapIndex + this.initMap.length + 5}
@@ -636,7 +741,12 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                     title="Edit this initiative slot"
                   >
                     <FontAwesomeIcon icon={faCog} />
-                  </Button>
+                </Button>
+                  </>
+                ) : (
+                  <></>
+                )}
+
                   <Button
                     variant="primary"
                     tabIndex={mapIndex + this.initMap.length + 5}
@@ -649,6 +759,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
               </div>
             )
           })}
+          </div>
         </UIPage>
       );
     }
@@ -661,15 +772,12 @@ interface IInitMapItem {
   advantages: number;
   triumphs: number;
   npc: boolean;
-  skillVigilanice: {
-    abilityDice: number;
-    skillDice: number;
-  };
+  skillVigilance: ISKillValue;
   skillCool: ISKillValue;
 }
 
 export interface ISKillValue {
-  abilityDice: number;
+  attributeDice: number;
   skillDice: number;
 }
 
@@ -681,4 +789,6 @@ interface IInitiativeState {
     updated: boolean;
     editItem: IInitMapItem | null;
     editItemIndex: number;
+    hideControls: boolean;
+    hideRolls: boolean;
 }

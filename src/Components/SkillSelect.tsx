@@ -5,7 +5,7 @@ import { ISKillValue } from '../Pages/Initiative';
 export default class SkillSelect extends React.Component<ISkillSelectProps, ISkillSelectState> {
 
     className: string = "";
-    max: number = 8;
+    max: number = 5;
 
     constructor(props: ISkillSelectProps) {
         super(props);
@@ -26,7 +26,7 @@ export default class SkillSelect extends React.Component<ISkillSelectProps, ISki
 
     updateAbilityDie( newValue: number) {
         let newValueObj = this.props.value;
-        newValueObj.abilityDice = newValue;
+        newValueObj.attributeDice = newValue;
         this.props.onChange(this.props.index, newValueObj)
         this.setState({
             updated: true,
@@ -57,7 +57,7 @@ export default class SkillSelect extends React.Component<ISkillSelectProps, ISki
                 <span
                     key={"as" + abilitySelectNumber}
                     onClick={() => this.updateAbilityDie(abilitySelectNumber)}
-                    className={this.props.value.abilityDice === abilitySelectNumber ? "selected" : ""}
+                    className={this.props.value.attributeDice === abilitySelectNumber ? "selected" : ""}
                 >
                     {abilitySelectNumber}
                 </span>
@@ -67,12 +67,12 @@ export default class SkillSelect extends React.Component<ISkillSelectProps, ISki
         let skillDieView: ReactElement[] = [];
         let maxValue = 0;
         let minValue = 0;
-        if( this.props.value.abilityDice > this.props.value.skillDice  ) {
-            maxValue =  this.props.value.abilityDice;
+        if( this.props.value.attributeDice > this.props.value.skillDice  ) {
+            maxValue =  this.props.value.attributeDice;
             minValue =  this.props.value.skillDice;
         } else {
             maxValue =  this.props.value.skillDice;
-            minValue =  this.props.value.abilityDice;
+            minValue =  this.props.value.attributeDice;
         }
 
         for( let lCount = 0; lCount < maxValue; lCount++ ) {
