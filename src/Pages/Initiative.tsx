@@ -4,7 +4,7 @@ import {IAppGlobals} from '../AppRouter';
 import UIPage from '../Components/UIPage';
 import { Button, Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faAngleDoubleLeft, faAngleDoubleRight, faCog, faDice } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faAngleDoubleLeft, faAngleDoubleRight, faCog, faDice, faRecycle } from '@fortawesome/free-solid-svg-icons';
 import NumberSelect from '../Components/NumberSelect';
 import SkillSelect from '../Components/SkillSelect';
 import Dice from '../Classes/Dice';
@@ -35,12 +35,19 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
         if( lsHideRolls && +lsHideRolls > 0 ) {
           hideRolls = true;
         }
+
+        const lsRoundNumber = localStorage.getItem("roundNumber");
+        let roundNumber = 1;
+        if( lsRoundNumber && +lsRoundNumber > 1) {
+          roundNumber = +lsRoundNumber;
+        }
         this.state = {
             updated: false,
             editItem: null,
             editItemIndex: -1,
             hideControls: hideControls,
             hideRolls: hideRolls,
+            roundNumber: roundNumber,
         };
 
         if( lsCurrentInitiative ) {
@@ -128,6 +135,18 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
         this.updateNPC = this.updateNPC.bind(this);
         this.toggleHideControls = this.toggleHideControls.bind(this);
         this.toggleHideRolls = this.toggleHideRolls.bind(this);
+
+        this.resetRound = this.resetRound.bind(this);
+
+    }
+
+    resetRound() {
+      localStorage.setItem("currentInitiative", "-1");
+      this.currentInitiative = -1;
+      this.setState({
+        roundNumber: 1,
+        updated: true,
+      })
     }
 
     toggleHideRolls() {
@@ -278,7 +297,10 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
 
     initForward() {
       let init = this.currentInitiative + 1;
+      let roundNumber = this.state.roundNumber;
+
       if( init > this.initMap.length - 1 ) {
+        roundNumber++;
         init = 0;
       }
 
@@ -286,23 +308,39 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
       localStorage.setItem("currentInitiative", init.toString() );
       this.setState({
         updated: true,
+        roundNumber: roundNumber,
       })
     }
 
     initBackward() {
       let init = this.currentInitiative - 1;
-      if( init < 0 ) {
-        init = this.initMap.length;
+      let roundNumber = this.state.roundNumber;
+      if( init < -1 ) {
+
+        roundNumber--;
+
+        if( roundNumber < 1 ) {
+          roundNumber = 1;
+          if( init < 0 ) {
+            init = -1;
+          }
+        } else {
+          init = this.initMap.length;
+        }
+
       }
 
       this.currentInitiative = init;
       localStorage.setItem("currentInitiative", init.toString() );
       this.setState({
         updated: true,
+        roundNumber: roundNumber,
       })
     }
 
     sortInit() {
+      localStorage.setItem("currentInitiative", "-1" );
+      localStorage.setItem("currentRound", "1" );
       this.initMap.sort( (a, b) => {
         if( a.successes < b.successes ) {
           return 1;
@@ -452,6 +490,8 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
 
       return (
         <UIPage current="initiative" appGlobals={this.props.appGlobals}>
+            {/* this.initMap.length: {this.initMap.length}<br />
+            this.currentInitiative: {this.currentInitiative}<br /> */}
             <Modal onHide={this.handleClose} show={this.state.editItem != null}>
               <Modal.Header closeButton >
                 {this.state.editItem && this.state.editItem.npc ? (
@@ -578,7 +618,18 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
               </div>
             </div>
 
-          <div className="text-center">
+        <div className="row">
+          <div className="col-md-6 round-number">
+            <strong>Round Number:</strong> {this.state.roundNumber}
+            <Button
+              variant="primary"
+              className="btn-xs"
+              onClick={this.resetRound}
+            >
+              <FontAwesomeIcon icon={faRecycle} />
+            </Button>
+          </div>
+          <div className="col-md-6 control-visibility">
               <label>
                 <input 
                   type="checkbox"
@@ -595,6 +646,8 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                 />&nbsp;Hide Rolls
               </label>              
           </div>
+        </div>
+
 
           <div className="init-labels">
           {this.initMap.map( (mapItem, mapIndex ) => {
@@ -791,4 +844,5 @@ interface IInitiativeState {
     editItemIndex: number;
     hideControls: boolean;
     hideRolls: boolean;
+    roundNumber: number;
 }

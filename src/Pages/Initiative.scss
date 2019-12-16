@@ -17,7 +17,13 @@
     }
 
 }
-
+.round-number {
+    text-align: left;
+}
+.control-visibility
+{
+    text-align: center;
+}
 .init-labels {
     position: relative;
     max-width: 100%;
@@ -134,6 +140,13 @@ body.desaturated {
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
+    .round-number {
+        text-align: left;
+    }
+    .control-visibility
+    {
+        text-align: right;
+    }
 }
 
 // Large devices (desktops, 992px and up)
