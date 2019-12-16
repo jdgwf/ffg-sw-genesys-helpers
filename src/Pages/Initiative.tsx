@@ -105,7 +105,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
           }
         }
 
-        if( this.initMap.length == 0 ) {
+        if( this.initMap.length === 0 ) {
           hideControls = false;
           localStorage.setItem("hideControls", "0");
         }
@@ -412,7 +412,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
       }
 
       let hideControls = this.state.hideControls;
-      if( this.initMap.length == 0 ) {
+      if( this.initMap.length === 0 ) {
         hideControls = false;
         localStorage.setItem("hideControls", "0" );
       }
@@ -664,7 +664,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
         </div>
 
 
-        {this.initMap.length == 0 ?
+        {this.initMap.length === 0 ?
         (
           <div className="text-center">
             <br />
