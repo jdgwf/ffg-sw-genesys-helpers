@@ -120,6 +120,7 @@ body {
   .modal-dialog {
     .modal-footer {
       background: $headerFooterBG;
+      justify-content: space-evenly;
     }
     .modal-header {
       background: $headerFooterBG;

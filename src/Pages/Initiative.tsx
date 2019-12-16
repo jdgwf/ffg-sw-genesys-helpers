@@ -144,7 +144,36 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
         this.toggleHideRolls = this.toggleHideRolls.bind(this);
 
         this.resetRound = this.resetRound.bind(this);
+        this.selectNextItem = this.selectNextItem.bind(this);
+        this.selectPreviousItem = this.selectPreviousItem.bind(this);
+    }
 
+    selectPreviousItem() {
+      let previousItem = null;
+      let previousItemIndex = this.state.editItemIndex - 1;
+      if( previousItemIndex > -1 && previousItemIndex < this.initMap.length ) {
+        previousItem = this.initMap[previousItemIndex]
+      } else {
+        previousItemIndex = -1;
+      }
+      this.setState({
+        editItem: previousItem,
+        editItemIndex: previousItemIndex,
+      })
+    }
+
+    selectNextItem() {
+      let nextItem = null;
+      let nextItemIndex = this.state.editItemIndex + 1;
+      if( nextItemIndex < this.initMap.length ) {
+        nextItem = this.initMap[nextItemIndex]
+      } else {
+        nextItemIndex = -1;
+      }
+      this.setState({
+        editItem: nextItem,
+        editItemIndex: nextItemIndex,
+      })
     }
 
     resetRound() {
@@ -571,13 +600,49 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                 <></>
               )}
               </Modal.Body>
-              <Modal.Footer>
+              <Modal.Footer className="text-center">
+ 
+                <Button
+                  variant="primary"
+                  onClick={this.selectPreviousItem}
+                  tabIndex={1}
+                  disabled={this.state.editItemIndex < 1}
+                  title="Select the previous Initiative Slot"
+                >
+                  Previous
+                </Button>
+
                 <Button
                   variant="primary"
                   onClick={this.handleClose}
+                  title="Close this dialog"
                 >
                   Close
                 </Button>
+
+                #{this.state.editItemIndex + 1 } / {this.initMap.length}
+
+                <Button
+                  variant="primary"
+                  onClick={this.addItem}
+                  tabIndex={1}
+                  title="Add an Initiative Slot"
+                >
+                  Add New
+                </Button>
+
+                <Button
+                  variant="primary"
+                  onClick={this.selectNextItem}
+                  tabIndex={1}
+                  title="Select the next Initiative Slot"
+                  disabled={this.state.editItemIndex >= this.initMap.length - 1}
+                >
+                  Next
+                </Button>
+
+
+
               </Modal.Footer>
 
             </Modal>
@@ -600,7 +665,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                   variant="primary"
                   onClick={this.addItem}
                   tabIndex={1}
-                  title="Add an Iniative Slot"
+                  title="Add an Initiative Slot"
                 >
                   Add
                 </Button>
@@ -674,7 +739,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                   onClick={this.addItem}
                   tabIndex={1}
                   className="btn-xs"
-                  title="Add an Iniative Slot"
+                  title="Add an Initiative Slot"
                 >
                   Add
                 </Button>
