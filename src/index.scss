@@ -119,6 +119,10 @@ body {
 
   .modal-dialog {
     .modal-footer {
+      font-size: .7rem !important;
+      .btn {
+        font-size: .7rem !important;
+      }
       background: $headerFooterBG;
       justify-content: space-evenly;
     }
@@ -664,6 +668,16 @@ body.retro {
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
+  .modal-dialog {
+    .modal-content {
+      .modal-footer {
+        font-size: 1rem !important;
+        .btn {
+          font-size: 1rem !important;
+        }
+      }
+    }
+  }
 }
 
 // Large devices (desktops, 992px and up)
