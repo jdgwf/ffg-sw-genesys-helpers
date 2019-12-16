@@ -411,10 +411,18 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
         this.initMap.splice( indexNumber, 1);
       }
 
+      let hideControls = this.state.hideControls;
+      if( this.initMap.length == 0 ) {
+        hideControls = false;
+        localStorage.setItem("hideControls", "0" );
+      }
+
+
       localStorage.setItem("initMap", JSON.stringify( this.initMap) );
 
       this.setState({
         updated: true,
+        hideControls: hideControls,
       })
     }
 
@@ -656,7 +664,24 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
         </div>
 
 
-          <div className="init-labels">
+        {this.initMap.length == 0 ?
+        (
+          <div className="text-center">
+            <br />
+              You have no initiative slots. Click on the&nbsp;
+                <Button
+                  variant="primary"
+                  onClick={this.addItem}
+                  tabIndex={1}
+                  className="btn-xs"
+                  title="Add an Iniative Slot"
+                >
+                  Add
+                </Button>
+              &nbsp;button above to add a slot.
+          </div>
+        ): (
+           <div className="init-labels">
           {this.initMap.map( (mapItem, mapIndex ) => {
             let dieResults: ReactElement[] = [];
 
@@ -820,6 +845,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
             )
           })}
           </div>
+          )}
         </UIPage>
       );
     }
