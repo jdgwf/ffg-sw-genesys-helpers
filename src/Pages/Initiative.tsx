@@ -41,14 +41,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
         if( lsRoundNumber && +lsRoundNumber > 1) {
           roundNumber = +lsRoundNumber;
         }
-        this.state = {
-            updated: false,
-            editItem: null,
-            editItemIndex: -1,
-            hideControls: hideControls,
-            hideRolls: hideRolls,
-            roundNumber: roundNumber,
-        };
+
 
         if( lsCurrentInitiative ) {
           this.currentInitiative = +lsCurrentInitiative;
@@ -111,6 +104,20 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
             
           }
         }
+
+        if( this.initMap.length == 0 ) {
+          hideControls = false;
+          localStorage.setItem("hideControls", "0");
+        }
+
+        this.state = {
+          updated: false,
+          editItem: null,
+          editItemIndex: -1,
+          hideControls: hideControls,
+          hideRolls: hideRolls,
+          roundNumber: roundNumber,
+        };
 
         this.updateInitSuccesses = this.updateInitSuccesses.bind(this);
         this.updateInitAdvantages = this.updateInitAdvantages.bind(this);
@@ -585,7 +592,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                   variant="primary"
                   onClick={this.addItem}
                   tabIndex={1}
-                  title="Add a PC"
+                  title="Add an Iniative Slot"
                 >
                   Add
                 </Button>
