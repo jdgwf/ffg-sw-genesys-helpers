@@ -95,6 +95,7 @@
             li {
                 padding: 0;
                 margin: 0;
+                display: block;
                 a {
                     border: solid 1px $headerFooterSecondary;
                     color: $primaryTextFG;
@@ -159,28 +160,22 @@ body.retro {
         ul {
             background: #222;
             li {
-                display: inline-block;
+                // display: inline-block;
                 a {
                     font-size: .55rem;
                     color: $retroPrimaryBG;
                     background: #222;
-                    border-right: dotted 2px #222;
-                    border-top: dotted 2px #222;
-                    border-left: dotted 2px #222;
+                    border: dotted 2px $retroPrimaryBG;
+ 
                     &.current {
-                        // background: $retroPrimaryBG;
-                        // color: $retroPrimaryTextFG;
-                        border-right: dotted 2px $retroPrimaryBG;
-                        border-top: dotted 2px $retroPrimaryBG;
-                        border-left: dotted 2px $retroPrimaryBG;
+                        background: $retroPrimaryBG;
+                        color: $retroPrimaryTextFG;
+                        border: dotted 2px $retroPrimaryBG;
                     }
                     &:hover {
-                        // background: $retroPrimaryBGHover;
-                        // color: $retroPrimaryTextColo r;
-                        color: $retroPrimaryBGHover;
-                        border-right: dotted 2px $retroPrimaryBGHover;
-                        border-top: dotted 2px $retroPrimaryBGHover;
-                        border-left: dotted 2px $retroPrimaryBGHover;
+                        background: $retroPrimaryBG;
+                        color: $retroPrimaryTextFG;
+                        border: dotted 2px $retroPrimaryBG;
                     }
                 }
 

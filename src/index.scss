@@ -16,7 +16,7 @@ html {
 
 body {
   margin: 0;
-  padding: 0;
+  padding: 0 0 3rem 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -67,6 +67,16 @@ body {
       line-height: 1;
       padding: .25rem;
     }
+  }
+
+  .control-bar {
+    position: fixed;
+    bottom: -1rem;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background: $headerFooterBG;
+    padding: .25rem .5rem .125rem 0;
   }
 
   .small-margins {
@@ -323,6 +333,11 @@ body.desaturated {
   background: #222;
   color: #ccc;
 
+  .control-bar {
+    background: #222;
+    border-top: solid 2px $desaturatedPrimaryBG;
+  }
+
   hr {
     border-color: $desaturatedPrimaryBG;
   }
@@ -484,6 +499,10 @@ body.retro {
   font-size: .8rem;
   font-family: "DotMatrix" !important;
 
+  .control-bar {
+    background: #222 !important;
+    border-top: dotted 2px $retroPrimaryBG;
+  }
 
   hr {
     border-bottom: dotted 2px $retroPrimaryBG;
@@ -668,14 +687,27 @@ body.retro {
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
-  .modal-dialog {
-    .modal-content {
-      .modal-footer {
-        font-size: 1rem !important;
-        .btn {
+  body {
+    .modal-dialog {
+      .modal-content {
+        .modal-footer {
           font-size: 1rem !important;
+          .btn {
+            font-size: 1rem !important;
+          }
         }
       }
+    }
+    .control-bar {
+      top: auto;
+      bottom: auto;
+      bottom: auto;
+      position: relative;
+
+      width: 100%;
+      z-index: 100;
+      background: transparent;
+      padding: 0;
     }
   }
 }
