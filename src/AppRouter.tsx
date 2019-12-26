@@ -11,6 +11,7 @@ import About from "./Pages/About";
 import Settings from "./Pages/Settings";
 import Temp from "./Pages/Temp";
 import Dice from "./Pages/Dice";
+import AdversaryCreator from "./Pages/AdversaryCreator";
 
 
 
@@ -229,6 +230,11 @@ export default class AppRouter extends React.Component<IAppRouterProps, IAppRout
                 </Route>
                 <Route path={`${process.env.PUBLIC_URL}/dice`} exact>
                     <Dice
+                        appGlobals={this.state.appGlobals}
+                    />
+                </Route>
+                <Route path={`${process.env.PUBLIC_URL}/adversary-creator`} exact>
+                    <AdversaryCreator
                         appGlobals={this.state.appGlobals}
                     />
                 </Route>

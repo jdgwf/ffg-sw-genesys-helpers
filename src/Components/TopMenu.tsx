@@ -31,6 +31,7 @@ export default class TopMenu extends React.Component<ITopMenuProps, ITopMenuStat
                 <li className="d-none d-md-inline"><Link className={this.props.current === "home" ? "current" : "" } to={`${process.env.PUBLIC_URL}/`}>Home</Link></li>
                 <li className="d-none d-md-inline"><Link className={this.props.current === "initiative" ? "current" : "" } to={`${process.env.PUBLIC_URL}/initiative`}>Initiative</Link></li>
                 <li className="d-none d-md-inline"><Link className={this.props.current === "dice" ? "current" : "" } to={`${process.env.PUBLIC_URL}/dice`}>Dice</Link></li>
+                <li className="d-none d-md-inline"><Link className={this.props.current === "adversary-creator" ? "current" : "" } to={`${process.env.PUBLIC_URL}/adversary-creator`}>Adversary Creator</Link></li>
                 <li className="d-none d-md-inline"><Link className={this.props.current === "about" ? "current" : "" } to={`${process.env.PUBLIC_URL}/about`}>About</Link></li>
                 <li className="d-none d-md-inline"><Link className={this.props.current === "settings" ? "current" : "" } to={`${process.env.PUBLIC_URL}/settings`}>Settings</Link></li>
                 {/*
@@ -46,6 +47,7 @@ export default class TopMenu extends React.Component<ITopMenuProps, ITopMenuStat
                     <li><Link onClick={this.closeMobile} className={this.props.current === "home" ? "current" : "" } to={`${process.env.PUBLIC_URL}/`}>Home</Link></li>
                     <li><Link onClick={this.closeMobile} className={this.props.current === "initiative" ? "current" : "" } to={`${process.env.PUBLIC_URL}/initiative`}>Initiative</Link></li>
                     <li><Link onClick={this.closeMobile} className={this.props.current === "dice" ? "current" : "" } to={`${process.env.PUBLIC_URL}/dice`}>Dice</Link></li>
+                    <li><Link onClick={this.closeMobile} className={this.props.current === "adversary-creator" ? "current" : "" } to={`${process.env.PUBLIC_URL}/adversary-creator`}>Adversary Creator</Link></li>
                     <li><Link onClick={this.closeMobile} className={this.props.current === "about" ? "current" : "" } to={`${process.env.PUBLIC_URL}/about`}>About</Link></li>
                     <li><Link onClick={this.closeMobile} className={this.props.current === "settings" ? "current" : "" } to={`${process.env.PUBLIC_URL}/settings`}>Settings</Link></li>
                     {/*

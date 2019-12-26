@@ -96,12 +96,12 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
 
           if(!item.skillCool.attributeDice) {
             item.skillCool.attributeDice = 0
-            
+
           }
 
           if(!item.skillVigilance.attributeDice) {
             item.skillVigilance.attributeDice = 0
-            
+
           }
         }
 
@@ -270,7 +270,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
       }
     }
 
-    getattributeDice( skill: ISKillValue ): number {
+    getattributeDice( skill: ISkillValue ): number {
       let maxValue = 0;
       let minValue = 0;
       if( skill.attributeDice > skill.skillDice  ) {
@@ -283,7 +283,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
       return (maxValue - minValue);
     }
 
-    getProcidiencyDice( skill: ISKillValue ): number {
+    getProcidiencyDice( skill: ISkillValue ): number {
       let minValue = 0;
       if( skill.attributeDice > skill.skillDice  ) {
           minValue =  skill.skillDice;
@@ -296,7 +296,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
 
     updateCoolValue(
       indexNumber: number,
-      newValue: ISKillValue
+      newValue: ISkillValue
     ): void {
       if( this.initMap.length > indexNumber ) {
         this.initMap[indexNumber].skillCool = newValue;
@@ -311,7 +311,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
 
     updateVigilanceValue(
       indexNumber: number,
-      newValue: ISKillValue
+      newValue: ISkillValue
     ): void {
       if( this.initMap.length > indexNumber ) {
         this.initMap[indexNumber].skillVigilance = newValue;
@@ -601,7 +601,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
               )}
               </Modal.Body>
               <Modal.Footer className="text-center">
- 
+
                 <Button
                   variant="primary"
                   onClick={this.selectPreviousItem}
@@ -711,7 +711,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
           </div>
           <div className="col-md-6 control-visibility">
               <label>
-                <input 
+                <input
                   type="checkbox"
                   checked={this.state.hideControls}
                   onChange={this.toggleHideControls}
@@ -719,12 +719,12 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
               </label>
               &nbsp;|&nbsp;
               <label>
-                <input 
+                <input
                   type="checkbox"
                   checked={this.state.hideRolls}
                   onChange={this.toggleHideRolls}
                 />&nbsp;Hide Rolls
-              </label>              
+              </label>
           </div>
         </div>
 
@@ -827,7 +827,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
   <>
   </>
 )}
-                    
+
                   </div>
                     {
                       !this.state.hideControls && (
@@ -923,11 +923,11 @@ interface IInitMapItem {
   advantages: number;
   triumphs: number;
   npc: boolean;
-  skillVigilance: ISKillValue;
-  skillCool: ISKillValue;
+  skillVigilance: ISkillValue;
+  skillCool: ISkillValue;
 }
 
-export interface ISKillValue {
+export interface ISkillValue {
   attributeDice: number;
   skillDice: number;
 }

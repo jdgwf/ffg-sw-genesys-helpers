@@ -184,6 +184,13 @@ body {
       }
     }
   }
+  .no-margin {
+    margin: 0 !important;
+  }
+  .no-padding {
+    padding: 0 !important;
+  }
+
   &.desaturated {
     .modal-dialog {
       background: #222 !important;

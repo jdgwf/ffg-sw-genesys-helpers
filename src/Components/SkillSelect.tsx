@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import './SkillSelect.scss';
-import { ISKillValue } from '../Pages/Initiative';
+import { ISkillValue } from '../Pages/Initiative';
 
 export default class SkillSelect extends React.Component<ISkillSelectProps, ISkillSelectState> {
 
@@ -103,10 +103,10 @@ export default class SkillSelect extends React.Component<ISkillSelectProps, ISki
 
 
 interface ISkillSelectProps {
-    value: ISKillValue;
+    value: ISkillValue;
     onChange(
         indexNumber: number,
-        newValue: ISKillValue
+        newValue: ISkillValue
     ): void;
     index: number;
     className?: string;

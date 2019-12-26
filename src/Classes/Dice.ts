@@ -641,7 +641,7 @@ export default class Dice {
             rolls.push( rawRoll );
         }
 
-        // TODO Calculate gross values...
+        // Calculate gross values...
         for( let roll of rolls ) {
             netSuccesses += roll.successes;
             netAdvantages += roll.advantages;
