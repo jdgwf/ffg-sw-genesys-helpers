@@ -13,7 +13,7 @@ import { AdversaryTalents, IAdversaryTalent } from '../Data/AdversaryTalents';
 import { AdversarySpecialAbilities, IAdversarySpecialAbility } from '../Data/AdversarySpecialAbilities';
 import SanitizedHTML from '../Components/SanitizedHTML';
 import domtoimage from 'dom-to-image';
-import FileSaver from 'file-saver';
+// import FileSaver from 'file-saver';
 
 export default class AdversaryCreator extends React.Component<IAdversaryCreatorProps, IAdversaryCreatorState> {
 
@@ -63,7 +63,13 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 
         this.toggleValuesAsDice = this.toggleValuesAsDice.bind(this);
 
-        this.statblockDownload = this.statblockDownload.bind(this);
+        this._refreshImages = this._refreshImages.bind(this);
+
+        this.props.appGlobals.makeDocumentTitle("AdversaryCreator");
+    }
+
+    componentDidMount() {
+      this._refreshImages();
     }
 
     toggleValuesAsDice() {
@@ -125,11 +131,10 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       }
     }
 
-    componentDidMount ()  {
-      this.props.appGlobals.makeDocumentTitle("AdversaryCreator");
-    }
+
 
     saveLS() {
+      this._refreshImages();
       let saveData: string = JSON.stringify( this.state.workingEdit.exportData() );
       localStorage.setItem("editing_adversary", saveData);
     }
@@ -314,29 +319,42 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         })
 
       }
-
-
-
-
     }
 
-    statblockDownload() {
 
+    _refreshImages() {
       let nodeElement = document.getElementById('statblock');
-      let itemName: string = "unnamed";
-      if( this.state.workingEdit.name ) {
-        itemName = this.state.workingEdit.name;
-      }
       if( nodeElement ) {
         domtoimage
-          .toBlob(nodeElement)
+          .toPng(nodeElement)
           .then(
-            function (blob: any) {
-              FileSaver.saveAs(blob, itemName + '-stat-block.png');
+
+            function (dataUrl) {
+              let nodeElement = document.getElementById('statblock-image') as HTMLImageElement;
+              if( nodeElement ) {
+                nodeElement.src = dataUrl;
+              }
+            }
+          );
+      }
+
+
+      let nodeElement2 = document.getElementById('power-level-box');
+
+      if( nodeElement2 ) {
+        domtoimage
+          .toPng(nodeElement2)
+          .then(
+            function (dataUrl) {
+              let nodeElement = document.getElementById('power-level-image') as HTMLImageElement;
+              if( nodeElement ) {
+                nodeElement.src = dataUrl;
+              }
             }
           );
       }
     }
+
 
     render() {
       return (
@@ -354,15 +372,77 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                   />&nbsp;Values As Dice
                 </label>
 
-                <div className="card-container">
-                  <div className="adversary-card front">
-                    <h1>{this.state.workingEdit.name} [{this.state.workingEdit.adversaryType}]</h1>
-                    {this.state.workingEdit.description.map( (line, lineIndex) => {
-                      return (
-                        <p key={lineIndex}>{line}</p>
-                      )
-                    })}
-<div id="statblock">
+<div className="relative">
+  <div className="card-container">
+    <div className="adversary-card front">
+      <h1>
+        {this.state.workingEdit.name} [{this.state.workingEdit.adversaryType}]
+        <img
+          id="power-level-image"
+          alt="Power Level Block"
+          src=""
+        />
+      </h1>
+      {this.state.workingEdit.description.map( (line, lineIndex) => {
+        return (
+          <p key={lineIndex}>{line}</p>
+        )
+      })}
+
+      <div className="text-center">
+      <img
+        id="statblock-image"
+        alt="Stat Block"
+        src=""
+      />
+      </div>
+    <div>
+      <strong>Skills:&nbsp;</strong>
+        <SanitizedHTML
+          html={this.state.workingEdit.getSkillList( this.state.valuesAsDice )}
+          raw={true}
+        />
+
+    </div>
+    <div>
+      <strong>Talents: </strong>&nbsp;
+        <SanitizedHTML
+          html={this.state.workingEdit.getTalentList( this.state.valuesAsDice )}
+          raw={true}
+        />
+    </div>
+    <div>
+      <strong>Abilities: </strong>&nbsp;
+        <SanitizedHTML
+          html={this.state.workingEdit.getAbilitiesList( this.state.valuesAsDice )}
+          raw={true}
+        />
+    </div>
+    <div>
+      <strong>Equipment: </strong>&nbsp;
+        <SanitizedHTML
+          html={this.state.workingEdit.getEquipmentList( this.state.valuesAsDice )}
+          raw={true}
+        />
+    </div>
+    </div>
+
+
+
+  </div>
+  <div className="hidden">
+      <div id="power-level-box" className="power-level-box">
+          <div className="pl-value pl-value1">
+0
+          </div>
+          <div className="pl-value pl-value2">
+0
+          </div>
+          <div className="pl-value pl-value3">
+0
+          </div>
+        </div>
+                <div id="statblock">
                     <div className={this.state.workingEdit.adversaryType === "Nemesis" ? "statblock nemesis" : "statblock minion-rival"}>
                       <div className="label label1">
                         brawn
@@ -459,60 +539,10 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                         </>
                       )}
                     </div>
+    </div>
 </div>
-                  <div>
-                    <strong>Skills:&nbsp;</strong>
-                      <SanitizedHTML
-                        html={this.state.workingEdit.getSkillList( this.state.valuesAsDice )}
-                        raw={true}
-                      />
+</div>
 
-                  </div>
-                  <div>
-                    <strong>Talents: </strong>&nbsp;
-                      <SanitizedHTML
-                        html={this.state.workingEdit.getTalentList( this.state.valuesAsDice )}
-                        raw={true}
-                      />
-                  </div>
-                  <div>
-                    <strong>Abilities: </strong>&nbsp;
-                      <SanitizedHTML
-                        html={this.state.workingEdit.getAbilitiesList( this.state.valuesAsDice )}
-                        raw={true}
-                      />
-                  </div>
-                  <div>
-                    <strong>Equipment: </strong>&nbsp;
-                      <SanitizedHTML
-                        html={this.state.workingEdit.getEquipmentList( this.state.valuesAsDice )}
-                        raw={true}
-                      />
-                  </div>
-                  </div>
-
-
-
-                </div>
-                <br />
-                <div className="row">
-                  <div className="col text-center">
-                    <button
-                      className="btn btn-primary"
-                      onClick={this.statblockDownload}
-                    >
-                      Download Stat Image
-                    </button>
-                  </div>
-                  <div className="col text-center">
-                    <button
-                      className="btn btn-primary"
-                      // onClick={this.statblockDownload}
-                    >
-                      Download Threat Image
-                    </button>
-                  </div>
-                </div>
               </div>
               <div className="col-md">
 <div className="form">
