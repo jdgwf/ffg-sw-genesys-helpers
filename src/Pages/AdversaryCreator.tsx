@@ -396,6 +396,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         src=""
       />
       </div>
+      {this.state.workingEdit.getSkillList() ? (
     <div>
       <strong>Skills:&nbsp;</strong>
         <SanitizedHTML
@@ -404,6 +405,10 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         />
 
     </div>
+      ) : (
+        <></>
+      )}
+    {this.state.workingEdit.getTalentList() ? (
     <div>
       <strong>Talents: </strong>&nbsp;
         <SanitizedHTML
@@ -411,6 +416,10 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
           raw={true}
         />
     </div>
+    ) : (
+      <></>
+    )}
+    {this.state.workingEdit.getAbilitiesList() ? (
     <div>
       <strong>Abilities: </strong>&nbsp;
         <SanitizedHTML
@@ -418,13 +427,21 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
           raw={true}
         />
     </div>
-    <div>
+    ) : (
+      <></>
+    )}
+    {this.state.workingEdit.getEquipmentList() ? (
+      <div>
       <strong>Equipment: </strong>&nbsp;
         <SanitizedHTML
           html={this.state.workingEdit.getEquipmentList( this.state.valuesAsDice )}
           raw={true}
         />
     </div>
+    ) : (
+      <></>
+    )}
+
     </div>
 
 

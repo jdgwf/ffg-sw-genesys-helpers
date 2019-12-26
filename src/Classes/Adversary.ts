@@ -247,9 +247,9 @@ export class Adversary {
 
                 for( let lCount = 0; lCount < maxValue; lCount++ ) {
                     if( lCount < minValue ) {
-                        dieValue += '<span class="dice die-proficiency no-margin no-padding">c</span>';
+                        dieValue += '<img class="inline-die" src="./img/proficiency-die.png" alt="proficiency die" />';
                     } else {
-                        dieValue += '<span class="dice die-ability no-margin no-padding">c</span>';
+                        dieValue += '<img class="inline-die" src="./img/ability-die.png" alt="ability die" />';
                     }
                 }
 

@@ -77,6 +77,8 @@
 }
 
 .ui-page {
+    z-index: 0;
+    position: relative;
     .mobile-menu {
         z-index: 1000;
         width: 300px;
@@ -166,7 +168,7 @@ body.retro {
                     color: $retroPrimaryBG;
                     background: #222;
                     border: dotted 2px $retroPrimaryBG;
- 
+
                     &.current {
                         background: $retroPrimaryBG;
                         color: $retroPrimaryTextFG;
