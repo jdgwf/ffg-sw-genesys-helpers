@@ -133,8 +133,11 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 
 
 
-    saveLS() {
-      this._refreshImages();
+    saveLS(
+      noImageUpdate: boolean = false,
+    ) {
+      if( noImageUpdate === false )
+        this._refreshImages();
       let saveData: string = JSON.stringify( this.state.workingEdit.exportData() );
       localStorage.setItem("editing_adversary", saveData);
     }
@@ -142,7 +145,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
     updateName( event: React.FormEvent<HTMLInputElement>) {
       let obj = this.state.workingEdit;
       obj.name = event.currentTarget.value;
-      this.saveLS();
+      this.saveLS( true );
 
       this.setState({
         workingEdit: obj,
@@ -154,7 +157,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
     updateDescription( event: React.FormEvent<HTMLTextAreaElement>) {
       let obj = this.state.workingEdit;
       obj.description = event.currentTarget.value.split("\n");
-      this.saveLS();
+      this.saveLS( true );
 
       this.setState({
         workingEdit: obj,
@@ -613,6 +616,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                 value={this.state.soakDefWoundStrainSelect ? this.state.soakDefWoundStrainSelect.name : ""}
                 onChange={this.updateSoakDefWoundStrainSelect}
               >
+                <option value="">- Select -</option>
                 {AdversarySoakDefWoundStrain.map( (arrayValue, typeIndex) => {
                   return (
                     <option key={typeIndex} value={arrayValue.name}>{arrayValue.name}</option>
@@ -656,6 +660,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                 value={this.state.skillPackageSelect ? this.state.skillPackageSelect.name : ""}
                 onChange={this.updateSkillPackageSelect}
               >
+                <option value="">- Select -</option>
                 {AdversarySkillPackages.map( (arrayValue, typeIndex) => {
                   return (
                     <option key={typeIndex} value={arrayValue.name}>{arrayValue.name}</option>
@@ -700,6 +705,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                 value={this.state.talentSelect ? this.state.talentSelect.name : ""}
                 onChange={this.updateTalentSelect}
               >
+                <option value="">- Select -</option>
                 {AdversaryTalents.map( (arrayValue, typeIndex) => {
                   return (
                     <option key={typeIndex} value={arrayValue.name}>{arrayValue.name}</option>
@@ -744,6 +750,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                 value={this.state.specialAbilitiesSelect ? this.state.specialAbilitiesSelect.name : ""}
                 onChange={this.updateSpecialAbilitySelect}
               >
+                <option value="">- Select -</option>
                 {AdversarySpecialAbilities.map( (arrayValue, typeIndex) => {
                   return (
                     <option key={typeIndex} value={arrayValue.name}>{arrayValue.name}</option>

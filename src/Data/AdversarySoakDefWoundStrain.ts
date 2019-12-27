@@ -17,19 +17,7 @@ interface IDerivedAttribute {
 
 
 export const AdversarySoakDefWoundStrain: IAdversarySoakDefWoundStrain[] = [
-    {
-        name: "- Select -",
-        derivedAttribute: {
-            soakThreshold: 0,
-            woundThreshold: 0,
-        },
-        powerLevels: {
-            combat: 0,
-            social: 0,
-            general: 0,
-        },
-        examples: ""
-    },
+
     {
         name: "Tough Skin",
         derivedAttribute: {

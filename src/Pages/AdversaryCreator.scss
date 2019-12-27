@@ -20,9 +20,12 @@
 }
 .hidden {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 3rem;
+    left: 3rem;
     z-index: -1000;
+    overflow: hidden;
+    width: 30px;
+    height: 30px;
 }
 .card-container {
 
@@ -40,26 +43,32 @@
         position: relative;
         // float: left;
         margin: 0;
+        // min-height: 350px;
+        font-size: .8rem;
 
         #statblock-image {
-            width: 90%;
+            width: 640px;
+            max-width: 100%;
             margin: 0 auto;
         }
 
         #power-level-image {
             float: right;
+            max-width: 40%;
         }
         h1 {
             font-size: 2rem;
             font-weight: 700;
             margin: 0;
+            font-size: 1.5rem;
         }
         p {
             margin: 0; padding: 0;
+            font-size: .8rem;
         }
 
         .inline-die {
-            height: 1.2rem;
+            height: .8rem;
         }
         // &.front {
         //     margin-left: 2rem;
@@ -102,8 +111,10 @@
 }
 
 .statblock {
-    width: 320px;
-    height: 85px;
+    // width: 320px;
+    // height: 85px;
+    width: 640px;
+    height: 170px;
     margin: 0 auto;
     position: relative;
     &.minion-rival {
@@ -122,7 +133,7 @@
         // border: solid 1px red;
         width: 13%;
         text-align: center;
-        font-size: .5rem;
+        font-size: 0.9rem;
         top: 41%;
     }
     .label1 {
@@ -151,7 +162,7 @@
         // border: solid 1px red;
         width: 13%;
         text-align: center;
-        font-size: 1rem;
+        font-size: 2rem;
         font-weight: 700;
         top: 5%;
     }
@@ -182,7 +193,8 @@
         // border: solid 1px blue;
         width: 21%;
         text-align: center;
-        font-size: .3rem;
+        font-size: .7rem;
+
         top: 65%;
     }
     .minion-rival-label1 {
@@ -202,7 +214,8 @@
         // border: solid 1px blue;
         width: 21%;
         text-align: center;
-        font-size: 1rem;
+        font-size: 1.5rem;
+
         top: 75%;
         &.half {
             width: 10%;
@@ -229,7 +242,7 @@
         // border: solid 1px blue;
         width: 21%;
         text-align: center;
-        font-size: .3rem;
+        font-size: .7rem;
         top: 65%;
     }
     .nemesis-label1 {
@@ -252,7 +265,7 @@
         // border: solid 1px blue;
         width: 21%;
         text-align: center;
-        font-size: 1rem;
+        font-size: 1.5rem;
         top: 75%;
         &.half {
             width: 10%;
@@ -280,45 +293,62 @@
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
     body {
-        // .card-container {
-        //     .adversary-card {
-
-        //     }
-        // }
-        .statblock {
-            width: 640px;
-            height: 170px;
-
-            .label {
-                font-size: 0.9rem;
-            }
-
-            .value {
-                font-size: 2rem;
-            }
-
-            .nemesis-label,
-            .minion-rival-label {
-                font-size: .7rem;
-            }
-            .nemesis-value,
-            .minion-rival-value {
-                font-size: 1.5rem;
+        .card-container {
+            .adversary-card {
+                font-size: .8rem;
+                .inline-die {
+                    height: .8rem;
+                }
+                h1 {
+                    font-size: 1.6rem;
+                }
+                p {
+                    font-size: .8rem;
+                }
             }
         }
+
     }
     }
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
-// body {
-//     .card-container {
-//         .adversary-card {
-//             .statblock {
-//                 width: 640px;
-//                 height: 160px;
-//             }
-//         }
-//     }
-// }
+    body {
+        .card-container {
+            .adversary-card {
+                font-size: 1rem;
+                .inline-die {
+                    height: 1rem;
+                }
+                h1 {
+                    font-size: 2rem;
+                }
+                p {
+                    font-size: 1rem;
+                }
+            }
+        }
+
+    }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 1140px) {
+    body {
+        .card-container {
+            .adversary-card {
+                font-size: 1.2rem;
+                .inline-die {
+                    height: 1.2rem;
+                }
+                h1 {
+                    font-size: 2.5rem;
+                }
+                p {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+
+    }
 }
