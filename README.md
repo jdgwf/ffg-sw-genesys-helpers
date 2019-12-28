@@ -10,3 +10,5 @@ Genesys and its logo, and Genesys Foundry and its logo, are trademarks of Fantas
 All other original material in this work is copyright 2019 by Jeffrey Gordon and published under the GPL.
 
 Star Wars and its logo are owned by Lucasfilm.
+
+Some names and descriptions in the ./Data diretory are also not covered by the GPL as the text and descriptions may be owned by Fantasy Flight Games.

@@ -13,6 +13,7 @@ import { AdversaryTalents, IAdversaryTalent } from '../Data/AdversaryTalents';
 import { AdversarySpecialAbilities, IAdversarySpecialAbility } from '../Data/AdversarySpecialAbilities';
 import SanitizedHTML from '../Components/SanitizedHTML';
 import domtoimage from 'dom-to-image';
+import { replaceDieTags } from '../utils';
 // import FileSaver from 'file-saver';
 
 export default class AdversaryCreator extends React.Component<IAdversaryCreatorProps, IAdversaryCreatorState> {
@@ -130,8 +131,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         })
       }
     }
-
-
 
     saveLS(
       noImageUpdate: boolean = false,
@@ -298,7 +297,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       let obj = this.state.workingEdit;
 
       if( this.state.talentSelect ) {
-        obj.selectedTalents.push( this.state.talentSelect );
+        obj.addTalent(  this.state.talentSelect );
         obj.calc();
         this.saveLS();
 
@@ -378,13 +377,13 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 <div className="relative">
   <div className="card-container">
     <div className="adversary-card front">
+      <img
+        id="power-level-image"
+        alt="Power Level Block"
+        src=""
+        />
       <h1>
         {this.state.workingEdit.name} [{this.state.workingEdit.adversaryType}]
-        <img
-          id="power-level-image"
-          alt="Power Level Block"
-          src=""
-        />
       </h1>
       {this.state.workingEdit.description.map( (line, lineIndex) => {
         return (
@@ -403,7 +402,13 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
     <div>
       <strong>Skills:&nbsp;</strong>
         <SanitizedHTML
-          html={this.state.workingEdit.getSkillList( this.state.valuesAsDice )}
+          html={ replaceDieTags(
+            this.state.workingEdit.getSkillList( this.state.valuesAsDice ),
+            false,
+            "png",
+            "16"
+
+          )}
           raw={true}
         />
 
@@ -415,7 +420,13 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
     <div>
       <strong>Talents: </strong>&nbsp;
         <SanitizedHTML
-          html={this.state.workingEdit.getTalentList( this.state.valuesAsDice )}
+          html={ replaceDieTags(
+            this.state.workingEdit.getTalentList(),
+            false,
+            "png",
+            "16"
+
+          )}
           raw={true}
         />
     </div>
@@ -426,7 +437,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
     <div>
       <strong>Abilities: </strong>&nbsp;
         <SanitizedHTML
-          html={this.state.workingEdit.getAbilitiesList( this.state.valuesAsDice )}
+          html={this.state.workingEdit.getAbilitiesList()}
           raw={true}
         />
     </div>
@@ -437,7 +448,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       <div>
       <strong>Equipment: </strong>&nbsp;
         <SanitizedHTML
-          html={this.state.workingEdit.getEquipmentList( this.state.valuesAsDice )}
+          html={this.state.workingEdit.getEquipmentList()}
           raw={true}
         />
     </div>
@@ -453,13 +464,13 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
   <div className="hidden">
       <div id="power-level-box" className="power-level-box">
           <div className="pl-value pl-value1">
-0
+            {this.state.workingEdit.getPowerLevel().combat}
           </div>
           <div className="pl-value pl-value2">
-0
+            {this.state.workingEdit.getPowerLevel().social}
           </div>
           <div className="pl-value pl-value3">
-0
+            {this.state.workingEdit.getPowerLevel().general}
           </div>
         </div>
                 <div id="statblock">
@@ -517,19 +528,19 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                       </div>
 
                       <div className="nemesis-value nemesis-value1">
-                        0
+                        {this.state.workingEdit.getSoak()}
                       </div>
                       <div className="nemesis-value nemesis-value2">
-                        0
+                        {this.state.workingEdit.getWoundThreshold()}
                       </div>
                       <div className="nemesis-value nemesis-value3">
-                        0
+                        {this.state.workingEdit.getStrainThreshold()}
                       </div>
                       <div className="nemesis-value nemesis-value4 half">
-                        0
+                      {this.state.workingEdit.getMeleeDefense()}
                       </div>
                       <div className="nemesis-value nemesis-value5 half">
-                        0
+                      {this.state.workingEdit.getRangedDefense()}
                       </div>
                         </>
                       ) : (
@@ -545,16 +556,16 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                       </div>
 
                       <div className="minion-rival-value minion-rival-value1">
-                        0
+                        {this.state.workingEdit.getSoak()}
                       </div>
                       <div className="minion-rival-value minion-rival-value2">
-                        0
+                        {this.state.workingEdit.getWoundThreshold()}
                       </div>
                       <div className="minion-rival-value minion-rival-value3 half">
-                        0
+                        {this.state.workingEdit.getMeleeDefense()}
                       </div>
                       <div className="minion-rival-value minion-rival-value4 half">
-                        0
+                        {this.state.workingEdit.getRangedDefense()}
                       </div>
                         </>
                       )}
@@ -725,13 +736,16 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                   {this.state.workingEdit.selectedTalents.map( (item, itemIndex) => {
                     return (
                       <li key={itemIndex}>
+
                       <button
                         className="btn btn-xs btn-primary"
                         onClick={() => this.removeTalent( itemIndex)}
                       >
                         <FontAwesomeIcon icon={faTrash} />
                       </button>
-                      {item.name}
+
+                      <span>{item.name}</span>
+
                     </li>
                     )
                   })}

@@ -18,6 +18,7 @@
 .relative {
     position: relative;
 }
+
 .hidden {
     position: absolute;
     top: 3rem;
@@ -27,8 +28,8 @@
     width: 30px;
     height: 30px;
 }
-.card-container {
 
+.card-container {
     display: flex;
     .adversary-card {
         z-index: 100;
@@ -42,7 +43,7 @@
         display: inline-block;
         position: relative;
         // float: left;
-        margin: 0;
+        margin: 0 0 2rem 0;
         // min-height: 350px;
         font-size: .8rem;
 
@@ -56,26 +57,28 @@
             float: right;
             max-width: 40%;
         }
+
         h1 {
             font-size: 2rem;
             font-weight: 700;
             margin: 0;
             font-size: 1.5rem;
         }
+
         p {
             margin: 0; padding: 0;
             font-size: .8rem;
         }
 
         .inline-die {
-            height: .8rem;
+            height: 12px;
         }
-        // &.front {
+        // // &.front {
+        // //     margin-left: 2rem;
+        // // }
+        // &.back {
         //     margin-left: 2rem;
         // }
-        &.back {
-            margin-left: 2rem;
-        }
 
     }
 }
@@ -118,11 +121,11 @@
     margin: 0 auto;
     position: relative;
     &.minion-rival {
-        background: transparent url('../images/MinionRivalBlock.svg');
+        background: transparent url('../images/minion-rival-block.svg');
         background-size: 100% auto;
     }
     &.nemesis {
-        background: transparent url('../images/NemesisBlock.svg');
+        background: transparent url('../images/nemesis-block.svg');
         background-size: 100% auto;
         background-repeat: no-repeat;
     }

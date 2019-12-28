@@ -93,23 +93,97 @@ export class Adversary {
 
     public getSoak(): number {
         // TODO
-        return 0;
+        let soakValue = this.getBrawn();
+
+        // for( let equipment of this.selectedEquipment ) {
+
+        // }
+
+        for( let advSoakDefWoundStrain of this.selectedSoakDefWoundStrain ) {
+            if( advSoakDefWoundStrain.derivedAttribute.soakThreshold ) {
+                soakValue += advSoakDefWoundStrain.derivedAttribute.soakThreshold;
+            }
+        }
+
+        return soakValue;
     }
     public getWoundThreshold(): number {
-        // TODO
-        return 0;
+        let woundThreshold = 0;
+        switch( this.adversaryType.toLowerCase().trim() ) {
+            case "minion": {
+                if( this.getBrawn() < 2 ) {
+                    woundThreshold = 3;
+                } else {
+                    woundThreshold = 5;
+                }
+                break;
+            }
+            case "rival": {
+                woundThreshold = 8;
+                break;
+            }
+            case "nemesis": {
+                woundThreshold = 12 + this.getBrawn();
+                break;
+            }
+        }
+
+        for( let advSoakDefWoundStrain of this.selectedSoakDefWoundStrain ) {
+            if( advSoakDefWoundStrain.derivedAttribute.woundThreshold ) {
+                woundThreshold += advSoakDefWoundStrain.derivedAttribute.woundThreshold;
+            }
+        }
+
+        return woundThreshold;
     }
+
     public getStrainThreshold(): number {
-        // TODO
-        return 0;
+        let strainThreshold = 0;
+        if( this.adversaryType.toLowerCase().trim() === "nemesis" ) {
+            strainThreshold = 10 + this.getWillpower();
+        }
+
+        for( let advSoakDefWoundStrain of this.selectedSoakDefWoundStrain ) {
+            if( advSoakDefWoundStrain.derivedAttribute.strainThreshold ) {
+                strainThreshold += advSoakDefWoundStrain.derivedAttribute.strainThreshold;
+            }
+        }
+
+        return strainThreshold;
     }
+
     public getRangedDefense(): number {
         // TODO
-        return 0;
+        let rangedDefenseValue = 0;
+
+        // for( let equipment of this.selectedEquipment ) {
+
+        // }
+
+        for( let advSoakDefWoundStrain of this.selectedSoakDefWoundStrain ) {
+            if( advSoakDefWoundStrain.derivedAttribute.rangedDefense ) {
+                rangedDefenseValue += advSoakDefWoundStrain.derivedAttribute.rangedDefense;
+            }
+        }
+
+        return rangedDefenseValue;
     }
+
     public getMeleeDefense(): number {
         // TODO
-        return 0;
+        let meleeDefenseValue = 0;
+
+        // for( let equipment of this.selectedEquipment ) {
+
+        // }
+
+        for( let advSoakDefWoundStrain of this.selectedSoakDefWoundStrain ) {
+            if( advSoakDefWoundStrain.derivedAttribute.meleeDefense ) {
+                meleeDefenseValue += advSoakDefWoundStrain.derivedAttribute.meleeDefense;
+            }
+        }
+
+        return meleeDefenseValue;
     }
 
     private _getAttributeValue( attribute: string ): number {
@@ -247,18 +321,24 @@ export class Adversary {
 
                 for( let lCount = 0; lCount < maxValue; lCount++ ) {
                     if( lCount < minValue ) {
-                        dieValue += '<img class="inline-die" src="./img/proficiency-die.png" alt="proficiency die" />';
+                        dieValue += '[proficiency]';
                     } else {
-                        dieValue += '<img class="inline-die" src="./img/ability-die.png" alt="ability die" />';
+                        dieValue += '[ability]';
                     }
                 }
 
-                returnValue += skill.name + ": " + dieValue + ", ";
+                returnValue += "<div class=\"inline-block\">" + skill.name + ": " + dieValue + ",</div> ";
 
             }
         }
         if( returnValue ) {
-            returnValue = returnValue.substr( 0, returnValue.length - 2 );
+            if( valuesAsDice )  {
+                returnValue = returnValue.substr( 0, returnValue.length - 8 );
+                returnValue += "</div>";
+            } else  {
+                returnValue = returnValue.substr( 0, returnValue.length - 2 );
+            }
+
         } else {
             returnValue = "No Skills"
         }
@@ -266,24 +346,101 @@ export class Adversary {
         return returnValue;
     }
 
-    public getTalentList(
-        valuesAsDice: boolean = false,
-    ): string {
+    public getPowerLevel(): IPowerLevels {
+        let returnValue = {
+            combat: 0,
+            social: 0,
+            general: 0,
+        }
+
+        if( this.selectedAdversaryCharacteristicArray ) {
+            console.log("this.selectedAdversaryCharacteristicArray.powerLevels", this.selectedAdversaryCharacteristicArray.powerLevels)
+            returnValue.combat += this.selectedAdversaryCharacteristicArray.powerLevels.combat;
+            returnValue.general += this.selectedAdversaryCharacteristicArray.powerLevels.general;
+            returnValue.social += this.selectedAdversaryCharacteristicArray.powerLevels.social;
+        }
+
+        for( let advSoakDefWoundStrain of this.selectedSoakDefWoundStrain ) {
+            console.log("this.selectedSoakDefWoundStrain.powerLevels", advSoakDefWoundStrain.powerLevels)
+            returnValue.combat += advSoakDefWoundStrain.powerLevels.combat;
+            returnValue.general += advSoakDefWoundStrain.powerLevels.general;
+            returnValue.social += advSoakDefWoundStrain.powerLevels.social;
+        }
+
+        for( let skillPackage of this.selectedSkillPackages ) {
+            console.log("this.selectedSkillPackages.powerLevels", skillPackage.powerLevels)
+            returnValue.combat += skillPackage.powerLevels.combat;
+            returnValue.general += skillPackage.powerLevels.general;
+            returnValue.social += skillPackage.powerLevels.social;
+        }
+
+        for( let talent of this.selectedTalents ) {
+            console.log("this.selectedTalents.powerLevels", talent.powerLevels)
+            returnValue.combat += talent.powerLevels.combat;
+            returnValue.general += talent.powerLevels.general;
+            returnValue.social += talent.powerLevels.social;
+        }
+
+        for( let specialAbility of this.selectedSpecialAbilities ) {
+            console.log("this.advSoakDefWoundStrain.powerLevels", specialAbility.powerLevels)
+            returnValue.combat += specialAbility.powerLevels.combat;
+            returnValue.general += specialAbility.powerLevels.general;
+            returnValue.social += specialAbility.powerLevels.social;
+        }
+
+        // for( let equipment of this.selectedEquipment ) {
+        //     returnValue.combat += equipment.powerLevels.combat;
+        //     returnValue.general += equipment.powerLevels.general;
+        //     returnValue.social += equipment.powerLevels.social;
+        // }
+
+        if( returnValue.combat  < 1 ) {
+            returnValue.combat = 1
+        }
+
+        if( returnValue.social  < 1 ) {
+            returnValue.social = 1
+        }
+
+        if( returnValue.general  < 1 ) {
+            returnValue.general = 1
+        }
+
+        return returnValue;
+    }
+
+    public getTalentList(): string {
+        let returnValue: string = "";
+        for( let talent of this.selectedTalents ) {
+           returnValue += talent.name + " (" + talent.description + "), ";
+        }
+        if( returnValue ) {
+            returnValue = returnValue.substr( 0, returnValue.length - 2 );
+        }
+        return returnValue;
+    }
+
+    public getAbilitiesList(): string {
+        let returnValue: string = "";
+
+        for( let ability of this.selectedSpecialAbilities ) {
+            returnValue += ability.name + " (" + ability.description + "), ";
+        }
+        if( returnValue ) {
+            returnValue = returnValue.substr( 0, returnValue.length - 2 );
+        }
+
+        return returnValue;
+    }
+
+    public getEquipmentList(): string {
         let returnValue: string = "";
         return returnValue;
     }
 
-    public getAbilitiesList(
-        valuesAsDice: boolean = false,
-    ): string {
-        let returnValue: string = "";
-        return returnValue;
+    public addTalent( selectedTalent: IAdversaryTalent ) {
+        this.selectedTalents.push( selectedTalent );
     }
 
-    public getEquipmentList(
-        valuesAsDice: boolean = false,
-    ): string {
-        let returnValue: string = "";
-        return returnValue;
-    }
+
 }
