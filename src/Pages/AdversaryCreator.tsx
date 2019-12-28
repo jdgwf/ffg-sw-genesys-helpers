@@ -4,7 +4,7 @@ import {IAppGlobals} from '../AppRouter';
 import UIPage from '../Components/UIPage';
 import { Adversary, IAdversarySave } from '../Classes/Adversary';
 import { AdversaryTypes } from '../Data/AdversaryTypes';
-import { AdversaryCharacteristicArrays } from '../Data/AdversaryCharacteristicArrays';
+import { AdversaryCharacteristicArrays, IAdversaryCharacteristicArray } from '../Data/AdversaryCharacteristicArrays';
 import { AdversarySoakDefWoundStrain, IAdversarySoakDefWoundStrain } from '../Data/AdversarySoakDefWoundStrain';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -151,6 +151,19 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       })
 
 
+    }
+
+    _sortByName(
+      a: IAdversarySoakDefWoundStrain | IAdversarySkillPackage | IAdversaryTalent | IAdversarySpecialAbility | IAdversaryCharacteristicArray,
+      b: IAdversarySoakDefWoundStrain | IAdversarySkillPackage | IAdversaryTalent | IAdversarySpecialAbility | IAdversaryCharacteristicArray,
+    ): number {
+      if( a.name > b.name ) {
+        return 1
+      } else if( a.name < b.name ) {
+        return -1
+      } else {
+        return 0;
+      }
     }
 
     updateDescription( event: React.FormEvent<HTMLTextAreaElement>) {
@@ -613,7 +626,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                 value={this.state.workingEdit.selectedAdversaryCharacteristicArray.name}
                 onChange={this.updateCharacteristicArray}
               >
-                {AdversaryCharacteristicArrays.map( (arrayValue, typeIndex) => {
+                {AdversaryCharacteristicArrays.sort(this._sortByName).map( (arrayValue, typeIndex) => {
                   return (
                     <option key={typeIndex} value={arrayValue.name}>{arrayValue.name}</option>
                   )
@@ -628,7 +641,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                 onChange={this.updateSoakDefWoundStrainSelect}
               >
                 <option value="">- Select -</option>
-                {AdversarySoakDefWoundStrain.map( (arrayValue, typeIndex) => {
+                {AdversarySoakDefWoundStrain.sort(this._sortByName).map( (arrayValue, typeIndex) => {
                   return (
                     <option key={typeIndex} value={arrayValue.name}>{arrayValue.name}</option>
                   )
@@ -644,7 +657,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
             {this.state.workingEdit.selectedSoakDefWoundStrain.length > 0 ? (
               <>
                 <ul className="styleless">
-                  {this.state.workingEdit.selectedSoakDefWoundStrain.map( (item, itemIndex) => {
+                  {this.state.workingEdit.selectedSoakDefWoundStrain.sort(this._sortByName).map( (item, itemIndex) => {
                     return (
                       <li key={itemIndex}>
                       <button
@@ -672,7 +685,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                 onChange={this.updateSkillPackageSelect}
               >
                 <option value="">- Select -</option>
-                {AdversarySkillPackages.map( (arrayValue, typeIndex) => {
+                {AdversarySkillPackages.sort(this._sortByName).map( (arrayValue, typeIndex) => {
                   return (
                     <option key={typeIndex} value={arrayValue.name}>{arrayValue.name}</option>
                   )
@@ -717,7 +730,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                 onChange={this.updateTalentSelect}
               >
                 <option value="">- Select -</option>
-                {AdversaryTalents.map( (arrayValue, typeIndex) => {
+                {AdversaryTalents.sort(this._sortByName).map( (arrayValue, typeIndex) => {
                   return (
                     <option key={typeIndex} value={arrayValue.name}>{arrayValue.name}</option>
                   )
@@ -765,7 +778,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                 onChange={this.updateSpecialAbilitySelect}
               >
                 <option value="">- Select -</option>
-                {AdversarySpecialAbilities.map( (arrayValue, typeIndex) => {
+                {AdversarySpecialAbilities.sort(this._sortByName).map( (arrayValue, typeIndex) => {
                   return (
                     <option key={typeIndex} value={arrayValue.name}>{arrayValue.name}</option>
                   )
