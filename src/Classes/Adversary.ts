@@ -112,6 +112,10 @@ export class Adversary {
             }
         }
 
+        for( let item of this.getEquipmentObjs() ) {
+            soakValue += +item.soak;
+        }
+
         return soakValue;
     }
     public getWoundThreshold(): number {
@@ -173,6 +177,11 @@ export class Adversary {
             }
         }
 
+
+        for( let item of this.getEquipmentObjs() ) {
+            rangedDefenseValue += +item.defense;
+        }
+
         return rangedDefenseValue;
     }
 
@@ -188,6 +197,10 @@ export class Adversary {
             if( advSoakDefWoundStrain.derivedAttribute.meleeDefense ) {
                 meleeDefenseValue += advSoakDefWoundStrain.derivedAttribute.meleeDefense;
             }
+        }
+
+        for( let item of this.getEquipmentObjs() ) {
+            meleeDefenseValue += +item.defense;
         }
 
         return meleeDefenseValue;
@@ -621,6 +634,39 @@ export class Adversary {
         }
 
         return returnPowerLevel;
+    }
+
+
+    getEquipmentObjs(): Gear[] {
+        let returnGear: Gear[] = [];
+
+
+        for( let item of this.equipment ) {
+            if( item.trim() ) {
+                if( item.replace(/ *\([^)]*\) */g, "").indexOf( " or ") > -1 ) {
+                    let itemValues: Gear[]= [];
+
+                    for( let itemSplit of item.split(" or ")) {
+                        if( itemSplit.replace(/ *\([^)]*\) */g, "").indexOf( " and ") > -1 ) {
+                            for( let andSplit of itemSplit.split(" and ")) {
+                                let gearObj = new Gear(andSplit);
+                                returnGear.push( gearObj );
+                            }
+                        } else {
+                            let gearObj = new Gear(itemSplit);
+                            returnGear.push( gearObj );
+                        }
+                    }
+
+
+                } else {
+                    let gearObj = new Gear(item);
+                    returnGear.push( gearObj );
+                }
+            }
+        }
+
+        return returnGear;
     }
 
     public addTalent( selectedTalent: IAdversaryTalent ) {
