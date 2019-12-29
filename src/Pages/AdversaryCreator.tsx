@@ -14,6 +14,7 @@ import { AdversarySpecialAbilities, IAdversarySpecialAbility } from '../Data/Adv
 import SanitizedHTML from '../Components/SanitizedHTML';
 import domtoimage from 'dom-to-image';
 import { replaceDieTags } from '../utils';
+// import { Gear } from '../Classes/Gear';
 // import FileSaver from 'file-saver';
 
 export default class AdversaryCreator extends React.Component<IAdversaryCreatorProps, IAdversaryCreatorState> {
@@ -34,6 +35,12 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
           valuesAsDice = true;
         }
 
+        let equipmentText: string = "";
+        let lsEquipmentText = localStorage.getItem("equipment_text");
+        if( lsEquipmentText ) {
+          equipmentText = lsEquipmentText;
+        }
+
         this.state = {
             updated: false,
             workingEdit: new Adversary(editData),
@@ -42,6 +49,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
             talentSelect: null,
             specialAbilitiesSelect: null,
             valuesAsDice: valuesAsDice,
+            equipmentText: equipmentText,
         }
         this.updateName = this.updateName.bind(this);
         this.updateType = this.updateType.bind(this);
@@ -63,10 +71,23 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         this.removeTalent = this.removeTalent.bind(this);
 
         this.toggleValuesAsDice = this.toggleValuesAsDice.bind(this);
+        this.updateEquipmentText = this.updateEquipmentText.bind(this);
 
         this._refreshImages = this._refreshImages.bind(this);
 
         this.props.appGlobals.makeDocumentTitle("AdversaryCreator");
+    }
+
+    updateEquipmentText( event: React.FormEvent<HTMLTextAreaElement>) {
+      this.setState({
+        equipmentText: event.currentTarget.value,
+      });
+      // localStorage.setItem("equipment_text",  event.currentTarget.value);
+      let obj = this.state.workingEdit;
+      obj.equipment = event.currentTarget.value.split("\n");
+      obj.calc();
+      this.saveLS();
+
     }
 
     componentDidMount() {
@@ -834,8 +855,12 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 <fieldset className="fieldset">
             <label>
              Equipment:&nbsp;
-             </label>
-             <p>Coming Soon</p>
+
+             <textarea
+                value={this.state.equipmentText}
+                onChange={this.updateEquipmentText}
+             ></textarea>
+              </label>
               {/* <select
                 value={this.state.specialAbilitiesSelect ? this.state.specialAbilitiesSelect.name : ""}
                 onChange={this.updateSpecialAbilitySelect}
@@ -899,4 +924,5 @@ interface IAdversaryCreatorState {
   talentSelect: IAdversaryTalent | null;
   specialAbilitiesSelect: IAdversarySpecialAbility | null;
   valuesAsDice: boolean;
+  equipmentText: string;
 }

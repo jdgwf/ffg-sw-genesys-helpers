@@ -746,40 +746,6 @@ export const AdversarySkillPackages: IAdversarySkillPackage[] = [
         ],
     },
     {
-        name: "Crime Boss",
-        powerLevels: {
-            combat: 2,
-            social: 3,
-            general: 1,
-        },
-        skills: [
-            {
-                name: "Brawl",
-                value: 4,
-            },
-            {
-                name: "Coercion",
-                value: 5,
-            },
-            {
-                name: "Discipline",
-                value: 2,
-            },
-            {
-                name: "Leadership",
-                value: 2,
-            },
-            {
-                name: "Ranged",
-                value: 2,
-            },
-            {
-                name: "Streetwise",
-                value: 4,
-            }
-        ],
-    },
-    {
         name: "Bureaucrat",
         powerLevels: {
             combat: 0,

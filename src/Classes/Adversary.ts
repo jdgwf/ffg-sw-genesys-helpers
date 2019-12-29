@@ -5,6 +5,7 @@ import { IAdversarySpecialAbility } from "../Data/AdversarySpecialAbilities";
 import { AdversaryTypes } from "../Data/AdversaryTypes";
 import { IAdversarySoakDefWoundStrain } from "../Data/AdversarySoakDefWoundStrain";
 import { ISkill, SkillList } from "../Data/SkillList";
+import { Gear } from "./Gear";
 
 export interface ICharacteristics {
     brawn: number;
@@ -31,6 +32,7 @@ export interface IAdversarySave {
     selectedSoakDefWoundStrain: IAdversarySoakDefWoundStrain[];
     selectedSpecialAbilities: IAdversarySpecialAbility[];
     selectedTalents: IAdversaryTalent[];
+    equipment: string[];
 }
 
 export class Adversary {
@@ -42,6 +44,7 @@ export class Adversary {
     public selectedSoakDefWoundStrain: IAdversarySoakDefWoundStrain[] = [];
     public selectedSpecialAbilities: IAdversarySpecialAbility[] = [];
     public selectedTalents: IAdversaryTalent[] = [];
+    public equipment: string[] = [];
 
     private _skills: ISkill[] = [];
 
@@ -73,6 +76,9 @@ export class Adversary {
             this.selectedSoakDefWoundStrain = saveData.selectedSoakDefWoundStrain;
             this.selectedSpecialAbilities = saveData.selectedSpecialAbilities;
             this.selectedTalents = saveData.selectedTalents;
+            if( saveData.equipment ) {
+                this.equipment = saveData.equipment;
+            }
         }
     }
 
@@ -86,6 +92,7 @@ export class Adversary {
             selectedSoakDefWoundStrain: this.selectedSoakDefWoundStrain,
             selectedSpecialAbilities: this.selectedSpecialAbilities,
             selectedTalents: this.selectedTalents,
+            equipment: this.equipment,
         }
 
         return exportData;
@@ -354,35 +361,35 @@ export class Adversary {
         }
 
         if( this.selectedAdversaryCharacteristicArray ) {
-            console.log("this.selectedAdversaryCharacteristicArray.powerLevels", this.selectedAdversaryCharacteristicArray.powerLevels)
+            // console.log("this.selectedAdversaryCharacteristicArray.powerLevels", this.selectedAdversaryCharacteristicArray.powerLevels)
             returnValue.combat += this.selectedAdversaryCharacteristicArray.powerLevels.combat;
             returnValue.general += this.selectedAdversaryCharacteristicArray.powerLevels.general;
             returnValue.social += this.selectedAdversaryCharacteristicArray.powerLevels.social;
         }
 
         for( let advSoakDefWoundStrain of this.selectedSoakDefWoundStrain ) {
-            console.log("this.selectedSoakDefWoundStrain.powerLevels", advSoakDefWoundStrain.powerLevels)
+            // console.log("this.selectedSoakDefWoundStrain.powerLevels", advSoakDefWoundStrain.powerLevels)
             returnValue.combat += advSoakDefWoundStrain.powerLevels.combat;
             returnValue.general += advSoakDefWoundStrain.powerLevels.general;
             returnValue.social += advSoakDefWoundStrain.powerLevels.social;
         }
 
         for( let skillPackage of this.selectedSkillPackages ) {
-            console.log("this.selectedSkillPackages.powerLevels", skillPackage.powerLevels)
+            // console.log("this.selectedSkillPackages.powerLevels", skillPackage.powerLevels)
             returnValue.combat += skillPackage.powerLevels.combat;
             returnValue.general += skillPackage.powerLevels.general;
             returnValue.social += skillPackage.powerLevels.social;
         }
 
         for( let talent of this.selectedTalents ) {
-            console.log("this.selectedTalents.powerLevels", talent.powerLevels)
+            // console.log("this.selectedTalents.powerLevels", talent.powerLevels)
             returnValue.combat += talent.powerLevels.combat;
             returnValue.general += talent.powerLevels.general;
             returnValue.social += talent.powerLevels.social;
         }
 
         for( let specialAbility of this.selectedSpecialAbilities ) {
-            console.log("this.advSoakDefWoundStrain.powerLevels", specialAbility.powerLevels)
+            // console.log("this.advSoakDefWoundStrain.powerLevels", specialAbility.powerLevels)
             returnValue.combat += specialAbility.powerLevels.combat;
             returnValue.general += specialAbility.powerLevels.general;
             returnValue.social += specialAbility.powerLevels.social;
@@ -434,13 +441,28 @@ export class Adversary {
     }
 
     public getEquipmentList(): string {
-        let returnValue: string = "";
-        return returnValue;
+        let gearItems: string[] = [];
+
+        for( let item of this.equipment ) {
+            if( item.trim() ) {
+                if( item.indexOf( " or ") > -1 ) {
+                    let itemObjs: string[]= [];
+                    for( let itemSplit of item.split(" or ")) {
+                        let gearObj = new Gear(itemSplit);
+                        itemObjs.push(gearObj.exportString())
+                    }
+                    gearItems.push( itemObjs.join(" or ")  );
+                } else {
+                    let gearObj = new Gear(item);
+                    gearItems.push( gearObj.exportString() );
+                }
+            }
+        }
+        return gearItems.join(", ");
     }
 
     public addTalent( selectedTalent: IAdversaryTalent ) {
         this.selectedTalents.push( selectedTalent );
     }
-
 
 }
