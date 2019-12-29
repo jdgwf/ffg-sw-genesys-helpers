@@ -7,14 +7,14 @@ export const AdversaryEquipmentPackages: IAdversaryEquipmentPackage[] = [
     {
         name: "Small Beast or Creature",
         items: [
-            "Teeth/claws (Brawl; Damage +2; Critical 3; Range [Engaged]; Vicious 1) or hooves/tusks (Brawl; Damage +2; Critical 4; Range [Engaged]; Knockdown, Stun 2)."
+            "Teeth and claws (Brawl; Damage +2; Critical 3; Range [Engaged]; Vicious 1) or hooves and tusks (Brawl; Damage +2; Critical 4; Range [Engaged]; Knockdown, Stun 2)."
         ]
     },
     {
         name: "Large Beast or Creature",
         items: [
-            "Gaping maw/razor claws (Brawl; Damage +4; Critical 2; Range [Engaged]; Vicious 3)",
-            "Tentacles/thundering hooves (Brawl; Damage +5; Critical 4; Range [Engaged]; Knockdown, Concussive 1)."
+            "Gaping maw or razor claws (Brawl; Damage +4; Critical 2; Range [Engaged]; Vicious 3)",
+            "Tentacles or thundering hooves (Brawl; Damage +5; Critical 4; Range [Engaged]; Knockdown, Concussive 1)."
         ]
     },
     {

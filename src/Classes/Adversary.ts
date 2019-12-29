@@ -443,14 +443,14 @@ export class Adversary {
 
         for( let item of this.equipment ) {
             if( item.trim() ) {
-                if( item.indexOf( " or ") > -1 ) {
+                if( item.indexOf( ") or ") > -1 ) {
                     let itemObjs: string[]= [];
                     let pushToList = true;
 
-                    for( let itemSplit of item.split(" or ")) {
-                        if( itemSplit.indexOf( " and ") > -1 ) {
+                    for( let itemSplit of item.split(") or ")) {
+                        if( itemSplit.indexOf( ") and ") > -1 ) {
                             let andObjs: string[]= [];
-                            for( let andSplit of itemSplit.split(" and ")) {
+                            for( let andSplit of itemSplit.split(") and ")) {
                                 let gearObj = new Gear(andSplit);
                                 andObjs.push(gearObj.exportString())
                                 if( gearObj.type === "weapon" )
@@ -484,11 +484,11 @@ export class Adversary {
 
         for( let item of this.equipment ) {
             if( item.trim() ) {
-                if( item.indexOf( " or ") > -1 ) {
+                if( item.indexOf( ") or ") > -1 ) {
                     let itemObjs: string[]= [];
                     let pushToList = true;
 
-                    for( let itemSplit of item.split(" or ")) {
+                    for( let itemSplit of item.split(") or ")) {
                         if( itemSplit.indexOf( " and ") > -1 ) {
                             let andObjs: string[]= [];
                             for( let andSplit of itemSplit.split(" and ")) {
@@ -706,10 +706,10 @@ export class Adversary {
 
         for( let item of this.equipment ) {
             if( item.trim() ) {
-                if( item.replace(/ *\([^)]*\) */g, "").indexOf( " or ") > -1 ) {
-                    for( let itemSplit of item.split(" or ")) {
-                        if( itemSplit.replace(/ *\([^)]*\) */g, "").indexOf( " and ") > -1 ) {
-                            for( let andSplit of itemSplit.split(" and ")) {
+                if( item.replace(/ *\([^)]*\) */g, "").indexOf( ") or ") > -1 ) {
+                    for( let itemSplit of item.split(") or ")) {
+                        if( itemSplit.replace(/ *\([^)]*\) */g, "").indexOf( ") and ") > -1 ) {
+                            for( let andSplit of itemSplit.split(") and ")) {
                                 let gearObj = new Gear(andSplit);
                                 returnGear.push( gearObj );
                             }
