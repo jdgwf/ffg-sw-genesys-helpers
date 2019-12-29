@@ -159,7 +159,7 @@ export const AdversaryEquipmentPackages: IAdversaryEquipmentPackage[] = [
         items: [
             "One-handed ranged weapon (Ranged [Light]; Damage 5; Critical 3; Range [Medium]) or one-handed bludgeoning weapon (Melee [Light]; Damage +3; Critical 4; Range [Engaged]; Disorient 2)",
             "Light armor (+1 soak)",
-            "badge of authority (adds 󲊸 to Coercion or Leadership checks this character makes)",
+            "badge of authority (adds [boost] to Coercion or Leadership checks this character makes)",
             "restraints",
             "torch or other light source."
         ]

@@ -624,11 +624,26 @@ export class Adversary {
             // TODO check for hitting multiple targets (EPG p81 Step 6 - bp#4), +2 to combat power level
             // multipleFoes = 2
 
-            // TODO check for [advantage] or [setback] on social skill boosts (EPG p81 Step 6 - bp#6) +1 to social power level
-            // socialBuff = 1
+            if(
+                gearObj.summary.indexOf("[success]") > -1
+                    ||
+                gearObj.summary.indexOf("[boost]") > -1
+            ) {
+                if(
+                    gearObj.summary.toLowerCase().indexOf("coercion") > -1
+                        ||
+                    gearObj.summary.toLowerCase().indexOf("charm") > -1
+                        ||
+                    gearObj.summary.toLowerCase().indexOf("social") > -1
+                ) {
+                    // Is a Social Skill
+                    socialBuff = 1
+                } else {
+                    // Is a General Skill
+                    generalBuff = 1
+                }
+            }
 
-            // TODO check for [advantage] or [setback] on general skill boosts (EPG p81 Step 6 - bp#7) +1 to general power level
-            // generalBuff = 1
 
         }
 
