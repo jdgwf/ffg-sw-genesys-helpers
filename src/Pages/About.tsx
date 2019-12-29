@@ -24,7 +24,7 @@ export default class About extends React.Component<IAboutProps, IAboutState> {
           <strong>Developer and Designer</strong> - <a href="https://twitter.com/gauthic/">@Gauthic</a><br/>
           <p>Jeff has been playing tabletop role playing games since the very early 80's (or earlier!) and has been a professional developer since 1996. These tools, and several others, including &nbsp;<a target="_blank" rel="noopener noreferrer" href="https://jdgwf.github.io/savage-worlds-web-tools/">the Savage Worlds Web Tools project</a>, &nbsp;<a target="_blank" rel="noopener noreferrer" href="https://savaged.us">Savaged.us</a>, &nbsp;<a target="_blank" rel="noopener noreferrer" href="https://jdgwf.github.io/battletech-tools/">Gauthic's Battletech Tools</a>,&nbsp;and <a target="_blank" rel="noopener noreferrer" href="https://jdgwf.github.io/tournament-tracker/">Tournament Tracker</a>&nbsp;are all created and updated in his spare time while juggling work, family, and writing a handful of novels.</p>
 
-        <h2>Copyrights and Attriubutions</h2>
+        <h2>Copyrights and Attributions</h2>
           <p>Genesys and its logo, and Genesys Foundry and its logo, are trademarks of Fantasy Flight Games in the U.S.A. and other countries. All Fantasy Flight Games characters and character names, and the distinctive likenesses thereof, are trademarks of Fantasy Flight Games. <a href="http://www.FantasyFlightGames.com">www.FantasyFlightGames.com</a>.</p>
 
           <p>All other original material in this work is copyright 2019 by Jeffrey Gordon and published under the GPL. </p>
