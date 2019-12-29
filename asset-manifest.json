@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/ffg-sw-genesys-helpers/static/css/main.706e9936.chunk.css",
-    "main.js": "/ffg-sw-genesys-helpers/static/js/main.672af74c.chunk.js",
-    "main.js.map": "/ffg-sw-genesys-helpers/static/js/main.672af74c.chunk.js.map",
+    "main.css": "/ffg-sw-genesys-helpers/static/css/main.c59eb7fb.chunk.css",
+    "main.js": "/ffg-sw-genesys-helpers/static/js/main.9bacb441.chunk.js",
+    "main.js.map": "/ffg-sw-genesys-helpers/static/js/main.9bacb441.chunk.js.map",
     "runtime-main.js": "/ffg-sw-genesys-helpers/static/js/runtime-main.5b0fbea0.js",
     "runtime-main.js.map": "/ffg-sw-genesys-helpers/static/js/runtime-main.5b0fbea0.js.map",
     "static/css/2.833dd627.chunk.css": "/ffg-sw-genesys-helpers/static/css/2.833dd627.chunk.css",
     "static/js/2.fe901352.chunk.js": "/ffg-sw-genesys-helpers/static/js/2.fe901352.chunk.js",
     "static/js/2.fe901352.chunk.js.map": "/ffg-sw-genesys-helpers/static/js/2.fe901352.chunk.js.map",
     "index.html": "/ffg-sw-genesys-helpers/index.html",
-    "precache-manifest.4d0a3a289804aa3752a58960fcca9e8f.js": "/ffg-sw-genesys-helpers/precache-manifest.4d0a3a289804aa3752a58960fcca9e8f.js",
+    "precache-manifest.a592d40ad1f6fa426dabd149cfcc1684.js": "/ffg-sw-genesys-helpers/precache-manifest.a592d40ad1f6fa426dabd149cfcc1684.js",
     "service-worker.js": "/ffg-sw-genesys-helpers/service-worker.js",
     "static/css/2.833dd627.chunk.css.map": "/ffg-sw-genesys-helpers/static/css/2.833dd627.chunk.css.map",
-    "static/css/main.706e9936.chunk.css.map": "/ffg-sw-genesys-helpers/static/css/main.706e9936.chunk.css.map",
+    "static/css/main.c59eb7fb.chunk.css.map": "/ffg-sw-genesys-helpers/static/css/main.c59eb7fb.chunk.css.map",
     "static/js/2.fe901352.chunk.js.LICENSE": "/ffg-sw-genesys-helpers/static/js/2.fe901352.chunk.js.LICENSE",
     "static/media/index.scss": "/ffg-sw-genesys-helpers/static/media/genesys-bg.e854a717.png",
     "static/media/Die.scss": "/ffg-sw-genesys-helpers/static/media/genesys-font.b0d58337.woff",
@@ -22,7 +22,7 @@
     "static/js/runtime-main.5b0fbea0.js",
     "static/css/2.833dd627.chunk.css",
     "static/js/2.fe901352.chunk.js",
-    "static/css/main.706e9936.chunk.css",
-    "static/js/main.672af74c.chunk.js"
+    "static/css/main.c59eb7fb.chunk.css",
+    "static/js/main.9bacb441.chunk.js"
   ]
 }
