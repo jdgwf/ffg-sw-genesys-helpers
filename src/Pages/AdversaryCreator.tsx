@@ -14,6 +14,7 @@ import { AdversarySpecialAbilities, IAdversarySpecialAbility } from '../Data/Adv
 import SanitizedHTML from '../Components/SanitizedHTML';
 import domtoimage from 'dom-to-image';
 import { replaceDieTags } from '../utils';
+import { AdversaryEquipmentPackages, IAdversaryEquipmentPackage } from '../Data/AdversaryEquipmentPackages';
 // import { Gear } from '../Classes/Gear';
 // import FileSaver from 'file-saver';
 
@@ -47,6 +48,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
             specialAbilitiesSelect: null,
             valuesAsDice: valuesAsDice,
             equipmentText: equipmentText,
+            equipmentSelect: "",
         }
         this.updateName = this.updateName.bind(this);
         this.updateType = this.updateType.bind(this);
@@ -69,10 +71,37 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 
         this.toggleValuesAsDice = this.toggleValuesAsDice.bind(this);
         this.updateEquipmentText = this.updateEquipmentText.bind(this);
+        this.updateEquipmentSelect = this.updateEquipmentSelect.bind(this);
+        this.setEquipment = this.setEquipment.bind(this);
 
         this._refreshImages = this._refreshImages.bind(this);
 
         this.props.appGlobals.makeDocumentTitle("AdversaryCreator");
+    }
+
+    setEquipment() {
+
+      let obj = this.state.workingEdit;
+      for( let item of AdversaryEquipmentPackages ) {
+        if( item.name === this.state.equipmentSelect) {
+          obj.equipment = item.items;
+          this.saveLS();
+        }
+      }
+      this.setState({
+        workingEdit: obj,
+        equipmentText: obj.equipment.join("\n"),
+      })
+
+    }
+
+    updateEquipmentSelect( event: React.FormEvent<HTMLSelectElement>) {
+
+      this.setState({
+        equipmentSelect: event.currentTarget.value,
+      })
+
+
     }
 
     async updateEquipmentText( event: React.FormEvent<HTMLTextAreaElement>) {
@@ -172,8 +201,8 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
     }
 
     _sortByName(
-      a: IAdversarySoakDefWoundStrain | IAdversarySkillPackage | IAdversaryTalent | IAdversarySpecialAbility | IAdversaryCharacteristicArray,
-      b: IAdversarySoakDefWoundStrain | IAdversarySkillPackage | IAdversaryTalent | IAdversarySpecialAbility | IAdversaryCharacteristicArray,
+      a: IAdversarySoakDefWoundStrain | IAdversarySkillPackage | IAdversaryTalent | IAdversarySpecialAbility | IAdversaryCharacteristicArray | IAdversaryEquipmentPackage,
+      b: IAdversarySoakDefWoundStrain | IAdversarySkillPackage | IAdversaryTalent | IAdversarySpecialAbility | IAdversaryCharacteristicArray | IAdversaryEquipmentPackage,
     ): number {
       if( a.name > b.name ) {
         return 1
@@ -878,16 +907,38 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
             {this.state.workingEdit.getEquipmentPowerLevel().general}
           </div>
         </div>
-            <label>
-             Equipment:&nbsp;
-             <p className="small-text">One option per line. The parser can handle simple ands and ors on the line.</p>
+            <label htmlFor="equipment">
+             Equipment:<br />
+            </label>
 
-             <textarea
-                value={this.state.equipmentText}
-                onChange={this.updateEquipmentText}
-             ></textarea>
-             Shortcodes:
-             <div className="flex">
+  <select
+    value={this.state.equipmentSelect}
+    onChange={this.updateEquipmentSelect}
+  >
+      <option value="">- Select -</option>
+      {AdversaryEquipmentPackages.sort(this._sortByName).map( (arrayValue, typeIndex) => {
+        return (
+          <option key={typeIndex} value={arrayValue.name}>{arrayValue.name}</option>
+        )
+      })}
+  </select>
+  <button
+    className="btn btn-sm btn-primary"
+    onClick={this.setEquipment}
+  >
+    Set
+  </button>
+
+        <p className="small-text">One option per line. The parser can handle simple ands and ors on the line.</p>
+
+        <textarea
+          name="equipment"
+          id="equipment"
+          value={this.state.equipmentText}
+          onChange={this.updateEquipmentText}
+        ></textarea>
+        Shortcodes:
+        <div className="flex">
 {[
   "[ability]",
   "[proficiency]",
@@ -929,47 +980,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
   )
 })}
              </div>
-              </label>
-              {/* <select
-                value={this.state.specialAbilitiesSelect ? this.state.specialAbilitiesSelect.name : ""}
-                onChange={this.updateSpecialAbilitySelect}
-              >
-                <option value="">- Select -</option>
-                {AdversarySpecialAbilities.sort(this._sortByName).map( (arrayValue, typeIndex) => {
-                  return (
-                    <option key={typeIndex} value={arrayValue.name}>{arrayValue.name}</option>
-                  )
-                })}
-              </select>
-              <button
-                className="btn-primary btn btn-sm"
-                onClick={this.addSelectedSpecialAbility}
-              >
-                Add
-              </button>
-            </label>
-            {this.state.workingEdit.selectedSpecialAbilities.length > 0 ? (
-              <>
-                <ul className="styleless">
-                  {this.state.workingEdit.selectedSpecialAbilities.map( (item, itemIndex) => {
-                    return (
-                      <li key={itemIndex}>
-                      <button
-                        className="btn btn-xs btn-primary"
-                        onClick={() => this.removeSpecialAbility( itemIndex)}
-                      >
-                        <FontAwesomeIcon icon={faTrash} />
-                      </button>
-                      {item.name}
-                    </li>
-                    )
-                  })}
 
-                </ul>
-              </>
-            ) : (
-              <>None Selected</>
-            )} */}
 </fieldset>
             </div>
 
@@ -994,4 +1005,5 @@ interface IAdversaryCreatorState {
   specialAbilitiesSelect: IAdversarySpecialAbility | null;
   valuesAsDice: boolean;
   equipmentText: string;
+  equipmentSelect: string;
 }

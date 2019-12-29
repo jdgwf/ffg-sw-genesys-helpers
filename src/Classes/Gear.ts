@@ -35,6 +35,8 @@ export class Gear {
                         item.toLowerCase().indexOf("melee") === 0
                             ||
                         item.toLowerCase().indexOf("ranged") === 0
+                            ||
+                        item.toLowerCase().indexOf("brawl") === 0
                     ) {
                         this.skill = item;
                     } else if (
@@ -61,7 +63,7 @@ export class Gear {
             }
         } else if(
             lineItem.toLowerCase().indexOf( " soak") > -1
-                &&
+                ||
             lineItem.toLowerCase().indexOf( " defense") > -1
         ) {
             this.type = "armor";
@@ -98,11 +100,14 @@ export class Gear {
         if( this.type === "weapon" ) {
             exportString += " (";
 
-            exportString += this.skill + ";"
+            if( this.skill )
+                exportString += this.skill + ";"
 
-            exportString += "Damage " + this.damage + ";"
+            if( this.damage )
+                exportString += "Damage " + this.damage + ";"
 
-            exportString += " Range ["+ this.range + "]"
+            if( this.range )
+                exportString += " Range ["+ this.range + "]"
 
             if( this.qualities.length > 0 )
                 exportString += ";" + this.qualities.join( ", ")
