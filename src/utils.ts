@@ -44,7 +44,7 @@ export function replaceDieTags(
     let threat = "<img " + heightTag + " class=\"inline-die-png\" src=\"./img/threat" + sizeExtension + "\" />";
     let failure = "<img " + heightTag + " class=\"inline-die-png\" src=\"./img/failure" + sizeExtension + "\" />";
 
-    let dispair = "<img " + heightTag + " class=\"inline-die-png\" src=\"./img/dispair" + sizeExtension + "\" />";
+    let despair = "<img " + heightTag + " class=\"inline-die-png\" src=\"./img/despair" + sizeExtension + "\" />";
     let triumph = "<img " + heightTag + " class=\"inline-die-png\" src=\"./img/triumph" + sizeExtension + "\" />";
 
     incomingString = replaceAll( incomingString, "[proficiency]", proficiency);
@@ -63,7 +63,7 @@ export function replaceDieTags(
     incomingString = replaceAll( incomingString, "[threat]", threat);
     incomingString = replaceAll( incomingString, "[failure]", failure);
 
-    incomingString = replaceAll( incomingString, "[dispair]", dispair);
+    incomingString = replaceAll( incomingString, "[despair]", despair);
     incomingString = replaceAll( incomingString, "[triumph]", triumph);
 
     return incomingString;

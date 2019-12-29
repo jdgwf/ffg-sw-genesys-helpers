@@ -886,6 +886,49 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                 value={this.state.equipmentText}
                 onChange={this.updateEquipmentText}
              ></textarea>
+             Shortcodes:
+             <div className="flex">
+{[
+  "[ability]",
+  "[proficiency]",
+  "[boost]",
+  "[difficulty]",
+  "[challenge]",
+  "[setback]",
+  "[force]",
+
+].map( (shortcode, shortcodeIndex) => {
+  return (
+    <div key={shortcodeIndex}>
+      <SanitizedHTML
+        raw={true}
+        html={replaceDieTags(shortcode)}
+      />&nbsp;{shortcode}
+    </div>
+  )
+})}
+             </div>
+             <div className="flex">
+{[
+
+
+  "[advantage]",
+  "[threat]",
+  "[triumph]",
+  "[despair]",
+  "[success]",
+  "[failure]",
+].map( (shortcode, shortcodeIndex) => {
+  return (
+    <div key={shortcodeIndex}>
+      <SanitizedHTML
+        raw={true}
+        html={replaceDieTags(shortcode)}
+      />&nbsp;{shortcode}
+    </div>
+  )
+})}
+             </div>
               </label>
               {/* <select
                 value={this.state.specialAbilitiesSelect ? this.state.specialAbilitiesSelect.name : ""}

@@ -521,6 +521,43 @@ export class Adversary {
         return gearItems.join(", ");
     }
 
+    private _parseEquipmentItemPowerLevel( gearObj: Gear): IPowerLevels {
+        let returnPowerLevel: IPowerLevels = {
+            combat: 0,
+            social: 0,
+            general: 0,
+        };
+
+
+        if( +gearObj.damage < 8 ) {
+            returnPowerLevel.combat += 0;
+        }
+
+        if( +gearObj.damage > 7 ) {
+            returnPowerLevel.combat += 1;
+        }
+
+        if( +gearObj.soak < 2 ) {
+            returnPowerLevel.combat += 0;
+        }
+
+        if( +gearObj.soak > 1  ) {
+            returnPowerLevel.combat += 1;
+        }
+
+        if( gearObj.type === "armor" ) {
+            for( let qual of gearObj.qualities) {
+                if( qual.toLowerCase().indexOf("reinforced") > -1 ) {
+                    returnPowerLevel.combat += 1;
+                }
+            }
+        }
+
+        // TODO check for [advantage] or [setback] and general/social skill boosts
+
+        return returnPowerLevel
+    }
+
     getEquipmentPowerLevel(): IPowerLevels {
         let returnPowerLevel: IPowerLevels = {
             combat: 0,
@@ -528,64 +565,59 @@ export class Adversary {
             general: 0,
         };
 
+        let combinedSoak = 0;
+
         for( let item of this.equipment ) {
             if( item.trim() ) {
-                if( item.indexOf( " or ") > -1 ) {
-                    let itemObjs: string[]= [];
+                if( item.replace(/ *\([^)]*\) */g, "").indexOf( " or ") > -1 ) {
+                    let itemValues: IPowerLevels[]= [];
 
                     for( let itemSplit of item.split(" or ")) {
-                        if( itemSplit.indexOf( " and ") > -1 ) {
-                            let andObjs: string[]= [];
+                        if( itemSplit.replace(/ *\([^)]*\) */g, "").indexOf( " and ") > -1 ) {
                             for( let andSplit of itemSplit.split(" and ")) {
                                 let gearObj = new Gear(andSplit);
-                                andObjs.push(gearObj.exportString())
+                                itemValues.push(  this._parseEquipmentItemPowerLevel( gearObj ) );
+                                combinedSoak += +gearObj.soak;
                             }
-
-                            itemObjs.push( andObjs.join(" and ")  );
                         } else {
                             let gearObj = new Gear(itemSplit);
-                            if( gearObj.type === "weapon" ){
-                                itemObjs.push(gearObj.exportString())
-
-                            }
+                            let value = this._parseEquipmentItemPowerLevel( gearObj );
+                            combinedSoak += +gearObj.soak;
+                            itemValues.push( value );
                         }
                     }
 
+                    let highestValue: IPowerLevels = {
+                        combat: 0,
+                        social: 0,
+                        general: 0,
+                    }
+
+                    for( let item of itemValues ) {
+                        if( item.combat > highestValue.combat )
+                            highestValue.combat = item.combat
+                        if( item.social > highestValue.social )
+                            highestValue.social = item.social
+                        if( item.general > highestValue.general )
+                            highestValue.general = item.general
+                    }
+                    returnPowerLevel.combat += highestValue.combat;
+                    returnPowerLevel.social += highestValue.social;
+                    returnPowerLevel.general += highestValue.general;
                 } else {
                     let gearObj = new Gear(item);
-                    let combinedSoak = 0;
+                    let value = this._parseEquipmentItemPowerLevel( gearObj );
 
-                    if( +gearObj.damage < 8 ) {
-                        returnPowerLevel.combat += 0;
-                    }
-
-                    if( +gearObj.damage > 7 ) {
-                        returnPowerLevel.combat += 1;
-                    }
-
-                    if( +gearObj.soak < 2 ) {
-                        returnPowerLevel.combat += 0;
-                    }
-
+                    returnPowerLevel.combat += value.combat;
+                    returnPowerLevel.social += value.social;
+                    returnPowerLevel.general += value.general;
                     combinedSoak += +gearObj.soak;
-
-                    if( +gearObj.soak > 1  ) {
-                        returnPowerLevel.combat += 1;
-                    }
-
-                    if( gearObj.type === "armor" ) {
-                        for( let qual of gearObj.qualities) {
-                            if( qual.toLowerCase().indexOf("reinforced") > -1 ) {
-                                returnPowerLevel.combat += 1;
-                            }
-                        }
-                    }
-
-                    if( combinedSoak > 6 ) {
-                        returnPowerLevel.combat += 1;
-                    }
                 }
             }
+        }
+
+        if( combinedSoak > 6 ) {
+            returnPowerLevel.combat += 1;
         }
 
         return returnPowerLevel;

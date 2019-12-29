@@ -13,6 +13,8 @@ export class Gear {
     defense: string = "";
     soak: string = "";
 
+    summary: string = "";
+
     constructor( lineItem: string = "" ) {
         if( lineItem ) {
             this._parseLine( lineItem );
@@ -29,7 +31,6 @@ export class Gear {
                 let semiSplit = parenSplit[1].replace(").", "").replace(")", "").split(";");
                 for( let item of semiSplit) {
                     item = item.trim();
-                    console.log("parse item", item)
                     if(
                         item.toLowerCase().indexOf("melee") === 0
                             ||
@@ -85,9 +86,11 @@ export class Gear {
             this.type = "equipment";
             let parenSplit = lineItem.split("(");
             this.name = parenSplit[0].trim();
+            if( parenSplit.length > 1 ) {
+                this.summary = parenSplit[1].replace(").", "").replace(")", "").trim();
+            }
         }
 
-        console.log("this", this);
     }
     exportString(): string {
         let exportString = this.name;
@@ -115,6 +118,12 @@ export class Gear {
             }
             exportString += ")";
             exportString = exportString.replace(", )", ")")
+        } else {
+            if( this.summary ) {
+                exportString += " (";
+                exportString += this.summary
+                exportString = exportString.replace(", )", ")")
+            }
         }
 
         return exportString;

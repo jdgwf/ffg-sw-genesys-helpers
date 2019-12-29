@@ -19,7 +19,13 @@
 .relative {
     position: relative;
 }
-
+.flex {
+    display: flex;
+    div {
+        padding: .5rem 1rem;
+        white-space: nowrap;
+    }
+}
 .hidden {
     position: absolute;
     top: 3rem;
@@ -28,6 +34,9 @@
     overflow: hidden;
     width: 30px;
     height: 30px;
+}
+.inline-die-png {
+    height: 14px;
 }
 
 .card-container {
