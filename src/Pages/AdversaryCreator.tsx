@@ -646,7 +646,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
               </select>
             </label>
 <fieldset className="fieldset">
-            <label>
+            <label className="inline-block">
               Soak, Defense, Wounds, Strain:&nbsp;
               <select
                 value={this.state.soakDefWoundStrainSelect ? this.state.soakDefWoundStrainSelect.name : ""}
@@ -659,13 +659,14 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                   )
                 })}
               </select>
-              <button
+
+            </label>
+            <button
                 className="btn-primary btn btn-sm"
                 onClick={this.addSelectedSoakDefWoundStrain}
               >
                 Add
-              </button>
-            </label>
+              </button><br />
             {this.state.workingEdit.selectedSoakDefWoundStrain.length > 0 ? (
               <>
                 <ul className="styleless">
@@ -690,7 +691,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
             )}
 </fieldset>
 <fieldset className="fieldset">
-          <label>
+            <label className="inline-block">
               Skills:&nbsp;
               <select
                 value={this.state.skillPackageSelect ? this.state.skillPackageSelect.name : ""}
@@ -703,13 +704,14 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                   )
                 })}
               </select>
-              <button
+
+            </label>
+            <button
                 className="btn-primary btn btn-sm"
                 onClick={this.addSelectedSkillPackage}
               >
                 Add
-              </button>
-            </label>
+              </button><br />
             {this.state.workingEdit.selectedSkillPackages.length > 0 ? (
               <>
                 <ul className="styleless">
@@ -735,7 +737,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 </fieldset>
 
 <fieldset className="fieldset">
-          <label>
+            <label className="inline-block">
               Talents:&nbsp;
               <select
                 value={this.state.talentSelect ? this.state.talentSelect.name : ""}
@@ -748,13 +750,14 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                   )
                 })}
               </select>
+
+            </label>
               <button
                 className="btn-primary btn btn-sm"
                 onClick={this.addSelectedTalent}
               >
                 Add
-              </button>
-            </label>
+              </button><br />
             {this.state.workingEdit.selectedTalents.length > 0 ? (
               <>
                 <ul className="styleless">
@@ -783,9 +786,57 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 </fieldset>
 
 <fieldset className="fieldset">
-            <label>
+            <label className="inline-block">
              Special Abilities:&nbsp;
               <select
+                value={this.state.specialAbilitiesSelect ? this.state.specialAbilitiesSelect.name : ""}
+                onChange={this.updateSpecialAbilitySelect}
+              >
+                <option value="">- Select -</option>
+                {AdversarySpecialAbilities.sort(this._sortByName).map( (arrayValue, typeIndex) => {
+                  return (
+                    <option key={typeIndex} value={arrayValue.name}>{arrayValue.name}</option>
+                  )
+                })}
+              </select>
+            </label>
+              <button
+                className="btn-primary btn btn-sm"
+                onClick={this.addSelectedSpecialAbility}
+              >
+                Add
+              </button><br />
+            {this.state.workingEdit.selectedSpecialAbilities.length > 0 ? (
+              <>
+                <ul className="styleless">
+                  {this.state.workingEdit.selectedSpecialAbilities.map( (item, itemIndex) => {
+                    return (
+                      <li key={itemIndex}>
+                      <button
+                        className="btn btn-xs btn-primary"
+                        onClick={() => this.removeSpecialAbility( itemIndex)}
+                      >
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button>
+                      {item.name}
+                    </li>
+                    )
+                  })}
+
+                </ul>
+              </>
+            ) : (
+              <>None Selected</>
+            )}
+</fieldset>
+
+
+<fieldset className="fieldset">
+            <label>
+             Equipment:&nbsp;
+             </label>
+             <p>Coming Soon</p>
+              {/* <select
                 value={this.state.specialAbilitiesSelect ? this.state.specialAbilitiesSelect.name : ""}
                 onChange={this.updateSpecialAbilitySelect}
               >
@@ -824,7 +875,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
               </>
             ) : (
               <>None Selected</>
-            )}
+            )} */}
 </fieldset>
             </div>
 
