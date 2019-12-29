@@ -20,19 +20,13 @@ export class Gear {
     }
 
     private _parseLine( lineItem: string ) {
-        // if( lineItem.indexOf(" or ") ) {
-        //     let orSplit = lineItem.split(" or ");
-        //     for( let oSplit of orSplit ) {
-        //         this._parseLine( oSplit );
-        //     }
-        //     return;
-        // }
+
         if( lineItem.toLowerCase().indexOf( "damage ") > -1 ) {
             this.type = "weapon";
             let parenSplit = lineItem.split("(");
             this.name = parenSplit[0].trim();
             if( parenSplit.length > 1 ) {
-                let semiSplit = parenSplit[1].replace(")", "").split(";");
+                let semiSplit = parenSplit[1].replace(").", "").replace(")", "").split(";");
                 for( let item of semiSplit) {
                     item = item.trim();
                     console.log("parse item", item)
@@ -73,7 +67,7 @@ export class Gear {
             let parenSplit = lineItem.split("(");
             this.name = parenSplit[0].trim();
             if( parenSplit.length > 1 ) {
-                let commaSplit = parenSplit[1].replace(")", "").split(",");
+                let commaSplit = parenSplit[1].replace(").", "").replace(")", "").split(",");
                 for( let item of commaSplit) {
                     item = item.trim();
                     if (

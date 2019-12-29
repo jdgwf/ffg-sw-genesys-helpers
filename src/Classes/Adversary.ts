@@ -395,11 +395,9 @@ export class Adversary {
             returnValue.social += specialAbility.powerLevels.social;
         }
 
-        // for( let equipment of this.selectedEquipment ) {
-        //     returnValue.combat += equipment.powerLevels.combat;
-        //     returnValue.general += equipment.powerLevels.general;
-        //     returnValue.social += equipment.powerLevels.social;
-        // }
+        returnValue.combat = this.getEquipmentPowerLevel().combat;
+        returnValue.social = this.getEquipmentPowerLevel().social;
+        returnValue.general = this.getEquipmentPowerLevel().general;
 
         if( returnValue.combat  < 1 ) {
             returnValue.combat = 1
@@ -412,6 +410,7 @@ export class Adversary {
         if( returnValue.general  < 1 ) {
             returnValue.general = 1
         }
+
 
         return returnValue;
     }
@@ -443,22 +442,153 @@ export class Adversary {
     public getEquipmentList(): string {
         let gearItems: string[] = [];
 
+
         for( let item of this.equipment ) {
             if( item.trim() ) {
                 if( item.indexOf( " or ") > -1 ) {
                     let itemObjs: string[]= [];
+                    let pushToList = true;
+
                     for( let itemSplit of item.split(" or ")) {
-                        let gearObj = new Gear(itemSplit);
-                        itemObjs.push(gearObj.exportString())
+                        if( itemSplit.indexOf( " and ") > -1 ) {
+                            let andObjs: string[]= [];
+                            for( let andSplit of itemSplit.split(" and ")) {
+                                let gearObj = new Gear(andSplit);
+                                andObjs.push(gearObj.exportString())
+                                if( gearObj.type === "weapon" )
+                                    pushToList = false;
+                            }
+
+                            itemObjs.push( andObjs.join(" and ")  );
+                        } else {
+                            let gearObj = new Gear(itemSplit);
+                            if( gearObj.type !== "weapon" ){
+                                itemObjs.push(gearObj.exportString())
+                                pushToList = true;
+                            }
+                        }
                     }
-                    gearItems.push( itemObjs.join(" or ")  );
+                    if( pushToList )
+                        gearItems.push( itemObjs.join(" or ")  );
                 } else {
                     let gearObj = new Gear(item);
-                    gearItems.push( gearObj.exportString() );
+                    if( gearObj.type !== "weapon" )
+                        gearItems.push( gearObj.exportString() );
                 }
             }
         }
         return gearItems.join(", ");
+    }
+
+    public getWeaponList(): string {
+        let gearItems: string[] = [];
+
+
+        for( let item of this.equipment ) {
+            if( item.trim() ) {
+                if( item.indexOf( " or ") > -1 ) {
+                    let itemObjs: string[]= [];
+                    let pushToList = true;
+
+                    for( let itemSplit of item.split(" or ")) {
+                        if( itemSplit.indexOf( " and ") > -1 ) {
+                            let andObjs: string[]= [];
+                            for( let andSplit of itemSplit.split(" and ")) {
+                                let gearObj = new Gear(andSplit);
+                                andObjs.push(gearObj.exportString())
+                                if( gearObj.type !== "weapon" )
+                                    pushToList = false;
+                            }
+
+                            itemObjs.push( andObjs.join(" and ")  );
+                        } else {
+                            let gearObj = new Gear(itemSplit);
+                            if( gearObj.type === "weapon" ){
+                                itemObjs.push(gearObj.exportString())
+                                pushToList = true;
+                            }
+                        }
+                    }
+                    if( pushToList )
+                        gearItems.push( itemObjs.join(" or ")  );
+                } else {
+                    let gearObj = new Gear(item);
+                    if( gearObj.type === "weapon" )
+                        gearItems.push( gearObj.exportString() );
+                }
+            }
+        }
+        return gearItems.join(", ");
+    }
+
+    getEquipmentPowerLevel(): IPowerLevels {
+        let returnPowerLevel: IPowerLevels = {
+            combat: 0,
+            social: 0,
+            general: 0,
+        };
+
+        for( let item of this.equipment ) {
+            if( item.trim() ) {
+                if( item.indexOf( " or ") > -1 ) {
+                    let itemObjs: string[]= [];
+
+                    for( let itemSplit of item.split(" or ")) {
+                        if( itemSplit.indexOf( " and ") > -1 ) {
+                            let andObjs: string[]= [];
+                            for( let andSplit of itemSplit.split(" and ")) {
+                                let gearObj = new Gear(andSplit);
+                                andObjs.push(gearObj.exportString())
+                            }
+
+                            itemObjs.push( andObjs.join(" and ")  );
+                        } else {
+                            let gearObj = new Gear(itemSplit);
+                            if( gearObj.type === "weapon" ){
+                                itemObjs.push(gearObj.exportString())
+
+                            }
+                        }
+                    }
+
+                } else {
+                    let gearObj = new Gear(item);
+                    let combinedSoak = 0;
+
+                    if( +gearObj.damage < 8 ) {
+                        returnPowerLevel.combat += 0;
+                    }
+
+                    if( +gearObj.damage > 7 ) {
+                        returnPowerLevel.combat += 1;
+                    }
+
+                    if( +gearObj.soak < 2 ) {
+                        returnPowerLevel.combat += 0;
+                    }
+
+                    combinedSoak += +gearObj.soak;
+
+                    if( +gearObj.soak > 1  ) {
+                        returnPowerLevel.combat += 1;
+                    }
+
+                    if( gearObj.type === "armor" ) {
+                        for( let qual of gearObj.qualities) {
+                            if( qual.toLowerCase().indexOf("reinforced") > -1 ) {
+                                returnPowerLevel.combat += 1;
+                            }
+                        }
+                    }
+
+                    if( combinedSoak > 6 ) {
+                        returnPowerLevel.combat += 1;
+                    }
+                }
+            }
+        }
+
+        return returnPowerLevel;
     }
 
     public addTalent( selectedTalent: IAdversaryTalent ) {

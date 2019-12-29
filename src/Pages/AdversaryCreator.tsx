@@ -28,6 +28,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
           editData = JSON.parse( lsData );
         }
 
+        let workingEdit =  new Adversary(editData);
 
         let lsValuesAsDice = localStorage.getItem("values_as_dice");
         let valuesAsDice: boolean = false;
@@ -35,15 +36,11 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
           valuesAsDice = true;
         }
 
-        let equipmentText: string = "";
-        let lsEquipmentText = localStorage.getItem("equipment_text");
-        if( lsEquipmentText ) {
-          equipmentText = lsEquipmentText;
-        }
+        let equipmentText: string = workingEdit.equipment.join("\n");
 
         this.state = {
             updated: false,
-            workingEdit: new Adversary(editData),
+            workingEdit: workingEdit,
             soakDefWoundStrainSelect: null,
             skillPackageSelect: null,
             talentSelect: null,
@@ -78,15 +75,15 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         this.props.appGlobals.makeDocumentTitle("AdversaryCreator");
     }
 
-    updateEquipmentText( event: React.FormEvent<HTMLTextAreaElement>) {
+    async updateEquipmentText( event: React.FormEvent<HTMLTextAreaElement>) {
       this.setState({
         equipmentText: event.currentTarget.value,
       });
-      // localStorage.setItem("equipment_text",  event.currentTarget.value);
+
       let obj = this.state.workingEdit;
       obj.equipment = event.currentTarget.value.split("\n");
-      obj.calc();
       this.saveLS();
+
 
     }
 
@@ -484,7 +481,24 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
     ) : (
       <></>
     )}
-    {this.state.workingEdit.getEquipmentList() ? (
+    {this.state.workingEdit.getWeaponList().length > 0 ? (
+      <div>
+      <strong>Weapons: </strong>&nbsp;
+        <SanitizedHTML
+          html={replaceDieTags(
+            this.state.workingEdit.getWeaponList(),
+            false,
+            "png",
+            "16"
+
+          )}
+          raw={true}
+        />
+    </div>
+    ) : (
+      <></>
+    )}
+    {this.state.workingEdit.getEquipmentList().length > 0 ? (
       <div>
       <strong>Equipment: </strong>&nbsp;
         <SanitizedHTML
@@ -853,8 +867,20 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 
 
 <fieldset className="fieldset">
+        <div id="power-level-box" className="power-level-box pull-right">
+          <div className="pl-value pl-value1">
+            {this.state.workingEdit.getEquipmentPowerLevel().combat}
+          </div>
+          <div className="pl-value pl-value2">
+            {this.state.workingEdit.getEquipmentPowerLevel().social}
+          </div>
+          <div className="pl-value pl-value3">
+            {this.state.workingEdit.getEquipmentPowerLevel().general}
+          </div>
+        </div>
             <label>
              Equipment:&nbsp;
+             <p className="small-text">One option per line. The parser can handle simple ands and ors on the line.</p>
 
              <textarea
                 value={this.state.equipmentText}
