@@ -6,6 +6,7 @@ import { AdversaryTypes } from "../Data/AdversaryTypes";
 import { IAdversarySoakDefWoundStrain } from "../Data/AdversarySoakDefWoundStrain";
 import { ISkill, SkillList } from "../Data/SkillList";
 import { Gear } from "./Gear";
+import { replaceAll } from "../utils";
 
 export interface ICharacteristics {
     brawn: number;
@@ -590,21 +591,49 @@ export class Adversary {
             if( gearObj.damage && gearObj.damage[0] === "+") {
                 if( this.getBrawn() + +gearObj.damage > 7 ) {
                     if( this.getBrawn() + +gearObj.damage > 14 ) {
-                        weaponDamage = 2;
+                        if( weaponDamage < 2 ) {
+                            weaponDamage = 2;
+                        }
                     } else {
-                        weaponDamage = 1;
+                        if( weaponDamage < 1 ) {
+                            weaponDamage = 1;
+                        }
                     }
 
                 }
             } else {
 
+                console.log("gearObj.damage", +gearObj.damage)
                 if( +gearObj.damage > 7 ) {
                     if( +gearObj.damage > 14 ) {
-                        if( weaponDamage < 2 )
+                        if( weaponDamage < 2 ) {
                             weaponDamage = 2;
+                            // check for hitting multiple targets (EPG p81 Step 6 - bp#4), +2 to combat power level
+                            for( let qual of gearObj.qualities ) {
+                                if(
+                                    qual.toLowerCase().indexOf("auto-fire") == 0
+                                ) {
+                                    multipleFoes = 2
+                                } else {
+                                    multipleFoes = 0
+                                }
+                            }
+                        }
+
                     } else {
-                        if( weaponDamage < 1 )
+                        if( weaponDamage < 1 ) {
                             weaponDamage = 1;
+                            // check for hitting multiple targets (EPG p81 Step 6 - bp#4), +2 to combat power level
+                            for( let qual of gearObj.qualities ) {
+                                if(
+                                    qual.toLowerCase().indexOf("auto-fire") == 0
+                                ) {
+                                    multipleFoes = 2
+                                } else {
+                                    multipleFoes = 0
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -621,8 +650,7 @@ export class Adversary {
                 }
             }
 
-            // TODO check for hitting multiple targets (EPG p81 Step 6 - bp#4), +2 to combat power level
-            // multipleFoes = 2
+
 
             if(
                 gearObj.summary.indexOf("[success]") > -1
@@ -711,6 +739,14 @@ export class Adversary {
         returnPowerLevel.social += socialBuff;
         returnPowerLevel.general += generalBuff;
 
+        console.log("weaponDamage", weaponDamage)
+        console.log("defenseValue", defenseValue)
+
+        console.log("multipleFoes", multipleFoes)
+
+        console.log("socialBuff", socialBuff)
+        console.log("generalBuff", generalBuff)
+
         return returnPowerLevel;
     }
 
@@ -718,30 +754,27 @@ export class Adversary {
     getEquipmentObjs(): Gear[] {
         let returnGear: Gear[] = [];
 
-
         for( let item of this.equipment ) {
             if( item.trim() ) {
-                if( item.replace(/ *\([^)]*\) */g, "").indexOf( ") or ") > -1 ) {
+                item = replaceAll(item, "  ", " ");
+                // console.log('item.replace(/ *\([^)]*\) */g, "")', item.replace(/ *\([^)]*\)*/g, ""))
+                if( item.indexOf( ") or ") > -1 ) {
                     for( let itemSplit of item.split(") or ")) {
-                        if( itemSplit.replace(/ *\([^)]*\) */g, "").indexOf( ") and ") > -1 ) {
+                        if( itemSplit.indexOf( ") and ") > -1 ) {
                             for( let andSplit of itemSplit.split(") and ")) {
-                                let gearObj = new Gear(andSplit);
-                                returnGear.push( gearObj );
+                                returnGear.push( new Gear(andSplit) );
                             }
                         } else {
-                            let gearObj = new Gear(itemSplit);
-                            returnGear.push( gearObj );
+                            returnGear.push( new Gear(itemSplit) );
                         }
                     }
-
-
                 } else {
-                    let gearObj = new Gear(item);
-                    returnGear.push( gearObj );
+                    returnGear.push( new Gear(item) );
                 }
             }
         }
 
+        console.log("returnGear", returnGear)
         return returnGear;
     }
 
