@@ -56,13 +56,7 @@ export default class Settings extends React.Component<ISettingsProps, ISettingsS
 
                 <fieldset className="fieldset">
                   <legend>Die Icons</legend>
-                  {/* <label>
-                    <input
-                      type="checkbox"
-                      checked={this.props.appGlobals.settings.uiDesaturated}
-                      onChange={this.toggleDesaturated}
-                    />&nbsp;Desaturated UI
-                  </label> */}
+
                   <select
                       value={this.props.appGlobals.settings.dieIconClass}
                       onChange={this.setDieIconClass}

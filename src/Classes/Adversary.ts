@@ -99,12 +99,7 @@ export class Adversary {
     }
 
     public getSoak(): number {
-        // TODO
         let soakValue = this.getBrawn();
-
-        // for( let equipment of this.selectedEquipment ) {
-
-        // }
 
         for( let advSoakDefWoundStrain of this.selectedSoakDefWoundStrain ) {
             if( advSoakDefWoundStrain.derivedAttribute.soakThreshold ) {
@@ -164,12 +159,7 @@ export class Adversary {
     }
 
     public getRangedDefense(): number {
-        // TODO
         let rangedDefenseValue = 0;
-
-        // for( let equipment of this.selectedEquipment ) {
-
-        // }
 
         for( let advSoakDefWoundStrain of this.selectedSoakDefWoundStrain ) {
             if( advSoakDefWoundStrain.derivedAttribute.rangedDefense ) {
@@ -186,12 +176,7 @@ export class Adversary {
     }
 
     public getMeleeDefense(): number {
-        // TODO
         let meleeDefenseValue = 0;
-
-        // for( let equipment of this.selectedEquipment ) {
-
-        // }
 
         for( let advSoakDefWoundStrain of this.selectedSoakDefWoundStrain ) {
             if( advSoakDefWoundStrain.derivedAttribute.meleeDefense ) {
@@ -566,7 +551,11 @@ export class Adversary {
             }
         }
 
-        // TODO check for [advantage] or [setback] and general/social skill boosts
+        // TODO check for hitting multiple targets (EPG p81 Step 6 - bp#4), +2 to combat power level
+
+        // TODO check for [advantage] or [setback] on social skill boosts (EPG p81 Step 6 - bp#6) +1 to social power level
+
+        // TODO check for [advantage] or [setback] on general skill boosts (EPG p81 Step 6 - bp#7) +1 to general power level
 
         return returnPowerLevel
     }
@@ -644,8 +633,6 @@ export class Adversary {
         for( let item of this.equipment ) {
             if( item.trim() ) {
                 if( item.replace(/ *\([^)]*\) */g, "").indexOf( " or ") > -1 ) {
-                    let itemValues: Gear[]= [];
-
                     for( let itemSplit of item.split(" or ")) {
                         if( itemSplit.replace(/ *\([^)]*\) */g, "").indexOf( " and ") > -1 ) {
                             for( let andSplit of itemSplit.split(" and ")) {
