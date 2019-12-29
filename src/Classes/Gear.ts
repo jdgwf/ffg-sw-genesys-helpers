@@ -81,6 +81,8 @@ export class Gear {
                         item.toLowerCase().indexOf("defense") > -1
                     ){
                         this.defense = item.replace("defense", "").trim();
+                    } else {
+                        this.summary = item.replace(").", "").replace(")", "").trim();
                     }
                 }
             }
@@ -120,6 +122,9 @@ export class Gear {
             }
             if( +this.soak !== 0 ) {
                 exportString += this.soak + " soak, "
+            }
+            if( this.summary ) {
+                exportString += this.summary;
             }
             exportString += ")";
             exportString = exportString.replace(", )", ")")
