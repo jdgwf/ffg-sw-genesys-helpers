@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2abb01158e46fb90a7c3d02d2bcd0cf6",
+    "revision": "467c2d374b5a25d0086cdc445c1dc8d9",
     "url": "/ffg-sw-genesys-helpers/index.html"
   },
   {
-    "revision": "093026a8d9cbea3a8b02",
+    "revision": "0ede1c67437a35c701cc",
     "url": "/ffg-sw-genesys-helpers/static/css/2.833dd627.chunk.css"
   },
   {
-    "revision": "d13ac6af5014bc4b5c08",
-    "url": "/ffg-sw-genesys-helpers/static/css/main.743ff630.chunk.css"
+    "revision": "72f91395e1214c7f454e",
+    "url": "/ffg-sw-genesys-helpers/static/css/main.538308b6.chunk.css"
   },
   {
-    "revision": "093026a8d9cbea3a8b02",
-    "url": "/ffg-sw-genesys-helpers/static/js/2.8b18a9dc.chunk.js"
+    "revision": "0ede1c67437a35c701cc",
+    "url": "/ffg-sw-genesys-helpers/static/js/2.3b97842e.chunk.js"
   },
   {
     "revision": "5a902b6320d0d8f6ce0744f85573e9bb",
-    "url": "/ffg-sw-genesys-helpers/static/js/2.8b18a9dc.chunk.js.LICENSE"
+    "url": "/ffg-sw-genesys-helpers/static/js/2.3b97842e.chunk.js.LICENSE"
   },
   {
-    "revision": "d13ac6af5014bc4b5c08",
-    "url": "/ffg-sw-genesys-helpers/static/js/main.3290fb4a.chunk.js"
+    "revision": "72f91395e1214c7f454e",
+    "url": "/ffg-sw-genesys-helpers/static/js/main.252a582b.chunk.js"
   },
   {
     "revision": "b2d6fcf58fa92c92339c",
@@ -46,5 +46,17 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "b0d58337d540bbdffd29e73f811ab65e",
     "url": "/ffg-sw-genesys-helpers/static/media/genesys-font.b0d58337.woff"
+  },
+  {
+    "revision": "d966346ff4e59ddb54d48231a55820d4",
+    "url": "/ffg-sw-genesys-helpers/static/media/minion-rival-block.d966346f.svg"
+  },
+  {
+    "revision": "f2c72f7f2d2d855ac0b0ef7a4f155a65",
+    "url": "/ffg-sw-genesys-helpers/static/media/nemesis-block.f2c72f7f.svg"
+  },
+  {
+    "revision": "ab2a20e18f5609095617821bc1787c07",
+    "url": "/ffg-sw-genesys-helpers/static/media/power-level-box.ab2a20e1.png"
   }
 ]);
