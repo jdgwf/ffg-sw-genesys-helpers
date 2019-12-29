@@ -450,7 +450,13 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
     <div>
       <strong>Abilities: </strong>&nbsp;
         <SanitizedHTML
-          html={this.state.workingEdit.getAbilitiesList()}
+          html={replaceDieTags(
+            this.state.workingEdit.getAbilitiesList(),
+            false,
+            "png",
+            "16"
+
+          )}
           raw={true}
         />
     </div>
@@ -461,7 +467,13 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       <div>
       <strong>Equipment: </strong>&nbsp;
         <SanitizedHTML
-          html={this.state.workingEdit.getEquipmentList()}
+          html={replaceDieTags(
+            this.state.workingEdit.getEquipmentList(),
+            false,
+            "png",
+            "16"
+
+          )}
           raw={true}
         />
     </div>
