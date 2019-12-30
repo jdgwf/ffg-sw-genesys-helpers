@@ -426,7 +426,10 @@ export class Adversary {
         let returnValue: string = "";
 
         for( let ability of this.selectedSpecialAbilities ) {
-            returnValue += ability.name + " (" + ability.description + "), ";
+            if( ability.description.trim() )
+                returnValue += ability.name + " (" + ability.description.trim() + "), ";
+            else
+                returnValue += ability.name + ", ";
         }
         if( returnValue ) {
             returnValue = returnValue.substr( 0, returnValue.length - 2 );
