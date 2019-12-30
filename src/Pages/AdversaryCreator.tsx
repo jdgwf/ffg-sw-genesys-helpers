@@ -1195,7 +1195,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                 className="btn btn-xs btn-primary"
                 onClick={() => this.addSkill() }
               >
-                Add
+                New
               </button>
               </th>
             </tr>
