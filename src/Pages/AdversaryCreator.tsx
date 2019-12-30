@@ -15,6 +15,7 @@ import SanitizedHTML from '../Components/SanitizedHTML';
 import domtoimage from 'dom-to-image';
 import { replaceDieTags } from '../utils';
 import { AdversaryEquipmentPackages, IAdversaryEquipmentPackage } from '../Data/AdversaryEquipmentPackages';
+import NumericalDropDown from '../Components/NumericalDropdown';
 // import { Gear } from '../Classes/Gear';
 // import FileSaver from 'file-saver';
 
@@ -74,9 +75,81 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         this.updateEquipmentSelect = this.updateEquipmentSelect.bind(this);
         this.setEquipment = this.setEquipment.bind(this);
 
+        this.clearAdversary = this.clearAdversary.bind(this);
+        this.updateCharacteristicArrayItem = this.updateCharacteristicArrayItem.bind(this);
+        this.updateCharacteristicArrayPLItem = this.updateCharacteristicArrayPLItem.bind(this);
+
         this._refreshImages = this._refreshImages.bind(this);
 
         this.props.appGlobals.makeDocumentTitle("AdversaryCreator");
+    }
+
+
+    updateCharacteristicArrayItem( newValue: number, attribute: string ): void {
+      let obj = this.state.workingEdit;
+      switch( attribute ) {
+        case "brawn": {
+          obj.selectedAdversaryCharacteristicArray.characteristics.brawn = newValue;
+          break;
+        }
+        case "agility": {
+          obj.selectedAdversaryCharacteristicArray.characteristics.agility = newValue;
+          break;
+        }
+        case "intellect": {
+          obj.selectedAdversaryCharacteristicArray.characteristics.intellect = newValue;
+          break;
+        }
+        case "cunning": {
+          obj.selectedAdversaryCharacteristicArray.characteristics.cunning = newValue;
+          break;
+        }
+        case "willpower": {
+          obj.selectedAdversaryCharacteristicArray.characteristics.willpower = newValue;
+          break;
+        }
+        case "presence": {
+          obj.selectedAdversaryCharacteristicArray.characteristics.presence = newValue;
+          break;
+        }
+      }
+
+      this.saveLS();
+      this.setState({
+        workingEdit: obj,
+        equipmentText: obj.equipment.join("\n"),
+      })
+    }
+
+    updateCharacteristicArrayPLItem( newValue: number, attribute: string ): void {
+      let obj = this.state.workingEdit;
+      switch( attribute ) {
+        case "combat": {
+          obj.selectedAdversaryCharacteristicArray.powerLevels.combat = newValue;
+          break;
+        }
+        case "social": {
+          obj.selectedAdversaryCharacteristicArray.powerLevels.social = newValue;
+          break;
+        }
+        case "general": {
+          obj.selectedAdversaryCharacteristicArray.powerLevels.general = newValue;
+          break;
+        }
+      }
+
+      this.saveLS();
+      this.setState({
+        workingEdit: obj,
+        equipmentText: obj.equipment.join("\n"),
+      })
+    }
+
+    clearAdversary() {
+      this.setState({
+        workingEdit: new Adversary(),
+        equipmentText: "",
+      })
     }
 
     setEquipment() {
@@ -240,11 +313,32 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 
     updateCharacteristicArray( event: React.FormEvent<HTMLSelectElement>) {
       let obj = this.state.workingEdit;
-      for( let charArray of AdversaryCharacteristicArrays ) {
-        if( charArray.name === event.currentTarget.value ) {
-          obj.selectedAdversaryCharacteristicArray = charArray;
+      if( event.currentTarget.value === "Custom" ) {
+        obj.selectedAdversaryCharacteristicArray = {
+          name: "Custom",
+          characteristics: {
+            brawn: 2,
+            agility: 2,
+            intellect: 2,
+            cunning: 2,
+            willpower: 2,
+            presence: 2
+          },
+          powerLevels: {
+            combat: 0,
+            social: 0,
+            general: 0,
+          },
+          examples: "",
+        }
+      } else {
+        for( let charArray of AdversaryCharacteristicArrays ) {
+          if( charArray.name === event.currentTarget.value ) {
+            obj.selectedAdversaryCharacteristicArray = charArray;
+          }
         }
       }
+
       obj.calc();
       this.saveLS();
 
@@ -665,6 +759,14 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 
               </div>
               <div className="col-md">
+                <div className="text-right">
+                  <button
+                    onClick={this.clearAdversary}
+                    className="btn btn-primary"
+                  >
+                    Clear
+                  </button>
+                </div>
 <div className="form">
               <label>
               Name:&nbsp;
@@ -702,6 +804,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                 value={this.state.workingEdit.selectedAdversaryCharacteristicArray.name}
                 onChange={this.updateCharacteristicArray}
               >
+                <option value="Custom">Custom</option>
                 {AdversaryCharacteristicArrays.sort(this._sortByName).map( (arrayValue, typeIndex) => {
                   return (
                     <option key={typeIndex} value={arrayValue.name}>{arrayValue.name}</option>
@@ -709,6 +812,100 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                 })}
               </select>
             </label>
+{this.state.workingEdit.selectedAdversaryCharacteristicArray.name === "Custom" ? (
+  <fieldset className="fieldset">
+    <legend>Custom Characteristic Array</legend>
+    <table className="table">
+      <thead>
+        <tr>
+          <th className="small-text">Brawn</th>
+          <th className="small-text">Agility</th>
+          <th className="small-text">Intellect</th>
+          <th className="small-text">Cunning</th>
+          <th className="small-text">Willpower</th>
+          <th className="small-text">Presence</th>
+        </tr>
+      </thead>
+      <thead>
+        <tr>
+          <td>
+            <NumericalDropDown
+              value={this.state.workingEdit.selectedAdversaryCharacteristicArray.characteristics.brawn}
+              onChange={this.updateCharacteristicArrayItem}
+              attribute="brawn"
+            />
+          </td>
+          <td><NumericalDropDown
+              value={this.state.workingEdit.selectedAdversaryCharacteristicArray.characteristics.agility}
+              onChange={this.updateCharacteristicArrayItem}
+              attribute="agility"
+            /></td>
+          <td><NumericalDropDown
+              value={this.state.workingEdit.selectedAdversaryCharacteristicArray.characteristics.intellect}
+              onChange={this.updateCharacteristicArrayItem}
+              attribute="intellect"
+            /></td>
+          <td><NumericalDropDown
+              value={this.state.workingEdit.selectedAdversaryCharacteristicArray.characteristics.cunning}
+              onChange={this.updateCharacteristicArrayItem}
+              attribute="cunning"
+            /></td>
+          <td><NumericalDropDown
+              value={this.state.workingEdit.selectedAdversaryCharacteristicArray.characteristics.willpower}
+              onChange={this.updateCharacteristicArrayItem}
+              attribute="willpower"
+            /></td>
+          <td><NumericalDropDown
+              value={this.state.workingEdit.selectedAdversaryCharacteristicArray.characteristics.presence}
+              onChange={this.updateCharacteristicArrayItem}
+              attribute="presence"
+            /></td>
+        </tr>
+      </thead>
+    </table>
+
+    <table className="table text-center">
+      <thead>
+        <tr>
+          <th className="small-text">Combat</th>
+          <th className="small-text">Social</th>
+          <th className="small-text">General</th>
+        </tr>
+      </thead>
+      <thead>
+        <tr>
+          <td>
+            <NumericalDropDown
+              value={this.state.workingEdit.selectedAdversaryCharacteristicArray.powerLevels.combat}
+              onChange={this.updateCharacteristicArrayPLItem}
+              attribute="combat"
+              start={0}
+              stop={5}
+            />
+          </td>
+          <td><NumericalDropDown
+              value={this.state.workingEdit.selectedAdversaryCharacteristicArray.powerLevels.social}
+              onChange={this.updateCharacteristicArrayPLItem}
+              attribute="social"
+              start={0}
+              stop={5}
+            />
+          </td>
+          <td><NumericalDropDown
+              value={this.state.workingEdit.selectedAdversaryCharacteristicArray.powerLevels.general}
+              onChange={this.updateCharacteristicArrayPLItem}
+              attribute="general"
+              start={0}
+              stop={5}
+            />
+            </td>
+        </tr>
+      </thead>
+    </table>
+  </fieldset>
+) : (
+  <></>
+)}
 <fieldset className="fieldset">
             <label className="inline-block">
               Soak, Defense, Wounds, Strain:&nbsp;

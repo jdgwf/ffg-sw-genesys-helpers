@@ -11,6 +11,11 @@
 
     }
     fieldset {
+        legend {
+            display: inline-block;
+            width: auto;
+            padding: 0 .5rem;
+        }
         border: solid 1px #333;
         width: auto;
         margin: 0 0 1rem 0;

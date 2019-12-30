@@ -49,7 +49,7 @@ export class Adversary {
 
     private _skills: ISkill[] = [];
 
-    constructor( saveData: IAdversarySave | null ) {
+    constructor( saveData: IAdversarySave | null = null ) {
         this.loadData( saveData );
     }
 
@@ -603,7 +603,6 @@ export class Adversary {
                 }
             } else {
 
-                console.log("gearObj.damage", +gearObj.damage)
                 if( +gearObj.damage > 7 ) {
                     if( +gearObj.damage > 14 ) {
                         if( weaponDamage < 2 ) {
@@ -611,7 +610,7 @@ export class Adversary {
                             // check for hitting multiple targets (EPG p81 Step 6 - bp#4), +2 to combat power level
                             for( let qual of gearObj.qualities ) {
                                 if(
-                                    qual.toLowerCase().indexOf("auto-fire") == 0
+                                    qual.toLowerCase().indexOf("auto-fire") === 0
                                 ) {
                                     multipleFoes = 2
                                 } else {
@@ -626,7 +625,7 @@ export class Adversary {
                             // check for hitting multiple targets (EPG p81 Step 6 - bp#4), +2 to combat power level
                             for( let qual of gearObj.qualities ) {
                                 if(
-                                    qual.toLowerCase().indexOf("auto-fire") == 0
+                                    qual.toLowerCase().indexOf("auto-fire") === 0
                                 ) {
                                     multipleFoes = 2
                                 } else {
@@ -739,14 +738,6 @@ export class Adversary {
         returnPowerLevel.social += socialBuff;
         returnPowerLevel.general += generalBuff;
 
-        console.log("weaponDamage", weaponDamage)
-        console.log("defenseValue", defenseValue)
-
-        console.log("multipleFoes", multipleFoes)
-
-        console.log("socialBuff", socialBuff)
-        console.log("generalBuff", generalBuff)
-
         return returnPowerLevel;
     }
 
@@ -774,7 +765,6 @@ export class Adversary {
             }
         }
 
-        console.log("returnGear", returnGear)
         return returnGear;
     }
 
