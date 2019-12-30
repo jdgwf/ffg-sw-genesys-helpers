@@ -394,9 +394,9 @@ export class Adversary {
             returnValue.social += specialAbility.powerLevels.social;
         }
 
-        returnValue.combat = this.getEquipmentPowerLevel().combat;
-        returnValue.social = this.getEquipmentPowerLevel().social;
-        returnValue.general = this.getEquipmentPowerLevel().general;
+        returnValue.combat += this.getEquipmentPowerLevel().combat;
+        returnValue.social += this.getEquipmentPowerLevel().social;
+        returnValue.general += this.getEquipmentPowerLevel().general;
 
         if( returnValue.combat  < 1 ) {
             returnValue.combat = 1
