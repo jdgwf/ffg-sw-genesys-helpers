@@ -32,9 +32,9 @@ export default class NumericalDropDown extends React.Component<INumericalDropDow
     render() {
         let options: React.ReactFragment[] = [];
 
-        for( let counter = this.start; counter < this.stop; counter++ ) {
+        for( let counter = this.start; counter < this.stop + 1; counter++ ) {
           options.push(
-            <option value={counter}>{counter}</option>
+            <option key={counter} value={counter}>{counter}</option>
           )
         }
         return (

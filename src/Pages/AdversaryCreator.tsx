@@ -815,64 +815,76 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 {this.state.workingEdit.selectedAdversaryCharacteristicArray.name === "Custom" ? (
   <fieldset className="fieldset">
     <legend>Custom Characteristic Array</legend>
-    <table className="table">
+    <table className="characteristic-select">
       <thead>
         <tr>
-          <th className="small-text">Brawn</th>
-          <th className="small-text">Agility</th>
-          <th className="small-text">Intellect</th>
-          <th className="small-text">Cunning</th>
-          <th className="small-text">Willpower</th>
-          <th className="small-text">Presence</th>
+          <th>Brawn</th>
+          <th>Agility</th>
+          <th>Intellect</th>
+          <th>Cunning</th>
+          <th>Willpower</th>
+          <th>Presence</th>
         </tr>
       </thead>
-      <thead>
+      <tbody>
         <tr>
           <td>
             <NumericalDropDown
               value={this.state.workingEdit.selectedAdversaryCharacteristicArray.characteristics.brawn}
               onChange={this.updateCharacteristicArrayItem}
               attribute="brawn"
+              start={1}
+              stop={6}
             />
           </td>
           <td><NumericalDropDown
               value={this.state.workingEdit.selectedAdversaryCharacteristicArray.characteristics.agility}
               onChange={this.updateCharacteristicArrayItem}
               attribute="agility"
+              start={1}
+              stop={6}
             /></td>
           <td><NumericalDropDown
               value={this.state.workingEdit.selectedAdversaryCharacteristicArray.characteristics.intellect}
               onChange={this.updateCharacteristicArrayItem}
               attribute="intellect"
+              start={1}
+              stop={6}
             /></td>
           <td><NumericalDropDown
               value={this.state.workingEdit.selectedAdversaryCharacteristicArray.characteristics.cunning}
               onChange={this.updateCharacteristicArrayItem}
               attribute="cunning"
+              start={1}
+              stop={6}
             /></td>
           <td><NumericalDropDown
               value={this.state.workingEdit.selectedAdversaryCharacteristicArray.characteristics.willpower}
               onChange={this.updateCharacteristicArrayItem}
               attribute="willpower"
+              start={1}
+              stop={6}
             /></td>
           <td><NumericalDropDown
               value={this.state.workingEdit.selectedAdversaryCharacteristicArray.characteristics.presence}
               onChange={this.updateCharacteristicArrayItem}
               attribute="presence"
+              start={1}
+              stop={6}
             /></td>
         </tr>
-      </thead>
+      </tbody>
     </table>
 
-    <table className="table text-center">
+    <table className="characteristic-select">
       <thead>
         <tr>
-          <th className="small-text">Combat</th>
-          <th className="small-text">Social</th>
-          <th className="small-text">General</th>
+          <th>Combat</th>
+          <th>Social</th>
+          <th>General</th>
         </tr>
       </thead>
-      <thead>
+      <tbody>
         <tr>
           <td>
             <NumericalDropDown
@@ -900,13 +912,18 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
             />
             </td>
         </tr>
-      </thead>
+      </tbody>
     </table>
   </fieldset>
 ) : (
   <></>
 )}
 <fieldset className="fieldset">
+    <button
+      className="btn btn-primary pull-right"
+    >
+      New
+    </button>
             <label className="inline-block">
               Soak, Defense, Wounds, Strain:&nbsp;
               <select
@@ -952,6 +969,11 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
             )}
 </fieldset>
 <fieldset className="fieldset">
+    <button
+      className="btn btn-primary pull-right"
+    >
+      New
+    </button>
             <label className="inline-block">
               Skills:&nbsp;
               <select
@@ -998,6 +1020,11 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 </fieldset>
 
 <fieldset className="fieldset">
+    <button
+      className="btn btn-primary pull-right"
+    >
+      New
+    </button>
             <label className="inline-block">
               Talents:&nbsp;
               <select
@@ -1047,6 +1074,11 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 </fieldset>
 
 <fieldset className="fieldset">
+    <button
+      className="btn btn-primary pull-right"
+    >
+      New
+    </button>
             <label className="inline-block">
              Special Abilities:&nbsp;
               <select
