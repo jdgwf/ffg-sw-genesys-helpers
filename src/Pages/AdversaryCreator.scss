@@ -8,6 +8,9 @@
         overflow-wrap: normal;
         overflow-x: scroll;
     }
+    input[type=text] {
+        width: 100%
+    }
     label {
         display: block;
         // input {
