@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 import './AdversaryCreator.scss';
 import {IAppGlobals} from '../AppRouter';
 import UIPage from '../Components/UIPage';
@@ -7,7 +7,7 @@ import { AdversaryTypes } from '../Data/AdversaryTypes';
 import { AdversaryCharacteristicArrays, IAdversaryCharacteristicArray } from '../Data/AdversaryCharacteristicArrays';
 import { AdversarySoakDefWoundStrain, IAdversarySoakDefWoundStrain } from '../Data/AdversarySoakDefWoundStrain';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { AdversarySkillPackages, IAdversarySkillPackage } from '../Data/AdversarySkillPackages';
 import { AdversaryTalents, IAdversaryTalent } from '../Data/AdversaryTalents';
 import { AdversarySpecialAbilities, IAdversarySpecialAbility } from '../Data/AdversarySpecialAbilities';
@@ -16,8 +16,8 @@ import domtoimage from 'dom-to-image';
 import { replaceDieTags } from '../utils';
 import { AdversaryEquipmentPackages, IAdversaryEquipmentPackage } from '../Data/AdversaryEquipmentPackages';
 import NumericalDropDown from '../Components/NumericalDropdown';
-// import { Gear } from '../Classes/Gear';
-// import FileSaver from 'file-saver';
+import { Modal } from 'react-bootstrap';
+
 
 export default class AdversaryCreator extends React.Component<IAdversaryCreatorProps, IAdversaryCreatorState> {
 
@@ -50,6 +50,17 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
             valuesAsDice: valuesAsDice,
             equipmentText: equipmentText,
             equipmentSelect: "",
+            editSoakDefWoundStrain: null,
+            editSoakDefWoundStrainIndex: -1,
+
+            editSkills: null,
+            editSkillsIndex: -1,
+
+            editTalents: null,
+            editTalentsIndex: -1,
+
+            editSpecialAbilities: null,
+            editSpecialAbilitiesIndex: -1,
         }
         this.updateName = this.updateName.bind(this);
         this.updateType = this.updateType.bind(this);
@@ -79,11 +90,329 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         this.updateCharacteristicArrayItem = this.updateCharacteristicArrayItem.bind(this);
         this.updateCharacteristicArrayPLItem = this.updateCharacteristicArrayPLItem.bind(this);
 
+        this.closeSoakDefWoundStrain = this.closeSoakDefWoundStrain.bind(this);
+        this.editSoakDefWoundStrain = this.editSoakDefWoundStrain.bind(this);
+
+        this.closeEditSkills = this.closeEditSkills.bind(this);
+        this.editSkills = this.editSkills.bind(this);
+
+        this.closeEditTalents = this.closeEditTalents.bind(this);
+        this.editTalents = this.editTalents.bind(this);
+
+        this.closeEditSpecialAbilities = this.closeEditSpecialAbilities.bind(this);
+        this.editSpecialAbilities = this.editSpecialAbilities.bind(this);
+
         this._refreshImages = this._refreshImages.bind(this);
+
+        this.updateSoakDefWoundStrainPL = this.updateSoakDefWoundStrainPL.bind(this);
+        this.updateSoakDefWoundStrainDerivedAttribute = this.updateSoakDefWoundStrainDerivedAttribute.bind(this);
+        this.saveSoakDefWoundStrain = this.saveSoakDefWoundStrain.bind(this);
+        this.updateSoakDefWoundStrainName = this.updateSoakDefWoundStrainName.bind(this);
+
+
+        this.updateTalentPL = this.updateTalentPL.bind(this);
+        this.updateTalentDescription = this.updateTalentDescription.bind(this);
+        this.saveTalent = this.saveTalent.bind(this);
+        this.updateTalentName = this.updateTalentName.bind(this);
+
+
+        this.updateSpecialAbilitiesPL = this.updateSpecialAbilitiesPL.bind(this);
+        this.updateSpecialAbilitiesDescription = this.updateSpecialAbilitiesDescription.bind(this);
+        this.saveSpecialAbilities = this.saveSpecialAbilities.bind(this);
+        this.updateSpecialAbilitiesName = this.updateSpecialAbilitiesName.bind(this);
+
+        this.updateSkillsPL = this.updateSkillsPL.bind(this);
+        this.updateSkillsName = this.updateSkillsName.bind(this);
+        this.saveSkillPackage = this.saveSkillPackage.bind(this);
+
+        this.updateSkillItemName = this.updateSkillItemName.bind(this);
+        this.updateSkillItemValue = this.updateSkillItemValue.bind(this);
+        this.removeSkillIndex = this.removeSkillIndex.bind(this);
+        this.addSkill = this.addSkill.bind(this);
 
         this.props.appGlobals.makeDocumentTitle("AdversaryCreator");
     }
 
+    addSkill() {
+      if( this.state.editSkills ) {
+        let editSkills = this.state.editSkills;
+
+        editSkills.skills.push({
+          name: "New SKill",
+          value: 1,
+        })
+
+        this.setState({
+          editSkills: editSkills,
+        })
+      }
+    }
+
+    removeSkillIndex( skillIndex: number ) {
+      if( this.state.editSkills ) {
+        let editSkills = this.state.editSkills;
+
+        if( editSkills.skills.length > skillIndex ) {
+          editSkills.skills.splice(skillIndex, 1)
+        }
+
+        this.setState({
+          editSkills: editSkills,
+        })
+      }
+    }
+
+    updateSkillItemName( skillIndex: number, newValue: string ) {
+      if( this.state.editSkills ) {
+        let editSkills = this.state.editSkills;
+
+        if( editSkills.skills.length > skillIndex ) {
+          editSkills.skills[skillIndex].name = newValue;
+        }
+
+        this.setState({
+          editSkills: editSkills,
+        })
+      }
+    }
+
+    updateSkillItemValue( skillIndex: number, newValue: number ) {
+      if( this.state.editSkills ) {
+        let editSkills = this.state.editSkills;
+
+        if( editSkills.skills.length > skillIndex ) {
+          editSkills.skills[skillIndex].value = newValue;
+        }
+
+        this.setState({
+          editSkills: editSkills,
+        })
+      }
+    }
+
+    closeEditTalents() {
+      this.setState({
+        editTalents: null,
+        editSoakDefWoundStrainIndex: -1,
+      })
+    }
+
+    editTalents( itemIndex: number = -1 ) {
+      let editTalents: IAdversaryTalent = {
+        name: "New Item",
+        book: "Custom",
+        page: "",
+        description: "",
+        powerLevels: {
+            combat: 0,
+            social: 0,
+            general: 0,
+        },
+      };
+      if( itemIndex === -1 || itemIndex > this.state.workingEdit.selectedTalents.length ) {
+        itemIndex = -1;
+      } else {
+        editTalents = JSON.parse(JSON.stringify(this.state.workingEdit.selectedTalents[ itemIndex ]));
+      }
+      this.setState({
+        editTalents: editTalents,
+        editTalentsIndex: itemIndex,
+      })
+    }
+
+
+    closeEditSpecialAbilities() {
+      this.setState({
+        editSpecialAbilities: null,
+        editSpecialAbilitiesIndex: -1,
+      })
+    }
+
+    editSpecialAbilities( itemIndex: number = -1 ) {
+      let editSpecialAbilities: IAdversarySpecialAbility = {
+        name: "New Item",
+        description: "",
+        examples: "",
+        powerLevels: {
+            combat: 0,
+            social: 0,
+            general: 0,
+        },
+      }
+      if( itemIndex === -1 || itemIndex > this.state.workingEdit.selectedSpecialAbilities.length ) {
+        itemIndex = -1;
+      } else {
+        editSpecialAbilities = JSON.parse(JSON.stringify(this.state.workingEdit.selectedSpecialAbilities[ itemIndex ]));
+      }
+      this.setState({
+        editSpecialAbilities: editSpecialAbilities,
+        editSpecialAbilitiesIndex: itemIndex,
+      })
+    }
+
+
+    saveSoakDefWoundStrain( event: React.FormEvent<HTMLFormElement>) {
+      event.preventDefault();
+
+      if(  this.state.editSoakDefWoundStrain ) {
+        let obj = this.state.workingEdit;
+
+        if( this.state.editSoakDefWoundStrainIndex > -1 ) {
+          if( obj.selectedSoakDefWoundStrain.length > this.state.editSoakDefWoundStrainIndex ) {
+            obj.selectedSoakDefWoundStrain[ this.state.editSoakDefWoundStrainIndex ] = this.state.editSoakDefWoundStrain;
+          }
+        } else {
+          obj.selectedSoakDefWoundStrain.push( this.state.editSoakDefWoundStrain );
+        }
+
+        this.setState({
+          workingEdit: obj,
+        });
+
+        this.saveLS();
+        this.closeSoakDefWoundStrain();
+      }
+
+
+    }
+
+    saveSkillPackage( event: React.FormEvent<HTMLFormElement>) {
+      event.preventDefault();
+
+      if(  this.state.editSkills ) {
+        let obj = this.state.workingEdit;
+
+        if( this.state.editSkillsIndex > -1 ) {
+          if( obj.selectedSkillPackages.length > this.state.editSkillsIndex ) {
+            obj.selectedSkillPackages[ this.state.editSkillsIndex ] = this.state.editSkills;
+          }
+        } else {
+          obj.selectedSkillPackages.push( this.state.editSkills );
+        }
+
+        this.setState({
+          workingEdit: obj,
+        });
+
+        this.saveLS();
+        this.closeEditSkills();
+      }
+
+
+    }
+
+    saveSpecialAbilities( event: React.FormEvent<HTMLFormElement>) {
+      event.preventDefault();
+
+      if(  this.state.editSpecialAbilities ) {
+        let obj = this.state.workingEdit;
+
+        if( this.state.editSpecialAbilitiesIndex > -1 ) {
+          if( obj.selectedSpecialAbilities.length > this.state.editSpecialAbilitiesIndex ) {
+            obj.selectedSpecialAbilities[ this.state.editSpecialAbilitiesIndex ] = this.state.editSpecialAbilities;
+          }
+        } else {
+          obj.selectedSpecialAbilities.push( this.state.editSpecialAbilities );
+        }
+
+        this.setState({
+          workingEdit: obj,
+        });
+
+        this.saveLS();
+        this.closeEditSpecialAbilities();
+      }
+
+
+    }
+
+    saveTalent( event: React.FormEvent<HTMLFormElement>) {
+      event.preventDefault();
+
+      if(  this.state.editTalents ) {
+        let obj = this.state.workingEdit;
+
+        if( this.state.editTalentsIndex > -1 ) {
+          if( obj.selectedTalents.length > this.state.editTalentsIndex ) {
+            obj.selectedTalents[ this.state.editTalentsIndex ] = this.state.editTalents;
+          }
+        } else {
+          obj.selectedTalents.push( this.state.editTalents );
+        }
+
+        this.setState({
+          workingEdit: obj,
+        });
+
+        this.saveLS();
+        this.closeEditTalents();
+      }
+
+
+    }
+
+    closeEditSkills() {
+      this.setState({
+        editSkills: null,
+        editSkillsIndex: -1,
+      })
+    }
+
+    editSkills( itemIndex: number = -1 ) {
+      let editSkills: IAdversarySkillPackage = {
+        name: "New Item",
+        skills: [],
+        powerLevels: {
+            combat: 0,
+            social: 0,
+            general: 0,
+        },
+      }
+      if( itemIndex === -1 || itemIndex > this.state.workingEdit.selectedSkillPackages.length ) {
+        itemIndex = -1;
+      } else {
+        editSkills = JSON.parse(JSON.stringify(this.state.workingEdit.selectedSkillPackages[ itemIndex ]));
+      }
+      this.setState({
+        editSkills: editSkills,
+        editSkillsIndex: itemIndex,
+      })
+    }
+
+    closeSoakDefWoundStrain() {
+      this.setState({
+        editSoakDefWoundStrain: null,
+        editSoakDefWoundStrainIndex: -1,
+      })
+    }
+
+    editSoakDefWoundStrain( itemIndex: number = -1 ) {
+      let editSoakDefWoundStrain: IAdversarySoakDefWoundStrain = {
+        name: "New Item",
+        derivedAttribute: {
+          soakThreshold: 0,
+          woundThreshold: 0,
+          meleeDefense: 0,
+          rangedDefense: 0,
+          strainThreshold: 0,
+        },
+        powerLevels: {
+            combat: 0,
+            social: 0,
+            general: 0,
+        },
+        examples: ""
+      }
+      if( itemIndex === -1 || itemIndex > this.state.workingEdit.selectedSoakDefWoundStrain.length ) {
+        itemIndex = -1;
+      } else {
+        editSoakDefWoundStrain = JSON.parse(JSON.stringify(this.state.workingEdit.selectedSoakDefWoundStrain[ itemIndex ]) );
+      }
+      this.setState({
+        editSoakDefWoundStrain: editSoakDefWoundStrain,
+        editSoakDefWoundStrainIndex: itemIndex,
+      })
+    }
 
     updateCharacteristicArrayItem( newValue: number, attribute: string ): void {
       let obj = this.state.workingEdit;
@@ -143,6 +472,200 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         workingEdit: obj,
         equipmentText: obj.equipment.join("\n"),
       })
+    }
+
+    updateSoakDefWoundStrainDerivedAttribute( newValue: number, attribute: string ): void {
+      let obj = this.state.editSoakDefWoundStrain;
+      if( obj ) {
+        switch( attribute ) {
+          case "soakThreshold": {
+            obj.derivedAttribute.soakThreshold = newValue;
+            break;
+          }
+          case "strainThreshold": {
+            obj.derivedAttribute.strainThreshold = newValue;
+            break;
+          }
+          case "rangedDefense": {
+            obj.derivedAttribute.rangedDefense = newValue;
+            break;
+          }
+          case "meleeDefense": {
+            obj.derivedAttribute.meleeDefense = newValue;
+            break;
+          }
+        }
+
+        this.setState({
+          editSoakDefWoundStrain: obj,
+        })
+      }
+    }
+
+    updateTalentName( event: React.FormEvent<HTMLInputElement>): void {
+      let obj = this.state.editTalents;
+      if( obj ) {
+        obj.name = event.currentTarget.value;
+
+        this.setState({
+          editTalents: obj,
+        })
+      }
+    }
+
+    updateSkillsName( event: React.FormEvent<HTMLInputElement>): void {
+      let obj = this.state.editSkills;
+      if( obj ) {
+        obj.name = event.currentTarget.value;
+
+        this.setState({
+          editSkills: obj,
+        })
+      }
+    }
+
+    updateTalentDescription( event: React.FormEvent<HTMLInputElement>): void {
+      let obj = this.state.editTalents;
+      if( obj ) {
+        obj.description = event.currentTarget.value;
+
+        this.setState({
+          editTalents: obj,
+        })
+      }
+    }
+
+
+    updateSpecialAbilitiesName( event: React.FormEvent<HTMLInputElement>): void {
+      let obj = this.state.editSpecialAbilities;
+      if( obj ) {
+        obj.name = event.currentTarget.value;
+
+        this.setState({
+          editSpecialAbilities: obj,
+        })
+      }
+    }
+
+    updateSpecialAbilitiesDescription( event: React.FormEvent<HTMLInputElement>): void {
+      let obj = this.state.editSpecialAbilities;
+      if( obj ) {
+        obj.description = event.currentTarget.value;
+
+        this.setState({
+          editSpecialAbilities: obj,
+        })
+      }
+    }
+
+    updateSoakDefWoundStrainName( event: React.FormEvent<HTMLInputElement>): void {
+      let obj = this.state.editSoakDefWoundStrain;
+      if( obj ) {
+        obj.name = event.currentTarget.value;
+
+        this.setState({
+          editSoakDefWoundStrain: obj,
+        })
+      }
+    }
+
+    updateTalentPL( newValue: number, attribute: string ): void {
+      let obj = this.state.editTalents;
+      if( obj ) {
+        switch( attribute ) {
+          case "combat": {
+            obj.powerLevels.combat = newValue;
+            break;
+          }
+          case "social": {
+            obj.powerLevels.social = newValue;
+            break;
+          }
+          case "general": {
+            obj.powerLevels.general = newValue;
+            break;
+          }
+        }
+
+        this.setState({
+          editTalents: obj,
+        })
+      }
+    }
+
+
+
+    updateSkillsPL( newValue: number, attribute: string ): void {
+      let obj = this.state.editSkills;
+      if( obj ) {
+        switch( attribute ) {
+          case "combat": {
+            obj.powerLevels.combat = newValue;
+            break;
+          }
+          case "social": {
+            obj.powerLevels.social = newValue;
+            break;
+          }
+          case "general": {
+            obj.powerLevels.general = newValue;
+            break;
+          }
+        }
+
+        this.setState({
+          editSkills: obj,
+        })
+      }
+    }
+
+
+    updateSpecialAbilitiesPL( newValue: number, attribute: string ): void {
+      let obj = this.state.editSpecialAbilities;
+      if( obj ) {
+        switch( attribute ) {
+          case "combat": {
+            obj.powerLevels.combat = newValue;
+            break;
+          }
+          case "social": {
+            obj.powerLevels.social = newValue;
+            break;
+          }
+          case "general": {
+            obj.powerLevels.general = newValue;
+            break;
+          }
+        }
+
+        this.setState({
+          editSpecialAbilities: obj,
+        })
+      }
+    }
+
+    updateSoakDefWoundStrainPL( newValue: number, attribute: string ): void {
+      let obj = this.state.editSoakDefWoundStrain;
+      if( obj ) {
+        switch( attribute ) {
+          case "combat": {
+            obj.powerLevels.combat = newValue;
+            break;
+          }
+          case "social": {
+            obj.powerLevels.social = newValue;
+            break;
+          }
+          case "general": {
+            obj.powerLevels.general = newValue;
+            break;
+          }
+        }
+
+        this.setState({
+          editSoakDefWoundStrain: obj,
+        })
+      }
     }
 
     clearAdversary() {
@@ -516,6 +1039,438 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       return (
         <UIPage current="adversary-creator" appGlobals={this.props.appGlobals}>
 
+{this.state.editSoakDefWoundStrain ? (
+  <Modal onHide={this.closeSoakDefWoundStrain} show={this.state.editSoakDefWoundStrain != null}>
+    <Modal.Header closeButton >
+      {this.state.editSoakDefWoundStrainIndex > -1 ? (
+        <>Editing Soak, Defense, Wounds, Straintem</>
+      ) : (
+        <>Adding Soak, Defense, Wounds, Strain</>
+      )}
+    </Modal.Header>
+    <Modal.Body>
+      <form className="form" onSubmit={this.saveSoakDefWoundStrain}>
+        <label>
+          Name:<br />
+          <input
+            type="text"
+            value={this.state.editSoakDefWoundStrain.name}
+            onChange={this.updateSoakDefWoundStrainName}
+          />
+        </label>
+
+        <label>
+          Melee Defense:
+          <NumericalDropDown
+              value={this.state.editSoakDefWoundStrain.derivedAttribute.meleeDefense ? this.state.editSoakDefWoundStrain.derivedAttribute.meleeDefense : 0}
+              onChange={this.updateSoakDefWoundStrainDerivedAttribute}
+              attribute="meleeDefense"
+              start={0}
+              stop={5}
+            />
+        </label>
+
+        <label>
+          Ranged Defense:
+          <NumericalDropDown
+              value={this.state.editSoakDefWoundStrain.derivedAttribute.rangedDefense ? this.state.editSoakDefWoundStrain.derivedAttribute.rangedDefense : 0}
+              onChange={this.updateSoakDefWoundStrainDerivedAttribute}
+              attribute="rangedDefense"
+              start={0}
+              stop={5}
+            />
+        </label>
+
+        <label>
+          Soak Threshold:
+          <NumericalDropDown
+              value={this.state.editSoakDefWoundStrain.derivedAttribute.soakThreshold ? this.state.editSoakDefWoundStrain.derivedAttribute.soakThreshold : 0}
+              onChange={this.updateSoakDefWoundStrainDerivedAttribute}
+              attribute="soakThreshold"
+              start={0}
+              stop={5}
+            />
+        </label>
+
+        <label>
+          Strain Threshold:
+          <NumericalDropDown
+              value={this.state.editSoakDefWoundStrain.derivedAttribute.strainThreshold ? this.state.editSoakDefWoundStrain.derivedAttribute.strainThreshold : 0}
+              onChange={this.updateSoakDefWoundStrainDerivedAttribute}
+              attribute="strainThreshold"
+              start={0}
+              stop={5}
+            />
+        </label>
+
+
+        <table className="characteristic-select">
+      <thead>
+        <tr>
+          <th>Combat</th>
+          <th>Social</th>
+          <th>General</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <NumericalDropDown
+              value={this.state.editSoakDefWoundStrain.powerLevels.combat}
+              onChange={this.updateSoakDefWoundStrainPL}
+              attribute="combat"
+              start={0}
+              stop={5}
+            />
+          </td>
+          <td><NumericalDropDown
+              value={this.state.editSoakDefWoundStrain.powerLevels.social}
+              onChange={this.updateSoakDefWoundStrainPL}
+              attribute="social"
+              start={0}
+              stop={5}
+            />
+          </td>
+          <td><NumericalDropDown
+              value={this.state.editSoakDefWoundStrain.powerLevels.general}
+              onChange={this.updateSoakDefWoundStrainPL}
+              attribute="general"
+              start={0}
+              stop={5}
+            />
+            </td>
+        </tr>
+      </tbody>
+    </table>
+        <div className="text-right">
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => this.closeSoakDefWoundStrain()}
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="btn btn-primary"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </Modal.Body>
+  </Modal>
+) : (
+  <></>
+)}
+
+{this.state.editSkills ? (
+  <Modal onHide={this.closeEditSkills} show={this.state.editSkills != null}>
+    <Modal.Header closeButton >
+      {this.state.editSkillsIndex > -1 ? (
+        <>Editing Skills Package</>
+      ) : (
+        <>Adding Skills Package</>
+      )}
+    </Modal.Header>
+    <Modal.Body>
+    <form className="form" onSubmit={this.saveSkillPackage}>
+        <label>
+          Name:<br />
+          <input
+            type="text"
+            value={this.state.editSkills.name}
+            onChange={this.updateSkillsName}
+          />
+        </label>
+
+        <table className="characteristic-select">
+          <thead>
+            <tr>
+              <th>Skill</th>
+              <th>Value</th>
+              <th>
+              <button
+                type="button"
+                className="btn btn-xs btn-primary"
+                onClick={() => this.addSkill() }
+              >
+                Add
+              </button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+{this.state.editSkills.skills.map( (skill, skillIndex) => {
+  return (
+    <tr key={skillIndex}>
+      <td>
+        <input
+          type="text"
+          onChange={( event: React.FormEvent<HTMLInputElement>) => this.updateSkillItemName( skillIndex, event.currentTarget.value )}
+          value={skill.name}
+        />
+      </td>
+      <td>
+        <NumericalDropDown
+          value={skill.value}
+          onChange={ (newValue: number, attribute: string ) => this.updateSkillItemValue( skillIndex, newValue)}
+          attribute="general"
+          start={0}
+          stop={5}
+        />
+      </td>
+      <td>
+        <button
+          type="button"
+          className="btn btn-xs btn-primary"
+          onClick={() => this.removeSkillIndex( skillIndex) }
+        >
+          <FontAwesomeIcon icon={faTrash} />
+        </button>
+      </td>
+    </tr>
+  )
+})}
+          </tbody>
+        </table>
+
+        <table className="characteristic-select">
+      <thead>
+        <tr>
+          <th>Combat</th>
+          <th>Social</th>
+          <th>General</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <NumericalDropDown
+              value={this.state.editSkills.powerLevels.combat}
+              onChange={this.updateSkillsPL}
+              attribute="combat"
+              start={0}
+              stop={5}
+            />
+          </td>
+          <td><NumericalDropDown
+              value={this.state.editSkills.powerLevels.social}
+              onChange={this.updateSkillsPL}
+              attribute="social"
+              start={0}
+              stop={5}
+            />
+          </td>
+          <td><NumericalDropDown
+              value={this.state.editSkills.powerLevels.general}
+              onChange={this.updateSkillsPL}
+              attribute="general"
+              start={0}
+              stop={5}
+            />
+            </td>
+        </tr>
+      </tbody>
+    </table>
+        <div className="text-right">
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => this.closeEditSkills()}
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="btn btn-primary"
+          >
+            Save
+          </button>
+        </div>
+      </form>    </Modal.Body>
+  </Modal>
+) : (
+  <></>
+)}
+
+{this.state.editSpecialAbilities ? (
+  <Modal onHide={this.closeEditSpecialAbilities} show={this.state.editSpecialAbilities != null}>
+    <Modal.Header closeButton >
+      {this.state.editSpecialAbilitiesIndex > -1 ? (
+        <>Editing Special Abilities Package</>
+      ) : (
+        <>Adding Special Abilities Package</>
+      )}
+    </Modal.Header>
+    <Modal.Body>
+    <form className="form" onSubmit={this.saveSpecialAbilities}>
+        <label>
+          Name:<br />
+          <input
+            type="text"
+            value={this.state.editSpecialAbilities.name}
+            onChange={this.updateSpecialAbilitiesName}
+          />
+        </label>
+
+        <label>
+          Description:<br />
+          <input
+            type="text"
+            value={this.state.editSpecialAbilities.description}
+            onChange={this.updateSpecialAbilitiesDescription}
+          />
+        </label>
+
+        <table className="characteristic-select">
+      <thead>
+        <tr>
+          <th>Combat</th>
+          <th>Social</th>
+          <th>General</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <NumericalDropDown
+              value={this.state.editSpecialAbilities.powerLevels.combat}
+              onChange={this.updateSpecialAbilitiesPL}
+              attribute="combat"
+              start={0}
+              stop={5}
+            />
+          </td>
+          <td><NumericalDropDown
+              value={this.state.editSpecialAbilities.powerLevels.social}
+              onChange={this.updateSpecialAbilitiesPL}
+              attribute="social"
+              start={0}
+              stop={5}
+            />
+          </td>
+          <td><NumericalDropDown
+              value={this.state.editSpecialAbilities.powerLevels.general}
+              onChange={this.updateSpecialAbilitiesPL}
+              attribute="general"
+              start={0}
+              stop={5}
+            />
+            </td>
+        </tr>
+      </tbody>
+    </table>
+        <div className="text-right">
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => this.closeEditSpecialAbilities()}
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="btn btn-primary"
+          >
+            Save
+          </button>
+        </div>
+      </form>    </Modal.Body>
+  </Modal>
+) : (
+  <></>
+)}
+
+
+{this.state.editTalents ? (
+  <Modal onHide={this.closeEditTalents} show={this.state.editTalents != null}>
+    <Modal.Header closeButton >
+      {this.state.editTalentsIndex > -1 ? (
+        <>Editing Talents Package</>
+      ) : (
+        <>Adding Talents Package</>
+      )}
+    </Modal.Header>
+    <Modal.Body>
+    <form className="form" onSubmit={this.saveTalent}>
+        <label>
+          Name:<br />
+          <input
+            type="text"
+            value={this.state.editTalents.name}
+            onChange={this.updateTalentName}
+          />
+        </label>
+
+        <label>
+          Description:<br />
+          <input
+            type="text"
+            value={this.state.editTalents.description}
+            onChange={this.updateTalentDescription}
+          />
+        </label>
+
+        <table className="characteristic-select">
+      <thead>
+        <tr>
+          <th>Combat</th>
+          <th>Social</th>
+          <th>General</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <NumericalDropDown
+              value={this.state.editTalents.powerLevels.combat}
+              onChange={this.updateTalentPL}
+              attribute="combat"
+              start={0}
+              stop={5}
+            />
+          </td>
+          <td><NumericalDropDown
+              value={this.state.editTalents.powerLevels.social}
+              onChange={this.updateTalentPL}
+              attribute="social"
+              start={0}
+              stop={5}
+            />
+          </td>
+          <td><NumericalDropDown
+              value={this.state.editTalents.powerLevels.general}
+              onChange={this.updateTalentPL}
+              attribute="general"
+              start={0}
+              stop={5}
+            />
+            </td>
+        </tr>
+      </tbody>
+    </table>
+        <div className="text-right">
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={() => this.closeEditTalents()}
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            className="btn btn-primary"
+          >
+            Save
+          </button>
+        </div>
+      </form>
+    </Modal.Body>
+  </Modal>
+) : (
+  <></>
+)}
             <p className="text-center">Using the <a target="buyme" href="https://www.fantasyflightgames.com/en/products/genesys/products/expanded-players-guide/">Expanded Players Guide</a>, this tool aims to make the calculations for creating and balancing your own adversaries quick and painless.</p>
 
             <div className="row">
@@ -920,7 +1875,8 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 )}
 <fieldset className="fieldset">
     <button
-      className="btn btn-primary pull-right"
+      className="btn btn-primary pull-right  btn-sm"
+      onClick={() => this.editSoakDefWoundStrain()}
     >
       New
     </button>
@@ -957,6 +1913,12 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                       >
                         <FontAwesomeIcon icon={faTrash} />
                       </button>
+                      <button
+                        className="btn btn-xs btn-primary"
+                        onClick={() => this.editSoakDefWoundStrain( itemIndex )}
+                      >
+                        <FontAwesomeIcon icon={faEdit} />
+                      </button>&nbsp;
                       {item.name}
                     </li>
                     )
@@ -970,7 +1932,8 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 </fieldset>
 <fieldset className="fieldset">
     <button
-      className="btn btn-primary pull-right"
+      className="btn btn-primary pull-right btn-sm"
+      onClick={() => this.editSoakDefWoundStrain()}
     >
       New
     </button>
@@ -1007,6 +1970,12 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                       >
                         <FontAwesomeIcon icon={faTrash} />
                       </button>
+                      <button
+                        className="btn btn-xs btn-primary"
+                        onClick={() => this.editSkills( itemIndex)}
+                      >
+                        <FontAwesomeIcon icon={faEdit} />
+                      </button>&nbsp;
                       {item.name}
                     </li>
                     )
@@ -1021,7 +1990,8 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 
 <fieldset className="fieldset">
     <button
-      className="btn btn-primary pull-right"
+      className="btn btn-primary pull-right btn-sm"
+      onClick={() => this.editTalents()}
     >
       New
     </button>
@@ -1059,6 +2029,12 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                       >
                         <FontAwesomeIcon icon={faTrash} />
                       </button>
+                      <button
+                        className="btn btn-xs btn-primary"
+                        onClick={() => this.editTalents(itemIndex)}
+                      >
+                        <FontAwesomeIcon icon={faEdit} />
+                      </button>&nbsp;
 
                       <span>{item.name}</span>
 
@@ -1075,7 +2051,8 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 
 <fieldset className="fieldset">
     <button
-      className="btn btn-primary pull-right"
+      className="btn btn-primary pull-right  btn-sm"
+      onClick={() => this.editSpecialAbilities()}
     >
       New
     </button>
@@ -1111,6 +2088,12 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                       >
                         <FontAwesomeIcon icon={faTrash} />
                       </button>
+                      <button
+                        className="btn btn-xs btn-primary"
+                        onClick={() => this.editSpecialAbilities( itemIndex)}
+                      >
+                        <FontAwesomeIcon icon={faEdit} />
+                      </button>&nbsp;
                       {item.name}
                     </li>
                     )
@@ -1235,4 +2218,15 @@ interface IAdversaryCreatorState {
   valuesAsDice: boolean;
   equipmentText: string;
   equipmentSelect: string;
+  editSoakDefWoundStrain: IAdversarySoakDefWoundStrain | null;
+  editSoakDefWoundStrainIndex: number;
+
+  editSkills: IAdversarySkillPackage | null;
+  editSkillsIndex: number;
+
+  editTalents: IAdversaryTalent | null;
+  editTalentsIndex: number;
+
+  editSpecialAbilities: IAdversarySpecialAbility | null;
+  editSpecialAbilitiesIndex: number;
 }
