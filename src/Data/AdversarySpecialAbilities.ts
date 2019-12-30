@@ -182,5 +182,36 @@ export const AdversarySpecialAbilities: IAdversarySpecialAbility[] = [
             social: 1,
             general: 1,
         }
-    }
+    },
+    {
+        name: "Silhouette 2",
+        description: '',
+        examples: "Bears",
+        powerLevels: {
+            combat: 0,
+            social: 0,
+            general: 0,
+        }
+    },
+    {
+        name: "Silhouette 3",
+        description: '',
+        examples: "Elephants",
+        powerLevels: {
+            combat: 0,
+            social: 0,
+            general: 0,
+        }
+    },
+    {
+        name: "Silhouette 4",
+        description: '',
+        examples: "Really big!",
+        powerLevels: {
+            combat: 0,
+            social: 0,
+            general: 0,
+        }
+    },
+
 ];

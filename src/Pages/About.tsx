@@ -38,7 +38,6 @@ export default class About extends React.Component<IAboutProps, IAboutState> {
             &nbsp;<a href="https://www.dropbox.com/sh/raqr7usuzwizglm/AACsYe6LVU_-f372tRG6vxtya?dl=0">DrainSmith's Dispensary of Genesys</a>
           </p>
 
-
           <p>This project is licensed under the GPL and you can contribute to the source at <a href="https://github.com/jdgwf/ffg-sw-genesys-helpers">its GitHub repository.</a></p>
         <h2>Support</h2>
         <p>Feel free to submit issues to the <a href="https://github.com/jdgwf/ffg-sw-genesys-helpers/issues">Github Repository</a></p>

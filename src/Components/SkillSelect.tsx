@@ -101,7 +101,6 @@ export default class SkillSelect extends React.Component<ISkillSelectProps, ISki
     }
 }
 
-
 interface ISkillSelectProps {
     value: ISkillValue;
     onChange(

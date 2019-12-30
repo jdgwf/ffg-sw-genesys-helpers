@@ -13,8 +13,6 @@ import Temp from "./Pages/Temp";
 import Dice from "./Pages/Dice";
 import AdversaryCreator from "./Pages/AdversaryCreator";
 
-
-
 export default class AppRouter extends React.Component<IAppRouterProps, IAppRouterState> {
 
     constructor(props: IAppRouterProps) {
@@ -37,7 +35,6 @@ export default class AppRouter extends React.Component<IAppRouterProps, IAppRout
         } else {
             document.body.className = '';
         }
-
 
         let dieIconClass: string = "genesys";
         let lsDieIconClass = localStorage.getItem("dieIconClass");
@@ -178,7 +175,6 @@ export default class AppRouter extends React.Component<IAppRouterProps, IAppRout
         })
     }
 
-
     render() {
         return (
             <Router>
@@ -294,7 +290,6 @@ export interface IAppGlobals {
         confirmNoLabel: string,
         confirmCallback: Function,
     ): void;
-
 
     saveSettings( settings: ISettings ): void;
 }

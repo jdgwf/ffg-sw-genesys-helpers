@@ -230,7 +230,6 @@ export default class Die extends React.Component<IDieProps, {}> {
     }
 }
 
-
 interface IDieProps {
     appGlobals: IAppGlobals;
     dieResult: IDieResult;

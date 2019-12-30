@@ -78,7 +78,6 @@ export default class Dice {
 
         let rolls: IDieResult[] = [];
 
-
         // Proficiency Dice
         for( let dieCount = 0; dieCount < proficiency; dieCount++) {
             let roll = this.rollDie(12);
@@ -180,8 +179,6 @@ export default class Dice {
             }
             rolls.push( rawRoll );
         }
-
-
 
         // Ability Dice
         for( let dieCount = 0; dieCount < ability; dieCount++) {
@@ -541,7 +538,6 @@ export default class Dice {
             }
             rolls.push( rawRoll );
         }
-
 
         // Force Dice
         for( let dieCount = 0; dieCount < force; dieCount++) {

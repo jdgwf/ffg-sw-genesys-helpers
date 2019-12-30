@@ -20,7 +20,6 @@ interface IDerivedAttribute {
     strainThreshold?: number;
 }
 
-
 export const AdversarySoakDefWoundStrain: IAdversarySoakDefWoundStrain[] = [
 
     {

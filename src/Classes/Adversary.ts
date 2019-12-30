@@ -23,7 +23,6 @@ export interface IPowerLevels {
     general: number;
 }
 
-
 export interface IAdversarySave {
     name: string;
     adversaryType: string;
@@ -167,7 +166,6 @@ export class Adversary {
                 rangedDefenseValue += advSoakDefWoundStrain.derivedAttribute.rangedDefense;
             }
         }
-
 
         for( let item of this.getEquipmentObjs() ) {
             rangedDefenseValue += +item.defense;
@@ -410,7 +408,6 @@ export class Adversary {
             returnValue.general = 1
         }
 
-
         return returnValue;
     }
 
@@ -440,7 +437,6 @@ export class Adversary {
 
     public getEquipmentList(): string {
         let gearItems: string[] = [];
-
 
         for( let item of this.equipment ) {
             if( item.trim() ) {
@@ -481,7 +477,6 @@ export class Adversary {
 
     public getWeaponList(): string {
         let gearItems: string[] = [];
-
 
         for( let item of this.equipment ) {
             if( item.trim() ) {
@@ -527,7 +522,6 @@ export class Adversary {
             general: 0,
         };
 
-
         if( gearObj.damage && gearObj.damage[0] === "+") {
             if( this.getBrawn() + +gearObj.damage < 8 ) {
                 returnPowerLevel.combat += 0;
@@ -545,7 +539,6 @@ export class Adversary {
                 returnPowerLevel.combat += 1;
             }
         }
-
 
         if( +gearObj.soak < 2 ) {
             returnPowerLevel.combat += 0;
@@ -637,7 +630,6 @@ export class Adversary {
                 }
             }
 
-
             combinedSoak += +gearObj.soak;
             if( +gearObj.soak > 1 ||  +gearObj.defense > 1 ) {
                 if( +gearObj.soak > 2 ||  +gearObj.defense > 3 ) {
@@ -648,8 +640,6 @@ export class Adversary {
                         defenseValue = 1;
                 }
             }
-
-
 
             if(
                 gearObj.summary.indexOf("[success]") > -1
@@ -671,9 +661,7 @@ export class Adversary {
                 }
             }
 
-
         }
-
 
         // for( let item of this.equipment ) {
         //     if( item.trim() ) {
@@ -725,7 +713,6 @@ export class Adversary {
         //     }
         // }
 
-
         if( combinedSoak > 6 ) {
             returnPowerLevel.combat += 1;
         }
@@ -740,7 +727,6 @@ export class Adversary {
 
         return returnPowerLevel;
     }
-
 
     getEquipmentObjs(): Gear[] {
         let returnGear: Gear[] = [];

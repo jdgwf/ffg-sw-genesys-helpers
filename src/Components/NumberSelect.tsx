@@ -39,7 +39,6 @@ export default class NumberSelect extends React.Component<INumberSelectProps, IN
     }
 }
 
-
 interface INumberSelectProps {
     value: number;
     onChange(

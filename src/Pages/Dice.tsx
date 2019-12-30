@@ -237,7 +237,6 @@ export default class DicePage extends React.Component<IDiceProps, IDiceState> {
               </Button>
           </div>
 
-
           <div className="text-center dice-select">
               <span className="title">Boost</span>
               <span className="bigger-font">
@@ -285,7 +284,6 @@ export default class DicePage extends React.Component<IDiceProps, IDiceState> {
                 <FontAwesomeIcon icon={faPlus} />
               </Button>
           </div>
-
 
           <div className="text-center dice-select">
               <span className="title">Difficulty</span>
@@ -366,7 +364,6 @@ export default class DicePage extends React.Component<IDiceProps, IDiceState> {
   <></>
 )}
 
-
         </div>
         <div className="text-center">
           <Button
@@ -427,7 +424,6 @@ export default class DicePage extends React.Component<IDiceProps, IDiceState> {
               (
                 <></>
               )}
-
 
               {this.dieRolls.grossTriumphs !== 0 ? (
                 <>

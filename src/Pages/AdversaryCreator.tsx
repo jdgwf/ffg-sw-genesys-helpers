@@ -18,7 +18,6 @@ import { AdversaryEquipmentPackages, IAdversaryEquipmentPackage } from '../Data/
 import NumericalDropDown from '../Components/NumericalDropdown';
 import { Modal } from 'react-bootstrap';
 
-
 export default class AdversaryCreator extends React.Component<IAdversaryCreatorProps, IAdversaryCreatorState> {
 
     constructor(props: IAdversaryCreatorProps) {
@@ -109,12 +108,10 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         this.saveSoakDefWoundStrain = this.saveSoakDefWoundStrain.bind(this);
         this.updateSoakDefWoundStrainName = this.updateSoakDefWoundStrainName.bind(this);
 
-
         this.updateTalentPL = this.updateTalentPL.bind(this);
         this.updateTalentDescription = this.updateTalentDescription.bind(this);
         this.saveTalent = this.saveTalent.bind(this);
         this.updateTalentName = this.updateTalentName.bind(this);
-
 
         this.updateSpecialAbilitiesPL = this.updateSpecialAbilitiesPL.bind(this);
         this.updateSpecialAbilitiesDescription = this.updateSpecialAbilitiesDescription.bind(this);
@@ -220,7 +217,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       })
     }
 
-
     closeEditSpecialAbilities() {
       this.setState({
         editSpecialAbilities: null,
@@ -250,7 +246,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       })
     }
 
-
     saveSoakDefWoundStrain( event: React.FormEvent<HTMLFormElement>) {
       event.preventDefault();
 
@@ -272,7 +267,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         this.saveLS();
         this.closeSoakDefWoundStrain();
       }
-
 
     }
 
@@ -298,7 +292,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         this.closeEditSkills();
       }
 
-
     }
 
     saveSpecialAbilities( event: React.FormEvent<HTMLFormElement>) {
@@ -323,7 +316,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         this.closeEditSpecialAbilities();
       }
 
-
     }
 
     saveTalent( event: React.FormEvent<HTMLFormElement>) {
@@ -347,7 +339,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         this.saveLS();
         this.closeEditTalents();
       }
-
 
     }
 
@@ -535,7 +526,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       }
     }
 
-
     updateSpecialAbilitiesName( event: React.FormEvent<HTMLInputElement>): void {
       let obj = this.state.editSpecialAbilities;
       if( obj ) {
@@ -593,8 +583,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       }
     }
 
-
-
     updateSkillsPL( newValue: number, attribute: string ): void {
       let obj = this.state.editSkills;
       if( obj ) {
@@ -618,7 +606,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         })
       }
     }
-
 
     updateSpecialAbilitiesPL( newValue: number, attribute: string ): void {
       let obj = this.state.editSpecialAbilities;
@@ -697,7 +684,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         equipmentSelect: event.currentTarget.value,
       })
 
-
     }
 
     async updateEquipmentText( event: React.FormEvent<HTMLTextAreaElement>) {
@@ -708,7 +694,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       let obj = this.state.workingEdit;
       obj.equipment = event.currentTarget.value.split("\n");
       this.saveLS();
-
 
     }
 
@@ -793,7 +778,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         workingEdit: obj,
       })
 
-
     }
 
     _sortByName(
@@ -818,7 +802,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         workingEdit: obj,
       })
 
-
     }
 
     updateType( event: React.FormEvent<HTMLSelectElement>) {
@@ -830,7 +813,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       this.setState({
         workingEdit: obj,
       })
-
 
     }
 
@@ -869,7 +851,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         workingEdit: obj,
       })
 
-
     }
 
     updateSpecialAbilitySelect( event: React.FormEvent<HTMLSelectElement>) {
@@ -885,7 +866,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       this.setState({
         specialAbilitiesSelect: selectedSpecialAbility,
       })
-
 
     }
 
@@ -903,7 +883,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         skillPackageSelect: selectedSkillPackage,
       })
 
-
     }
 
     updateTalentSelect( event: React.FormEvent<HTMLSelectElement>) {
@@ -920,7 +899,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         talentSelect: selectedTalent,
       })
 
-
     }
 
     updateSoakDefWoundStrainSelect( event: React.FormEvent<HTMLSelectElement>) {
@@ -936,7 +914,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       this.setState({
         soakDefWoundStrainSelect: selectedSoakDefWoundStrain,
       })
-
 
     }
 
@@ -1000,7 +977,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       }
     }
 
-
     _refreshImages() {
       let nodeElement = document.getElementById('statblock');
       if( nodeElement ) {
@@ -1017,7 +993,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
           );
       }
 
-
       let nodeElement2 = document.getElementById('power-level-box');
 
       if( nodeElement2 ) {
@@ -1033,7 +1008,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
           );
       }
     }
-
 
     render() {
       return (
@@ -1102,7 +1076,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
               stop={5}
             />
         </label>
-
 
         <table className="characteristic-select">
       <thead>
@@ -1382,7 +1355,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
   <></>
 )}
 
-
 {this.state.editTalents ? (
   <Modal onHide={this.closeEditTalents} show={this.state.editTalents != null}>
     <Modal.Header closeButton >
@@ -1595,8 +1567,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
     )}
 
     </div>
-
-
 
   </div>
   <div className="hidden">
@@ -2106,7 +2076,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
             )}
 </fieldset>
 
-
 <fieldset className="fieldset">
         <div id="power-level-box" className="power-level-box pull-right">
           <div className="pl-value pl-value1">
@@ -2173,7 +2142,6 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
              </div>
              <div className="flex">
 {[
-
 
   "[advantage]",
   "[threat]",

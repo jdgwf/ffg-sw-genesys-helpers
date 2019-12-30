@@ -42,7 +42,6 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
           roundNumber = +lsRoundNumber;
         }
 
-
         if( lsCurrentInitiative ) {
           this.currentInitiative = +lsCurrentInitiative;
 
@@ -54,7 +53,6 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
         if( lsNumPCs ) {
           this.numPCs = +lsNumPCs;
         }
-
 
         if( lsInitMap ) {
           this.initMap = JSON.parse( lsInitMap );
@@ -406,7 +404,6 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
       })
     }
 
-
     addItem() {
       this.initMap.push( {
         label: "PC",
@@ -426,7 +423,6 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
 
       localStorage.setItem("initMap", JSON.stringify( this.initMap) );
 
-
       this.setState({
         updated: true,
         editItem: this.initMap[ this.initMap.length - 1],
@@ -445,7 +441,6 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
         hideControls = false;
         localStorage.setItem("hideControls", "0" );
       }
-
 
       localStorage.setItem("initMap", JSON.stringify( this.initMap) );
 
@@ -524,7 +519,6 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
       let success = "s";
       let advantage = "a";
       let triumph = "t";
-
 
       if( this.props.appGlobals.settings.dieIconClass === "starwars") {
           success = "s";
@@ -641,8 +635,6 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                   Next
                 </Button>
 
-
-
               </Modal.Footer>
 
             </Modal>
@@ -727,7 +719,6 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
               </label>
           </div>
         </div>
-
 
         {this.initMap.length === 0 ?
         (
@@ -878,7 +869,6 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
                     )
                   }
 
-
                 </div>
 
                 <div className="controls">
@@ -915,7 +905,6 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
       );
     }
 }
-
 
 interface IInitMapItem {
   label: string;

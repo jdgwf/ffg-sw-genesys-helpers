@@ -15,7 +15,6 @@ export interface IAdversarySkillPackage {
 
 }
 
-
 export const AdversarySkillPackages: IAdversarySkillPackage[] = [
     {
         name: "Basic Creature",

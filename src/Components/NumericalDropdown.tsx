@@ -7,7 +7,6 @@ export default class NumericalDropDown extends React.Component<INumericalDropDow
     constructor(props: INumericalDropDownProps) {
       super(props);
 
-
       if( typeof( this.props.start ) !== "undefined") {
         this.start = this.props.start;
       }
@@ -47,7 +46,6 @@ export default class NumericalDropDown extends React.Component<INumericalDropDow
         )
     }
 }
-
 
 interface INumericalDropDownProps {
     value: number;
