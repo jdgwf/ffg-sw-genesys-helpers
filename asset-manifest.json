@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/ffg-sw-genesys-helpers/static/css/main.0025c28e.chunk.css",
+    "main.css": "/ffg-sw-genesys-helpers/static/css/main.7998831a.chunk.css",
     "main.js": "/ffg-sw-genesys-helpers/static/js/main.ef3c3226.chunk.js",
     "main.js.map": "/ffg-sw-genesys-helpers/static/js/main.ef3c3226.chunk.js.map",
     "runtime-main.js": "/ffg-sw-genesys-helpers/static/js/runtime-main.5b0fbea0.js",
@@ -9,10 +9,10 @@
     "static/js/2.bdbec93d.chunk.js": "/ffg-sw-genesys-helpers/static/js/2.bdbec93d.chunk.js",
     "static/js/2.bdbec93d.chunk.js.map": "/ffg-sw-genesys-helpers/static/js/2.bdbec93d.chunk.js.map",
     "index.html": "/ffg-sw-genesys-helpers/index.html",
-    "precache-manifest.fca9d75c0e48e886854f35cf1f26cd01.js": "/ffg-sw-genesys-helpers/precache-manifest.fca9d75c0e48e886854f35cf1f26cd01.js",
+    "precache-manifest.c607de60a55db92fa18d7da965442f98.js": "/ffg-sw-genesys-helpers/precache-manifest.c607de60a55db92fa18d7da965442f98.js",
     "service-worker.js": "/ffg-sw-genesys-helpers/service-worker.js",
     "static/css/2.833dd627.chunk.css.map": "/ffg-sw-genesys-helpers/static/css/2.833dd627.chunk.css.map",
-    "static/css/main.0025c28e.chunk.css.map": "/ffg-sw-genesys-helpers/static/css/main.0025c28e.chunk.css.map",
+    "static/css/main.7998831a.chunk.css.map": "/ffg-sw-genesys-helpers/static/css/main.7998831a.chunk.css.map",
     "static/js/2.bdbec93d.chunk.js.LICENSE": "/ffg-sw-genesys-helpers/static/js/2.bdbec93d.chunk.js.LICENSE",
     "static/media/index.scss": "/ffg-sw-genesys-helpers/static/media/genesys-bg.e854a717.png",
     "static/media/Die.scss": "/ffg-sw-genesys-helpers/static/media/genesys-font.b0d58337.woff",
@@ -22,7 +22,7 @@
     "static/js/runtime-main.5b0fbea0.js",
     "static/css/2.833dd627.chunk.css",
     "static/js/2.bdbec93d.chunk.js",
-    "static/css/main.0025c28e.chunk.css",
+    "static/css/main.7998831a.chunk.css",
     "static/js/main.ef3c3226.chunk.js"
   ]
 }
