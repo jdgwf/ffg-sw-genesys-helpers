@@ -127,6 +127,9 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         this.removeSkillIndex = this.removeSkillIndex.bind(this);
         this.addSkill = this.addSkill.bind(this);
 
+        this.togglePowerLevelOverride = this.togglePowerLevelOverride.bind(this);
+        this.updatePowerLevelOverride = this.updatePowerLevelOverride.bind(this);
+
         this.props.appGlobals.makeDocumentTitle("AdversaryCreator");
     }
 
@@ -631,6 +634,49 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       }
     }
 
+    togglePowerLevelOverride() {
+      let obj = this.state.workingEdit;
+      if( obj ) {
+        if( obj.powerLevelOverride ) {
+          obj.powerLevelOverride = null;
+        } else {
+          obj.powerLevelOverride = {
+            combat: 0,
+            social: 0,
+            general: 0,
+          }
+        }
+          this.setState({
+            workingEdit: obj,
+          })
+          this.saveLS();
+      }
+    }
+
+    updatePowerLevelOverride( newValue: number, attribute: string ): void {
+      let obj = this.state.workingEdit;
+      if( obj && obj.powerLevelOverride ) {
+        switch( attribute ) {
+          case "combat": {
+            obj.powerLevelOverride.combat = newValue;
+            break;
+          }
+          case "social": {
+            obj.powerLevelOverride.social = newValue;
+            break;
+          }
+          case "general": {
+            obj.powerLevelOverride.general = newValue;
+            break;
+          }
+        }
+
+        this.setState({
+          workingEdit: obj,
+        })
+        this.saveLS();
+      }
+    }
     updateSoakDefWoundStrainPL( newValue: number, attribute: string ): void {
       let obj = this.state.editSoakDefWoundStrain;
       if( obj ) {
@@ -2076,18 +2122,81 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
             )}
 </fieldset>
 
-<fieldset className="fieldset">
-        <div id="power-level-box" className="power-level-box pull-right">
-          <div className="pl-value pl-value1">
-            {this.state.workingEdit.getEquipmentPowerLevel().combat}
-          </div>
-          <div className="pl-value pl-value2">
-            {this.state.workingEdit.getEquipmentPowerLevel().social}
-          </div>
-          <div className="pl-value pl-value3">
-            {this.state.workingEdit.getEquipmentPowerLevel().general}
-          </div>
-        </div>
+    <fieldset className="fieldset">
+        <div className="pull-right">
+          <div id="power-level-box" className="power-level-box">
+            <div className="pl-value pl-value1">
+              {this.state.workingEdit.getEquipmentPowerLevel().combat}
+            </div>
+            <div className="pl-value pl-value2">
+              {this.state.workingEdit.getEquipmentPowerLevel().social}
+            </div>
+            <div className="pl-value pl-value3">
+              {this.state.workingEdit.getEquipmentPowerLevel().general}
+            </div>
+          </div><br />
+        {this.state.workingEdit.powerLevelOverride ? (
+          <>
+
+<table className="characteristic-select small-text full-width">
+      <thead>
+        <tr>
+          <th colSpan={3}>
+            Power Level Override
+          </th>
+        </tr>
+        <tr>
+          <th>Combat</th>
+          <th>Social</th>
+          <th>General</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <NumericalDropDown
+              value={this.state.workingEdit.powerLevelOverride.combat}
+              onChange={this.updatePowerLevelOverride}
+              attribute="combat"
+              start={0}
+              stop={5}
+            />
+          </td>
+          <td><NumericalDropDown
+              value={this.state.workingEdit.powerLevelOverride.social}
+              onChange={this.updatePowerLevelOverride}
+              attribute="social"
+              start={0}
+              stop={5}
+            />
+          </td>
+          <td><NumericalDropDown
+              value={this.state.workingEdit.powerLevelOverride.general}
+              onChange={this.updatePowerLevelOverride}
+              attribute="general"
+              start={0}
+              stop={5}
+            />
+            </td>
+        </tr>
+      </tbody>
+    </table>
+    <button
+      className="btn btn-sm btn-primary full-width"
+      onClick={this.togglePowerLevelOverride}
+    >
+      Clear Override
+    </button>
+          </>
+        ) : (
+          <button
+            className="btn btn-sm btn-primary full-width"
+            onClick={this.togglePowerLevelOverride}
+          >
+            Override
+          </button>
+        )}
+      </div>
             <label htmlFor="equipment">
              Equipment:<br />
             </label>

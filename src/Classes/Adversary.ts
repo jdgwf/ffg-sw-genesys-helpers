@@ -33,6 +33,7 @@ export interface IAdversarySave {
     selectedSpecialAbilities: IAdversarySpecialAbility[];
     selectedTalents: IAdversaryTalent[];
     equipment: string[];
+    powerLevelOverride: IPowerLevels | null;
 }
 
 export class Adversary {
@@ -45,6 +46,8 @@ export class Adversary {
     public selectedSpecialAbilities: IAdversarySpecialAbility[] = [];
     public selectedTalents: IAdversaryTalent[] = [];
     public equipment: string[] = [];
+
+    public powerLevelOverride: IPowerLevels | null = null;
 
     private _skills: ISkill[] = [];
 
@@ -79,6 +82,9 @@ export class Adversary {
             if( saveData.equipment ) {
                 this.equipment = saveData.equipment;
             }
+            if( saveData.powerLevelOverride ) {
+                this.powerLevelOverride = saveData.powerLevelOverride;
+            }
         }
     }
 
@@ -93,6 +99,7 @@ export class Adversary {
             selectedSpecialAbilities: this.selectedSpecialAbilities,
             selectedTalents: this.selectedTalents,
             equipment: this.equipment,
+            powerLevelOverride: this.powerLevelOverride,
         }
 
         return exportData;
@@ -392,9 +399,15 @@ export class Adversary {
             returnValue.social += specialAbility.powerLevels.social;
         }
 
-        returnValue.combat += this.getEquipmentPowerLevel().combat;
-        returnValue.social += this.getEquipmentPowerLevel().social;
-        returnValue.general += this.getEquipmentPowerLevel().general;
+        if( !this.powerLevelOverride ) {
+            returnValue.combat += this.getEquipmentPowerLevel().combat;
+            returnValue.social += this.getEquipmentPowerLevel().social;
+            returnValue.general += this.getEquipmentPowerLevel().general;
+        } else {
+            returnValue.combat += this.powerLevelOverride.combat;
+            returnValue.social += this.powerLevelOverride.social;
+            returnValue.general += this.powerLevelOverride.general;
+        }
 
         if( returnValue.combat  < 1 ) {
             returnValue.combat = 1
