@@ -176,6 +176,8 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
 
     resetRound() {
       localStorage.setItem("currentInitiative", "-1");
+      localStorage.setItem("roundNumber", "1");
+
       this.currentInitiative = -1;
       this.setState({
         roundNumber: 1,
@@ -340,6 +342,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
 
       this.currentInitiative = init;
       localStorage.setItem("currentInitiative", init.toString() );
+      localStorage.setItem("roundNumber", roundNumber.toString());
       this.setState({
         updated: true,
         roundNumber: roundNumber,
@@ -366,6 +369,7 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
 
       this.currentInitiative = init;
       localStorage.setItem("currentInitiative", init.toString() );
+      localStorage.setItem("roundNumber", roundNumber.toString());
       this.setState({
         updated: true,
         roundNumber: roundNumber,

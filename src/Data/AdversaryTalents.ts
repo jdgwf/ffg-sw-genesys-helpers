@@ -16,7 +16,7 @@ export interface IAdversaryTalent {
 export const AdversaryTalents: IAdversaryTalent[] = [
     {
         name: "Adversary 1",
-        description: "upgrade difficulty of all combat checks against this by [rank]",
+        description: "upgrade difficulty of all combat checks against this by 1",
         book: "Core",
         page: "131",
         powerLevels: {
