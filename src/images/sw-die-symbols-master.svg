@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="66mm"
+   height="66mm"
+   viewBox="0 0 66 66"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="sw-die-symbols-master.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.2375805"
+     inkscape:cx="72.521911"
+     inkscape:cy="164.62207"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer6"
+     showgrid="false"
+     inkscape:window-width="1685"
+     inkscape:window-height="1376"
+     inkscape:window-x="1755"
+     inkscape:window-y="27"
+     inkscape:window-maximized="0"
+     showguides="false" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Failure"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-231)"
+     style="display:none">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:9.55718327px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.23892958"
+       x="-2.3627462"
+       y="285.15961"
+       id="text48"
+       transform="scale(0.99340685,1.0066369)"><tspan
+         sodipodi:role="line"
+         id="tspan46"
+         x="-2.3627462"
+         y="285.15961"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:63.71456146px;font-family:'EotE Symbol';-inkscape-font-specification:'EotE Symbol';stroke-width:0.23892958">f</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Despair"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:9.62314701px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.24057867"
+       x="-1.0553689"
+       y="47.900387"
+       id="text48-6"
+       transform="scale(0.97807851,1.0224128)"><tspan
+         sodipodi:role="line"
+         id="tspan46-7"
+         x="-1.0553689"
+         y="47.900387"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.15431976px;font-family:'EotE Symbol';-inkscape-font-specification:'EotE Symbol';stroke-width:0.24057867">y</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Threat"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.42290878px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.2605727"
+       x="-4.3122067"
+       y="53.728577"
+       id="text48-6-2"
+       transform="scale(0.97807852,1.0224128)"><tspan
+         sodipodi:role="line"
+         id="tspan46-7-1"
+         x="-4.3122067"
+         y="53.728577"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:69.4860611px;font-family:'EotE Symbol';-inkscape-font-specification:'EotE Symbol';stroke-width:0.2605727">t</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Triumph"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:8.55635262px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.21390881"
+       x="5.1426325"
+       y="50.939079"
+       id="text48-6-4"
+       transform="scale(0.97807852,1.0224128)"><tspan
+         sodipodi:role="line"
+         id="tspan46-7-4"
+         x="5.1426325"
+         y="50.939079"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:57.04235458px;font-family:'EotE Symbol';-inkscape-font-specification:'EotE Symbol';stroke-width:0.21390881">x</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="Advantage"
+     style="display:none"
+     sodipodi:insensitive="true">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:8.89292908px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.22232322"
+       x="-1.6166984"
+       y="49.468922"
+       id="text48-6-4-8"
+       transform="scale(0.97807852,1.0224128)"><tspan
+         sodipodi:role="line"
+         id="tspan46-7-4-4"
+         x="-1.6166984"
+         y="49.468922"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:59.28620148px;font-family:'EotE Symbol';-inkscape-font-specification:'EotE Symbol';stroke-width:0.22232322">a</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="Success"
+     style="display:inline"
+     sodipodi:insensitive="true">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.01272106px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25031802"
+       x="0.51477796"
+       y="53.242386"
+       id="text48-6-4-8-9"
+       transform="scale(0.97807852,1.0224128)"><tspan
+         sodipodi:role="line"
+         id="tspan46-7-4-4-8"
+         x="0.51477796"
+         y="53.242386"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:66.7514801px;font-family:'EotE Symbol';-inkscape-font-specification:'EotE Symbol';stroke-width:0.25031802">s</tspan></text>
+  </g>
+</svg>

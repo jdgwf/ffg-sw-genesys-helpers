@@ -1530,11 +1530,12 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       </div>
       {this.state.workingEdit.getSkillList() ? (
     <div>
+
       <strong>Skills:&nbsp;</strong>
         <SanitizedHTML
           html={ replaceDieTags(
             this.state.workingEdit.getSkillList( this.state.valuesAsDice ),
-            false,
+            this.props.appGlobals.settings.dieIconClass === "starwars",
             "png",
             "16"
 
@@ -1552,7 +1553,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         <SanitizedHTML
           html={ replaceDieTags(
             this.state.workingEdit.getTalentList(),
-            false,
+            this.props.appGlobals.settings.dieIconClass === "starwars",
             "png",
             "16"
 
@@ -1569,7 +1570,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         <SanitizedHTML
           html={replaceDieTags(
             this.state.workingEdit.getAbilitiesList(),
-            false,
+            this.props.appGlobals.settings.dieIconClass === "starwars",
             "png",
             "16"
 
@@ -1586,7 +1587,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         <SanitizedHTML
           html={replaceDieTags(
             this.state.workingEdit.getWeaponList(),
-            false,
+            this.props.appGlobals.settings.dieIconClass === "starwars",
             "png",
             "16"
 
@@ -1603,7 +1604,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         <SanitizedHTML
           html={replaceDieTags(
             this.state.workingEdit.getEquipmentList(),
-            false,
+            this.props.appGlobals.settings.dieIconClass === "starwars",
             "png",
             "16"
 

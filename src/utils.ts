@@ -33,6 +33,7 @@ export function replaceDieTags(
 
     let force = "<img " + heightTag + " class=\"inline-die-png\" title=\"Force Die\" alt=\"Force Die\" src=\"./img/force-die" + sizeExtension + "\" />";
 
+
     let success = "<img " + heightTag + " class=\"inline-die-png\" title=\"Success\" alt=\"Success\" src=\"./img/success" + sizeExtension + "\" />";
     let advantage = "<img " + heightTag + " class=\"inline-die-png\" title=\"Advantage\" alt=\"Advantage\"  src=\"./img/advantage" + sizeExtension + "\" />";
 
@@ -41,6 +42,18 @@ export function replaceDieTags(
 
     let despair = "<img " + heightTag + " class=\"inline-die-png\" title=\"Despair\" alt=\"Despair\"  src=\"./img/despair" + sizeExtension + "\" />";
     let triumph = "<img " + heightTag + " class=\"inline-die-png\" title=\"Triumph\" alt=\"Triumph\"  src=\"./img/triumph" + sizeExtension + "\" />";
+
+    console.log("starWarDice", starWarDice);
+    if( starWarDice ) {
+        success = "<img " + heightTag + " class=\"inline-die-png\" title=\"Success\" alt=\"Success\" src=\"./img/sw-success" + sizeExtension + "\" />";
+        advantage = "<img " + heightTag + " class=\"inline-die-png\" title=\"Advantage\" alt=\"Advantage\"  src=\"./img/sw-advantage" + sizeExtension + "\" />";
+
+        threat = "<img " + heightTag + " class=\"inline-die-png\" title=\"Threat\" alt=\"Threat\"  src=\"./img/sw-threat" + sizeExtension + "\" />";
+        failure = "<img " + heightTag + " class=\"inline-die-png\" title=\"Failure\" alt=\"Failure\"  src=\"./img/sw-failure" + sizeExtension + "\" />";
+
+        despair = "<img " + heightTag + " class=\"inline-die-png\" title=\"Despair\" alt=\"Despair\"  src=\"./img/sw-despair" + sizeExtension + "\" />";
+        triumph = "<img " + heightTag + " class=\"inline-die-png\" title=\"Triumph\" alt=\"Triumph\"  src=\"./img/sw-triumph" + sizeExtension + "\" />";
+    }
 
     incomingString = replaceAll( incomingString, "[proficiency]", proficiency);
     incomingString = replaceAll( incomingString, "[ability]", ability)
