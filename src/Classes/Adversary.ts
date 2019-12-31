@@ -488,6 +488,10 @@ export class Adversary {
                 }
             }
         }
+        gearItems = gearItems.filter(function (el: string) {
+            return el;
+        });
+
         return gearItems.join(", ");
     }
 
@@ -528,6 +532,9 @@ export class Adversary {
                 }
             }
         }
+        gearItems = gearItems.filter(function (el: string) {
+            return el;
+        });
         return gearItems.join(", ");
     }
 /*
