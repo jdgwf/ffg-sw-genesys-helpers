@@ -66,5 +66,44 @@ export function replaceDieTags(
     incomingString = replaceAll( incomingString, "[despair]", despair);
     incomingString = replaceAll( incomingString, "[triumph]", triumph);
 
+    incomingString = replaceAll( incomingString, "<P>", proficiency);
+    incomingString = replaceAll( incomingString, "<A>", ability)
+    incomingString = replaceAll( incomingString, "<B>", boost);
+
+    incomingString = replaceAll( incomingString, "<S>", setback);
+    incomingString = replaceAll( incomingString, "<D>", difficulty);
+    incomingString = replaceAll( incomingString, "<C>", challenge);
+
+    incomingString = replaceAll( incomingString, "<F>", force);
+
+    incomingString = replaceAll( incomingString, "<SU>", success);
+    incomingString = replaceAll( incomingString, "<AD>", advantage);
+
+    incomingString = replaceAll( incomingString, "<TH>", threat);
+    incomingString = replaceAll( incomingString, "<FA>", failure);
+
+    incomingString = replaceAll( incomingString, "<DR>", despair);
+    incomingString = replaceAll( incomingString, "<TR>", triumph);
+
+
+    incomingString = replaceAll( incomingString, "<p>", proficiency);
+    incomingString = replaceAll( incomingString, "<a>", ability)
+    incomingString = replaceAll( incomingString, "<b>", boost);
+
+    incomingString = replaceAll( incomingString, "<s>", setback);
+    incomingString = replaceAll( incomingString, "<d>", difficulty);
+    incomingString = replaceAll( incomingString, "<c>", challenge);
+
+    incomingString = replaceAll( incomingString, "<f>", force);
+
+    incomingString = replaceAll( incomingString, "<su>", success);
+    incomingString = replaceAll( incomingString, "<ad>", advantage);
+
+    incomingString = replaceAll( incomingString, "<th>", threat);
+    incomingString = replaceAll( incomingString, "<fa>", failure);
+
+    incomingString = replaceAll( incomingString, "<dr>", despair);
+    incomingString = replaceAll( incomingString, "<tr>", triumph);
+
     return incomingString;
 }

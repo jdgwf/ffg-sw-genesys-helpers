@@ -17,6 +17,7 @@ import { replaceDieTags } from '../utils';
 import { AdversaryEquipmentPackages, IAdversaryEquipmentPackage } from '../Data/AdversaryEquipmentPackages';
 import NumericalDropDown from '../Components/NumericalDropdown';
 import { Modal } from 'react-bootstrap';
+import ShortCodesLegend from '../Components/ShortCodesLegend';
 
 export default class AdversaryCreator extends React.Component<IAdversaryCreatorProps, IAdversaryCreatorState> {
 
@@ -1380,6 +1381,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         </tr>
       </tbody>
     </table>
+    <ShortCodesLegend />
         <div className="text-right">
           <button
             type="button"
@@ -1468,6 +1470,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         </tr>
       </tbody>
     </table>
+    <ShortCodesLegend />
         <div className="text-right">
           <button
             type="button"
@@ -2227,49 +2230,8 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
           value={this.state.equipmentText}
           onChange={this.updateEquipmentText}
         ></textarea>
-        Shortcodes:
-        <div className="flex">
-{[
-  "[ability]",
-  "[proficiency]",
-  "[boost]",
-  "[difficulty]",
-  "[challenge]",
-  "[setback]",
-  "[force]",
 
-].map( (shortcode, shortcodeIndex) => {
-  return (
-    <div key={shortcodeIndex}>
-      <SanitizedHTML
-        raw={true}
-        html={replaceDieTags(shortcode)}
-      />&nbsp;{shortcode}
-    </div>
-  )
-})}
-             </div>
-             <div className="flex">
-{[
-
-  "[advantage]",
-  "[threat]",
-  "[triumph]",
-  "[despair]",
-  "[success]",
-  "[failure]",
-].map( (shortcode, shortcodeIndex) => {
-  return (
-    <div key={shortcodeIndex}>
-      <SanitizedHTML
-        raw={true}
-        html={replaceDieTags(shortcode)}
-      />&nbsp;{shortcode}
-    </div>
-  )
-})}
-             </div>
-
+      <ShortCodesLegend />
 </fieldset>
             </div>
 
