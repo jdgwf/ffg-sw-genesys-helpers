@@ -234,39 +234,6 @@ export class Adversary {
         return this.selectedAdversaryCharacteristicArray.characteristics.presence;
     }
 
-/*
-    private _setSkill(
-        skillName: string,
-        newValue: number,
-        attribute: string
-    ): ISkill {
-        let foundSkill = false;
-
-        for( let skill of this._skills ) {
-            if( skill.name.toLowerCase().trim() === skillName.toLowerCase().trim() ) {
-                foundSkill = true;
-                if( skill.value < newValue ) {
-                    skill.value = newValue;
-                }
-                return skill;
-            }
-        }
-
-        let newSkill: ISkill = {
-            name: skillName,
-            value: newValue,
-            attribute: attribute,
-            book: "Custom",
-            settings: [],
-            page: "",
-        }
-
-        this._skills.push( newSkill );
-
-        return newSkill;
-
-    }
-*/
     private _setSkills() {
 
         for( let skill of this._skills ) {
@@ -537,57 +504,7 @@ export class Adversary {
         });
         return gearItems.join(", ");
     }
-/*
-    private _parseEquipmentItemPowerLevel( gearObj: Gear): IPowerLevels {
-        let returnPowerLevel: IPowerLevels = {
-            combat: 0,
-            social: 0,
-            general: 0,
-        };
 
-        if( gearObj.damage && gearObj.damage[0] === "+") {
-            if( this.getBrawn() + +gearObj.damage < 8 ) {
-                returnPowerLevel.combat += 0;
-            }
-
-            if( this.getBrawn() + +gearObj.damage > 7 ) {
-                returnPowerLevel.combat += 1;
-            }
-        } else {
-            if( +gearObj.damage < 8 ) {
-                returnPowerLevel.combat += 0;
-            }
-
-            if( +gearObj.damage > 7 ) {
-                returnPowerLevel.combat += 1;
-            }
-        }
-
-        if( +gearObj.soak < 2 ) {
-            returnPowerLevel.combat += 0;
-        }
-
-        if( +gearObj.soak > 1  ) {
-            returnPowerLevel.combat += 1;
-        }
-
-        if( gearObj.type === "armor" ) {
-            for( let qual of gearObj.qualities) {
-                if( qual.toLowerCase().indexOf("reinforced") > -1 ) {
-                    returnPowerLevel.combat += 1;
-                }
-            }
-        }
-
-        // TODO check for hitting multiple targets (EPG p81 Step 6 - bp#4), +2 to combat power level
-
-        // TODO check for [advantage] or [setback] on social skill boosts (EPG p81 Step 6 - bp#6) +1 to social power level
-
-        // TODO check for [advantage] or [setback] on general skill boosts (EPG p81 Step 6 - bp#7) +1 to general power level
-
-        return returnPowerLevel
-    }
-*/
     getEquipmentPowerLevel(): IPowerLevels {
 
         let returnPowerLevel: IPowerLevels = {
@@ -685,56 +602,6 @@ export class Adversary {
             }
 
         }
-
-        // for( let item of this.equipment ) {
-        //     if( item.trim() ) {
-        //         if( item.replace(/ *\([^)]*\) */g, "").indexOf( " or ") > -1 ) {
-        //             let itemValues: IPowerLevels[]= [];
-
-        //             for( let itemSplit of item.split(" or ")) {
-        //                 if( itemSplit.replace(/ *\([^)]*\) */g, "").indexOf( " and ") > -1 ) {
-        //                     for( let andSplit of itemSplit.split(" and ")) {
-        //                         let gearObj = new Gear(andSplit);
-        //                         itemValues.push(  this._parseEquipmentItemPowerLevel( gearObj ) );
-        //                         combinedSoak += +gearObj.soak;
-        //                     }
-        //                 } else {
-        //                     let gearObj = new Gear(itemSplit);
-        //                     let value = this._parseEquipmentItemPowerLevel( gearObj );
-        //                     combinedSoak += +gearObj.soak;
-        //                     itemValues.push( value );
-        //                 }
-        //             }
-
-        //             let highestValue: IPowerLevels = {
-        //                 combat: 0,
-        //                 social: 0,
-        //                 general: 0,
-        //             }
-
-        //             for( let item of itemValues ) {
-        //                 if( item.combat > highestValue.combat )
-        //                     highestValue.combat = item.combat
-        //                 if( item.social > highestValue.social )
-        //                     highestValue.social = item.social
-        //                 if( item.general > highestValue.general )
-        //                     highestValue.general = item.general
-        //             }
-        //             returnPowerLevel.combat += highestValue.combat;
-        //             returnPowerLevel.social += highestValue.social;
-        //             returnPowerLevel.general += highestValue.general;
-
-        //         } else {
-        //             let gearObj = new Gear(item);
-        //             let value = this._parseEquipmentItemPowerLevel( gearObj );
-
-        //             returnPowerLevel.combat += value.combat;
-        //             returnPowerLevel.social += value.social;
-        //             returnPowerLevel.general += value.general;
-        //             combinedSoak += +gearObj.soak;
-        //         }
-        //     }
-        // }
 
         if( combinedSoak > 6 ) {
             returnPowerLevel.combat += 1;

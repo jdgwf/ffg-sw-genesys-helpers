@@ -13,7 +13,7 @@ import { AdversaryTalents, IAdversaryTalent } from '../Data/AdversaryTalents';
 import { AdversarySpecialAbilities, IAdversarySpecialAbility } from '../Data/AdversarySpecialAbilities';
 import SanitizedHTML from '../Components/SanitizedHTML';
 import domtoimage from 'dom-to-image';
-import { replaceDieTags } from '../utils';
+import { replaceDieTags, copyObject } from '../utils';
 import { AdversaryEquipmentPackages, IAdversaryEquipmentPackage } from '../Data/AdversaryEquipmentPackages';
 import NumericalDropDown from '../Components/NumericalDropdown';
 import { Modal } from 'react-bootstrap';
@@ -213,7 +213,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       if( itemIndex === -1 || itemIndex > this.state.workingEdit.selectedTalents.length ) {
         itemIndex = -1;
       } else {
-        editTalents = JSON.parse(JSON.stringify(this.state.workingEdit.selectedTalents[ itemIndex ]));
+        editTalents = copyObject(this.state.workingEdit.selectedTalents[ itemIndex ]);
       }
       this.setState({
         editTalents: editTalents,
@@ -242,7 +242,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       if( itemIndex === -1 || itemIndex > this.state.workingEdit.selectedSpecialAbilities.length ) {
         itemIndex = -1;
       } else {
-        editSpecialAbilities = JSON.parse(JSON.stringify(this.state.workingEdit.selectedSpecialAbilities[ itemIndex ]));
+        editSpecialAbilities = copyObject(this.state.workingEdit.selectedSpecialAbilities[ itemIndex ]);
       }
       this.setState({
         editSpecialAbilities: editSpecialAbilities,
@@ -366,7 +366,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       if( itemIndex === -1 || itemIndex > this.state.workingEdit.selectedSkillPackages.length ) {
         itemIndex = -1;
       } else {
-        editSkills = JSON.parse(JSON.stringify(this.state.workingEdit.selectedSkillPackages[ itemIndex ]));
+        editSkills = copyObject(this.state.workingEdit.selectedSkillPackages[ itemIndex ]);
       }
       this.setState({
         editSkills: editSkills,
@@ -401,7 +401,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       if( itemIndex === -1 || itemIndex > this.state.workingEdit.selectedSoakDefWoundStrain.length ) {
         itemIndex = -1;
       } else {
-        editSoakDefWoundStrain = JSON.parse(JSON.stringify(this.state.workingEdit.selectedSoakDefWoundStrain[ itemIndex ]) );
+        editSoakDefWoundStrain = copyObject(this.state.workingEdit.selectedSoakDefWoundStrain[ itemIndex ]);
       }
       this.setState({
         editSoakDefWoundStrain: editSoakDefWoundStrain,

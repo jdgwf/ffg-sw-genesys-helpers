@@ -17,16 +17,11 @@ export function replaceDieTags(
     size: string = "",
 ) {
 
-    // let sizeExtension = "";
-    // if( size ) {
-    //     sizeExtension = "-" + size + "." + extension;
-    // } else {
     let sizeExtension = "." + extension
     let heightTag = "";
     if( size ) {
         heightTag = "width=\"" + size + "px\" height=\"" + size + "px\"";
     }
-    // }
 
     let proficiency = "<img " + heightTag + " class=\"inline-die-png\" title=\"Proficiency Die\" alt=\"Proficiency Die\" src=\"./img/proficiency-die" + sizeExtension + "\" />";
     let ability = "<img " + heightTag + " class=\"inline-die-png\" title=\"Ability Die\" alt=\"Ability Die\" src=\"./img/ability-die" + sizeExtension + "\" />";
@@ -85,7 +80,6 @@ export function replaceDieTags(
     incomingString = replaceAll( incomingString, "<DR>", despair);
     incomingString = replaceAll( incomingString, "<TR>", triumph);
 
-
     incomingString = replaceAll( incomingString, "<p>", proficiency);
     incomingString = replaceAll( incomingString, "<a>", ability)
     incomingString = replaceAll( incomingString, "<b>", boost);
@@ -106,4 +100,11 @@ export function replaceDieTags(
     incomingString = replaceAll( incomingString, "<tr>", triumph);
 
     return incomingString;
+}
+
+/*
+Quick and dirty object copy to keep JS from referencing original object
+*/
+export function copyObject( obj: any ): any {
+    return JSON.parse(JSON.stringify( obj ));
 }

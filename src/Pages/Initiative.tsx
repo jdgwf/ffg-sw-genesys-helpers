@@ -410,11 +410,11 @@ export default class Initiative extends React.Component<IInitiativeProps, IIniti
 
     addItem() {
       this.initMap.push( {
-        label: "PC",
+        label: "NPC",
         successes: 0,
         advantages: 0,
         triumphs: 0,
-        npc: false,
+        npc: true,
         skillCool: {
           skillDice: 0,
           attributeDice: 0,
