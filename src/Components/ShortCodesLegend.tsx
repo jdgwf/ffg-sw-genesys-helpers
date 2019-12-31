@@ -1,8 +1,7 @@
 import React from 'react';
-
 import { replaceDieTags } from '../utils';
 import SanitizedHTML from './SanitizedHTML';
-
+import './ShortCodesLegend.scss';
 
 interface IDieCodes {
     name: string;

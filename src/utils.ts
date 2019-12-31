@@ -43,7 +43,6 @@ export function replaceDieTags(
     let despair = "<img " + heightTag + " class=\"inline-die-png\" title=\"Despair\" alt=\"Despair\"  src=\"./img/despair" + sizeExtension + "\" />";
     let triumph = "<img " + heightTag + " class=\"inline-die-png\" title=\"Triumph\" alt=\"Triumph\"  src=\"./img/triumph" + sizeExtension + "\" />";
 
-    console.log("starWarDice", starWarDice);
     if( starWarDice ) {
         success = "<img " + heightTag + " class=\"inline-die-png\" title=\"Success\" alt=\"Success\" src=\"./img/sw-success" + sizeExtension + "\" />";
         advantage = "<img " + heightTag + " class=\"inline-die-png\" title=\"Advantage\" alt=\"Advantage\"  src=\"./img/sw-advantage" + sizeExtension + "\" />";

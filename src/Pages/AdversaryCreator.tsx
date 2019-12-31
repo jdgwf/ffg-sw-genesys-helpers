@@ -1953,7 +1953,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 <fieldset className="fieldset">
     <button
       className="btn btn-primary pull-right btn-sm"
-      onClick={() => this.editSoakDefWoundStrain()}
+      onClick={() => this.editSkills()}
     >
       New
     </button>
