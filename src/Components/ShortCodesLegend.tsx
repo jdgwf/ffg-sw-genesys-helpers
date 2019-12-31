@@ -78,7 +78,7 @@ export default class ShortCodesLegend extends React.Component<IShortCodesLegendP
         return (
         <div>
 Shortcodes:
-        <div className="shortcode-legend">
+        <div className="shortcode-legend small-text">
 {this.dieCodes.map( (shortcode, shortcodeIndex) => {
   return (
     <div key={shortcodeIndex}>
@@ -90,7 +90,7 @@ Shortcodes:
   )
 })}
              </div>
-             <div className="shortcode-legend">
+             <div className="shortcode-legend small-text">
 {this.dieFaceCodes.map( (shortcode, shortcodeIndex) => {
   return (
     <div key={shortcodeIndex}>
