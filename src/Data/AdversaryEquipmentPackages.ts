@@ -37,7 +37,7 @@ export const AdversaryEquipmentPackages: IAdversaryEquipmentPackage[] = [
         items: [
             "Improvised brawling weapon (Brawl; Damage +1; Critical 5; Range [Engaged]; Disorient 2, Inferior)",
             "Heavy clothing (+1 soak)",
-            "tool belt full of tools (add [success] to checks this character makes to repair of fix something)",
+            "tool belt full of tools (add <SU> to checks this character makes to repair of fix something)",
             "wallet.",
         ]
     },
@@ -46,7 +46,7 @@ export const AdversaryEquipmentPackages: IAdversaryEquipmentPackage[] = [
         items: [
             "Walking staff (Melee [Heavy]; Damage +2; Critical 4; Range [Engaged]; Defensive 1, Disorient 2).",
             "Heavy cloak (1 defense)",
-            "survival pack (removes [setback] from Survival or Perception checks this character makes)",
+            "survival pack (removes <S> from Survival or Perception checks this character makes)",
             "meager coin purse or wallet.",
         ]
     },
@@ -54,8 +54,8 @@ export const AdversaryEquipmentPackages: IAdversaryEquipmentPackage[] = [
         name: "Criminal",
         items: [
             "Concealable melee weapon (Melee [Light];Damage +1; Critical 2; Range [Engaged]; Pierce 2)",
-            "Dark clothing (2 defense, adds [boost] to Stealth checks this character makes)",
-            "thieves’ tools (add [advantage] to Skulduggery checks this character makes to open locks)",
+            "Dark clothing (2 defense, adds <B> to Stealth checks this character makes)",
+            "thieves’ tools (add <AD> to Skulduggery checks this character makes to open locks)",
             "backpack",
             "rope with grappling hook.",
         ]
@@ -64,7 +64,7 @@ export const AdversaryEquipmentPackages: IAdversaryEquipmentPackage[] = [
         name: "Doctor",
         items: [
             "Sharp medical tool (Melee [Light]; Damage +0; Critical 1; Range [Engaged]).",
-            "Clean clothing and face protection (add [boost] to Resilience checks made by this character to resist disease or airborne toxins)",
+            "Clean clothing and face protection (add <B> to Resilience checks made by this character to resist disease or airborne toxins)",
             "medicine kit (allows this character to perform Medicine checks to heal wounds and critical injuries without penalty; after this character makes a successful Medicine check to heal wounds heal one additional wound)",
             "notebook",
         ]
@@ -73,8 +73,8 @@ export const AdversaryEquipmentPackages: IAdversaryEquipmentPackage[] = [
         name: "Noble",
         items: [
             "Dueling weapon (Melee [Light]; Damage +2; Critical 3; Range [Engaged]; Defensive 1).",
-            "Fancy clothing (adds [advantage] to any social skill checks this character makes)",
-            "signet of authority (adds [success] to any social checks this character makes when interacting with someone of a lesser social standing)",
+            "Fancy clothing (adds <AD> to any social skill checks this character makes)",
+            "signet of authority (adds <SU> to any social checks this character makes when interacting with someone of a lesser social standing)",
             "important documents",
             "full coin purse or wallet.",
         ]
@@ -86,7 +86,7 @@ export const AdversaryEquipmentPackages: IAdversaryEquipmentPackage[] = [
             "one-handed backup weapon (Melee [Light]; Damage +2; Critical 3; Range [Engaged]; Vicious 1).",
             "Reinforced uniform or light armor (+1 soak)",
             "ammunition reload (may spend a maneuver to reload their ranged weapon after it runs out of ammo)",
-            "survival pack (removes [setback] from Survival or Perception checks this character makes)",
+            "survival pack (removes <S> from Survival or Perception checks this character makes)",
             "1 painkiller.",
         ]
     },
@@ -149,8 +149,8 @@ export const AdversaryEquipmentPackages: IAdversaryEquipmentPackage[] = [
         name: "Game Hunter",
         items: [
             "Long-ranged hunting weapon (Ranged [Heavy]; Damage 9; Critical 3; Range [Extreme]; Accurate 1, Limited Ammo 2; reduce the difficulty of combat checks made at long or extreme range by 1).",
-            "Camouflage (2 defense, add [boost] to Stealth checks made by this character)",
-            "survival pack (removes [setback] from Survival or Perception checks this character makes)",
+            "Camouflage (2 defense, add <B> to Stealth checks made by this character)",
+            "survival pack (removes <S> from Survival or Perception checks this character makes)",
             "ammunition reload (may spend a maneuver to reload their ranged weapon after it runs out of ammo).",
         ]
     },
@@ -159,7 +159,7 @@ export const AdversaryEquipmentPackages: IAdversaryEquipmentPackage[] = [
         items: [
             "One-handed ranged weapon (Ranged [Light]; Damage 5; Critical 3; Range [Medium]) or one-handed bludgeoning weapon (Melee [Light]; Damage +3; Critical 4; Range [Engaged]; Disorient 2)",
             "Light armor (+1 soak)",
-            "badge of authority (adds [boost] to Coercion or Leadership checks this character makes)",
+            "badge of authority (adds <B> to Coercion or Leadership checks this character makes)",
             "restraints",
             "torch or other light source."
         ]
@@ -169,7 +169,7 @@ export const AdversaryEquipmentPackages: IAdversaryEquipmentPackage[] = [
         items: [
             "Concealable ranged weapon (Ranged [Light]; Damage 5; Critical 4; Range [Short]).",
             "Flight outfit",
-            "emergency survival kit (removes [setback] from Survival or Perception checks this character makes)",
+            "emergency survival kit (removes <S> from Survival or Perception checks this character makes)",
             "1 painkiller."
         ]
     },
@@ -177,8 +177,8 @@ export const AdversaryEquipmentPackages: IAdversaryEquipmentPackage[] = [
         name: "Flashy Outlaw",
         items: [
             "Intimidating ranged weapon (Ranged [Light];Damage 7; Critical 3; Range [Medium]; Inaccurate 1)",
-            "Dashing coat with exposed holster (+1 soak,adds [advantage] to the results of all Charm and Coercion checks this character makes)",
-            "fancy cape or hat (removes [setback] from all social skill checks this character makes)."
+            "Dashing coat with exposed holster (+1 soak,adds <AD> to the results of all Charm and Coercion checks this character makes)",
+            "fancy cape or hat (removes <S> from all social skill checks this character makes)."
         ]
     },
     {

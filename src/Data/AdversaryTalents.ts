@@ -71,7 +71,7 @@ export const AdversaryTalents: IAdversaryTalent[] = [
     },
     {
         name: "Berserk",
-        description: "Once per encounter, your character may use this talent. Until the end of the encounter or until they are incapacitated, your character adds [success] [advantage] [advantage] to all melee combat checks they make. However, opponents add [success] to all combat checks targeting your character. While berserk, your character cannot make ranged combat checks.",
+        description: "Once per encounter, your character may use this talent. Until the end of the encounter or until they are incapacitated, your character adds <SU> <AD> <AD> to all melee combat checks they make. However, opponents add <SU> to all combat checks targeting your character. While berserk, your character cannot make ranged combat checks.",
         book: "Core",
         page: "75",
         powerLevels: {
@@ -82,7 +82,7 @@ export const AdversaryTalents: IAdversaryTalent[] = [
     },
     {
         name: "Brilliant Casting",
-        description: "When casting a spell may spend one Story Point to use this talent to add [advantage] equal to your character’s ranks in Knowledge to the results.",
+        description: "When casting a spell may spend one Story Point to use this talent to add <AD> equal to your character’s ranks in Knowledge to the results.",
         book: "EPG",
         page: "95",
         powerLevels: {
@@ -93,7 +93,7 @@ export const AdversaryTalents: IAdversaryTalent[] = [
     },
     {
         name: "Clever Retort",
-        description: "once per encounter, add [threat] [threat] to another character’s social skill check",
+        description: "once per encounter, add <TH> <TH> to another character’s social skill check",
         book: "Core",
         page: "73",
         powerLevels: {
@@ -104,7 +104,7 @@ export const AdversaryTalents: IAdversaryTalent[] = [
     },
     {
         name: "Coordinated Assault 3",
-        description: "once per turn, may spend a maneuver to add [advantage] to the results of all combat checks made by five allies within long range until the end of this character’s next turn",
+        description: "once per turn, may spend a maneuver to add <AD> to the results of all combat checks made by five allies within long range until the end of this character’s next turn",
         book: "Core",
         page: "75",
         powerLevels: {
@@ -115,7 +115,7 @@ export const AdversaryTalents: IAdversaryTalent[] = [
     },
     {
         name: "Distinctive Style",
-        description: "When making a Computers check to hack a system or break into a secured network, before rolling, your character may use this talent to add [success] [success] [threat] [threat] to the results.",
+        description: "When making a Computers check to hack a system or break into a secured network, before rolling, your character may use this talent to add <SU> <SU> <TH> <TH> to the results.",
         book: "Core",
         page: "78",
         powerLevels: {
@@ -137,7 +137,7 @@ export const AdversaryTalents: IAdversaryTalent[] = [
     },
     {
         name: "Duelist",
-        description: "Your character adds [boost] to their melee combat checks while engaged with a single opponent. Your character adds [setback] to their melee combat checks while engaged with three or more opponents.",
+        description: "Your character adds <B> to their melee combat checks while engaged with a single opponent. Your character adds <S> to their melee combat checks while engaged with three or more opponents.",
         book: "Core",
         page: "73",
         powerLevels: {
@@ -159,7 +159,7 @@ export const AdversaryTalents: IAdversaryTalent[] = [
     },
     {
         name: "Explosive Casting",
-        description: "When your character casts an attack spell, they treat the spell’s Blast quality as having a rating equal to twice your character’s ranks in Knowledge (instead of their ranks in Knowledge). When your character casts an Attack spell with the Blast effect, you may spend one Story Point to use this talent to trigger the spell’s Blast quality, instead of spending [advantage] (even if the attack misses)",
+        description: "When your character casts an attack spell, they treat the spell’s Blast quality as having a rating equal to twice your character’s ranks in Knowledge (instead of their ranks in Knowledge). When your character casts an Attack spell with the Blast effect, you may spend one Story Point to use this talent to trigger the spell’s Blast quality, instead of spending <AD> (even if the attack misses)",
         book: "EPG",
         page: "96",
         powerLevels: {
@@ -181,7 +181,7 @@ export const AdversaryTalents: IAdversaryTalent[] = [
     },
     {
         name: "Field Commander",
-        description: "Your character may use this talent to make an Average ([difficulty] [difficulty]) Leadership check. If successful, a number of allies equal to your character’s Presence may immediately suffer 1 strain to perform one maneuver (out of turn). If there are any questions as to which allies take their maneuvers first, your character is the final arbiter.",
+        description: "Your character may use this talent to make an Average (<D> <D>) Leadership check. If successful, a number of allies equal to your character’s Presence may immediately suffer 1 strain to perform one maneuver (out of turn). If there are any questions as to which allies take their maneuvers first, your character is the final arbiter.",
         book: "Core",
         page: "78",
         powerLevels: {
@@ -192,7 +192,7 @@ export const AdversaryTalents: IAdversaryTalent[] = [
     },
     {
         name: "Flicker Step",
-        description: "When your character casts a spell using the Arcana skill, they may use this talent to spend [advantage] [advantage] [advantage] or [triumph] to instantly vanish and reappear at any location within long range.",
+        description: "When your character casts a spell using the Arcana skill, they may use this talent to spend <AD> <AD> <AD> or <TR> to instantly vanish and reappear at any location within long range.",
         book: "EPG",
         page: "97",
         powerLevels: {
@@ -203,7 +203,7 @@ export const AdversaryTalents: IAdversaryTalent[] = [
     },
     {
         name: "Grenadier",
-        description: "When your character makes a ranged combat check with a weapon that has the Blast item quality, you may spend one Story Point to use this talent to trigger the weapon’s Blast quality, instead of spending [advantage] (even if the attack misses). In addition, your character treats grenades as having a range of medium.",
+        description: "When your character makes a ranged combat check with a weapon that has the Blast item quality, you may spend one Story Point to use this talent to trigger the weapon’s Blast quality, instead of spending <AD> (even if the attack misses). In addition, your character treats grenades as having a range of medium.",
         book: "Core",
         page: "79",
         powerLevels: {
@@ -225,7 +225,7 @@ export const AdversaryTalents: IAdversaryTalent[] = [
     },
     {
         name: "Improved Field Commander",
-        description: "Your character must have purchased the Field Commander talent to benefit from this talent. When your character uses the Field Commander talent, your character affects a number of allies equal to twice the character’s Presence. In addition, you may spend [triumph] to allow one ally to suffer 1 strain to perform an action, instead of a maneuver.",
+        description: "Your character must have purchased the Field Commander talent to benefit from this talent. When your character uses the Field Commander talent, your character affects a number of allies equal to twice the character’s Presence. In addition, you may spend <TR> to allow one ally to suffer 1 strain to perform an action, instead of a maneuver.",
         book: "Core",
         page: "80",
         powerLevels: {
@@ -236,7 +236,7 @@ export const AdversaryTalents: IAdversaryTalent[] = [
     },
     {
         name: "Improved Inspiring Rhetoric",
-        description: "Your character must have purchased the Inspiring Rhetoric talent to benefit from this talent. Allies affected by your character’s Inspiring Rhetoric add [boost] to all skill checks they make for a number of rounds equal to your character’s ranks in Leadership.",
+        description: "Your character must have purchased the Inspiring Rhetoric talent to benefit from this talent. Allies affected by your character’s Inspiring Rhetoric add <B> to all skill checks they make for a number of rounds equal to your character’s ranks in Leadership.",
         book: "Core",
         page: "76 and 78",
         powerLevels: {
@@ -247,7 +247,7 @@ export const AdversaryTalents: IAdversaryTalent[] = [
     },
     {
         name: "Improved Parry",
-        description: "When your character suffers a hit from a melee combat check and uses Parry to reduce the damage from that hit, after the attack is resolved, you may spend [despair] or [threat] [threat] [threat] from the attacker’s check to use this talent. Then, your character automatically hits the attacker once with a Brawl or Melee weapon your character is wielding. The hit deals the weapon’s base damage, plus any damage from applicable talents or abilities. Your character can’t use this talent if the original attack incapacitates them.",
+        description: "When your character suffers a hit from a melee combat check and uses Parry to reduce the damage from that hit, after the attack is resolved, you may spend <DR> or <TH> <TH> <TH> from the attacker’s check to use this talent. Then, your character automatically hits the attacker once with a Brawl or Melee weapon your character is wielding. The hit deals the weapon’s base damage, plus any damage from applicable talents or abilities. Your character can’t use this talent if the original attack incapacitates them.",
         book: "Core",
         page: "79",
         powerLevels: {
@@ -258,7 +258,7 @@ export const AdversaryTalents: IAdversaryTalent[] = [
     },
     {
         name: "Improved Scathing Tirade",
-        description: "Enemies affected by your character’s Scathing Tirade add [setback] to all skill checks they make for a number of rounds equal to your character’s ranks in Coercion.",
+        description: "Enemies affected by your character’s Scathing Tirade add <S> to all skill checks they make for a number of rounds equal to your character’s ranks in Coercion.",
         book: "Core",
         page: "77 and 79",
         powerLevels: {
@@ -291,7 +291,7 @@ export const AdversaryTalents: IAdversaryTalent[] = [
     },
     {
         name: "Master",
-        description: "When you purchase this talent for your character, choose one skill. Once per round, your character may suffer 2 strain to use this talent to reduce the difficulty of the next check they make using that skill by two, to a minimum of Easy ([difficulty]).",
+        description: "When you purchase this talent for your character, choose one skill. Once per round, your character may suffer 2 strain to use this talent to reduce the difficulty of the next check they make using that skill by two, to a minimum of Easy (<D>).",
         book: "Core",
         page: "81",
         powerLevels: {
@@ -346,7 +346,7 @@ export const AdversaryTalents: IAdversaryTalent[] = [
     },
     {
         name: "Ruinous Repartee",
-        description: "Once per encounter, your character may use this talent to make an opposed Charm or Coercion versus Discipline check targeting one character within medium range (or within earshot). If successful, the target suffers strain equal to twice your character’s Presence, plus one additional strain per [success]. Your character heals strain equal to the strain inflicted.",
+        description: "Once per encounter, your character may use this talent to make an opposed Charm or Coercion versus Discipline check targeting one character within medium range (or within earshot). If successful, the target suffers strain equal to twice your character’s Presence, plus one additional strain per <SU>. Your character heals strain equal to the strain inflicted.",
         book: "Core",
         page: "81",
         powerLevels: {
@@ -368,7 +368,7 @@ export const AdversaryTalents: IAdversaryTalent[] = [
     },
     {
         name: "Strength of Faith",
-        description: "Once per session, your character may use this talent to add [success] equal to their ranks in Discipline and [advantage] equal to their ranks in Willpower to the results of the next Divine skill check they make during this turn.",
+        description: "Once per session, your character may use this talent to add <SU> equal to their ranks in Discipline and <AD> equal to their ranks in Willpower to the results of the next Divine skill check they make during this turn.",
         book: "EPG",
         page: "97",
         powerLevels: {

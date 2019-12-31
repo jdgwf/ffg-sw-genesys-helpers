@@ -28,24 +28,24 @@ export function replaceDieTags(
     }
     // }
 
-    let proficiency = "<img " + heightTag + " class=\"inline-die-png\" src=\"./img/proficiency-die" + sizeExtension + "\" />";
-    let ability = "<img " + heightTag + " class=\"inline-die-png\" src=\"./img/ability-die" + sizeExtension + "\" />";
-    let boost = "<img " + heightTag + " class=\"inline-die-png\" src=\"./img/boost-die" + sizeExtension + "\" />";
+    let proficiency = "<img " + heightTag + " class=\"inline-die-png\" title=\"Proficiency Die\" alt=\"Proficiency Die\" src=\"./img/proficiency-die" + sizeExtension + "\" />";
+    let ability = "<img " + heightTag + " class=\"inline-die-png\" title=\"Ability Die\" alt=\"Ability Die\" src=\"./img/ability-die" + sizeExtension + "\" />";
+    let boost = "<img " + heightTag + " class=\"inline-die-png\" title=\"Boost Die\" alt=\"Boost Die\" src=\"./img/boost-die" + sizeExtension + "\" />";
 
-    let setback = "<img " + heightTag + " class=\"inline-die-png\" src=\"./img/setback-die" + sizeExtension + "\" />";
-    let difficulty = "<img " + heightTag + " class=\"inline-die-png\" src=\"./img/difficulty-die" + sizeExtension + "\" />";
-    let challenge = "<img " + heightTag + " class=\"inline-die-png\" src=\"./img/challenge-die" + sizeExtension + "\" />";
+    let setback = "<img " + heightTag + " class=\"inline-die-png\" title=\"Setback Die\" alt=\"Setback Die\" src=\"./img/setback-die" + sizeExtension + "\" />";
+    let difficulty = "<img " + heightTag + " class=\"inline-die-png\" title=\"Difficulty Die\" alt=\"Difficulty Die\" src=\"./img/difficulty-die" + sizeExtension + "\" />";
+    let challenge = "<img " + heightTag + " class=\"inline-die-png\" title=\"Challenge Die\" alt=\"Challenge Die\" src=\"./img/challenge-die" + sizeExtension + "\" />";
 
-    let force = "<img " + heightTag + " class=\"inline-die-png\" src=\"./img/force-die" + sizeExtension + "\" />";
+    let force = "<img " + heightTag + " class=\"inline-die-png\" title=\"Force Die\" alt=\"Force Die\" src=\"./img/force-die" + sizeExtension + "\" />";
 
-    let success = "<img " + heightTag + " class=\"inline-die-png\" src=\"./img/success" + sizeExtension + "\" />";
-    let advantage = "<img " + heightTag + " class=\"inline-die-png\" src=\"./img/advantage" + sizeExtension + "\" />";
+    let success = "<img " + heightTag + " class=\"inline-die-png\" title=\"Success\" alt=\"Success\" src=\"./img/success" + sizeExtension + "\" />";
+    let advantage = "<img " + heightTag + " class=\"inline-die-png\" title=\"Advantage\" alt=\"Advantage\"  src=\"./img/advantage" + sizeExtension + "\" />";
 
-    let threat = "<img " + heightTag + " class=\"inline-die-png\" src=\"./img/threat" + sizeExtension + "\" />";
-    let failure = "<img " + heightTag + " class=\"inline-die-png\" src=\"./img/failure" + sizeExtension + "\" />";
+    let threat = "<img " + heightTag + " class=\"inline-die-png\" title=\"Threat\" alt=\"Threat\"  src=\"./img/threat" + sizeExtension + "\" />";
+    let failure = "<img " + heightTag + " class=\"inline-die-png\" title=\"Failure\" alt=\"Failure\"  src=\"./img/failure" + sizeExtension + "\" />";
 
-    let despair = "<img " + heightTag + " class=\"inline-die-png\" src=\"./img/despair" + sizeExtension + "\" />";
-    let triumph = "<img " + heightTag + " class=\"inline-die-png\" src=\"./img/triumph" + sizeExtension + "\" />";
+    let despair = "<img " + heightTag + " class=\"inline-die-png\" title=\"Despair\" alt=\"Despair\"  src=\"./img/despair" + sizeExtension + "\" />";
+    let triumph = "<img " + heightTag + " class=\"inline-die-png\" title=\"Triumph\" alt=\"Triumph\"  src=\"./img/triumph" + sizeExtension + "\" />";
 
     incomingString = replaceAll( incomingString, "[proficiency]", proficiency);
     incomingString = replaceAll( incomingString, "[ability]", ability)

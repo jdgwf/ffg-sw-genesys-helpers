@@ -12,64 +12,60 @@ export default class ShortCodesLegend extends React.Component<IShortCodesLegendP
 
     dieCodes: IDieCodes[] = [
         {
-            name: "[ability]",
-            alt1: "<A>",
+            alt1: "[ability]",
+            name: "<A>",
         },
         {
-            name: "[proficiency]",
-            alt1: "<P>",
+            alt1: "[proficiency]",
+            name: "<P>",
         },
         {
-            name: "[boost]",
-            alt1: "<B>",
+            alt1: "[boost]",
+            name: "<B>",
         },
         {
-            name: "[difficulty]",
-            alt1: "<D>",
+            alt1: "[difficulty]",
+            name: "<D>",
         },
         {
-            name: "[challenge]",
-            alt1: "<C>",
+            alt1: "[challenge]",
+            name: "<C>",
         },
         {
-            name: "[setback]",
-            alt1: "<S>",
+            alt1: "[setback]",
+            name: "<S>",
         },
         {
-            name: "[force]",
-            alt1: "<F>",
+            alt1: "[force]",
+            name: "<F>",
         },
 
     ]
 
     dieFaceCodes: IDieCodes[] = [
         {
-            name: "[advantage]",
-            alt1: "<AD>",
+            alt1: "[advantage]",
+            name: "<AD>",
         },
         {
-            name: "[threat]",
-            alt1: "<TH>",
+            alt1: "[threat]",
+            name: "<TH>",
         },
         {
-            name: "[triumph]",
-            alt1: "<TR>",
+            alt1: "[triumph]",
+            name: "<TR>",
         },
         {
-            name: "[despair]",
-            alt1: "<DR>",
+            alt1: "[despair]",
+            name: "<DR>",
         },
         {
-            name: "[success]",
-            alt1: "<SU>",
+            alt1: "[success]",
+            name: "<SU>",
         },
         {
-            name: "[setback]",
-            alt1: "<S>",
-        },
-        {
-            name: "[failure]",
-            alt1: "<FA>",
+            alt1: "[failure]",
+            name: "<FA>",
         },
 
     ]
@@ -85,7 +81,7 @@ Shortcodes:
       <SanitizedHTML
         raw={true}
         html={replaceDieTags(shortcode.name)}
-      />&nbsp;{shortcode.name}/{shortcode.alt1}
+      />&nbsp;{shortcode.name}
     </div>
   )
 })}
@@ -97,7 +93,7 @@ Shortcodes:
       <SanitizedHTML
         raw={true}
         html={replaceDieTags(shortcode.name)}
-        />&nbsp;{shortcode.name}/{shortcode.alt1}
+        />&nbsp;{shortcode.name}
     </div>
   )
 })}

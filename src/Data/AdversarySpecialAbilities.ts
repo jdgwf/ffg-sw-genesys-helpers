@@ -125,7 +125,7 @@ export const AdversarySpecialAbilities: IAdversarySpecialAbility[] = [
     },
     {
         name: "Pack Fighter",
-        description: 'If this adversary makes a successful combat check, the next ally making a combat check against the same target during the same round Combat +1, Social +0, General +0 adds [advantage][advantage] to the results.',
+        description: 'If this adversary makes a successful combat check, the next ally making a combat check against the same target during the same round Combat +1, Social +0, General +0 adds <AD><AD> to the results.',
         examples: "Creatures that fight in groups",
         powerLevels: {
             combat: 1,
@@ -155,7 +155,7 @@ export const AdversarySpecialAbilities: IAdversarySpecialAbility[] = [
     },
     {
         name: "Tactical Direction",
-        description: 'This adversary may spend a maneuver to direct one friendly minion group within medium range. That group may immediately perform a maneuver as an out-of-turn incidental or add [boost] to the next check they make.',
+        description: 'This adversary may spend a maneuver to direct one friendly minion group within medium range. That group may immediately perform a maneuver as an out-of-turn incidental or add <B> to the next check they make.',
         examples: "Rivals and nemeses who lead or direct small groups",
         powerLevels: {
             combat: 0,
@@ -165,7 +165,7 @@ export const AdversarySpecialAbilities: IAdversarySpecialAbility[] = [
     },
     {
         name: "Environmental Vulnerability",
-        description: 'When exposed to extreme heat, cold, or another environmental effect (pick one), this adversary adds [setback][setback] to all skill checks it makes.',
+        description: 'When exposed to extreme heat, cold, or another environmental effect (pick one), this adversary adds <S><S> to all skill checks it makes.',
         examples: "Creatures adapted to living in certain climates",
         powerLevels: {
             combat: -1,
@@ -175,7 +175,7 @@ export const AdversarySpecialAbilities: IAdversarySpecialAbility[] = [
     },
     {
         name: "Terrifying",
-        description: 'At the start of the encounter, all opponents must make a Hard ([difficulty][difficulty][difficulty]) fear check as an out-of-turn incidental, as per page 243 of the Genesys Core Rulebook. If there are multiple sources of fear  in the encounter, the opponents only make one fear check against the most terrifying enemy.',
+        description: 'At the start of the encounter, all opponents must make a Hard (<D><D><D>) fear check as an out-of-turn incidental, as per page 243 of the Genesys Core Rulebook. If there are multiple sources of fear  in the encounter, the opponents only make one fear check against the most terrifying enemy.',
         examples: "Large monsters, creatures, and individuals who are incredibly frightening",
         powerLevels: {
             combat: 1,
