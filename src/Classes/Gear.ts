@@ -56,7 +56,9 @@ export class Gear {
                     } else if (
                         item.toLowerCase().indexOf(",") > -1
                     ){
-                        this.qualities = item.split(",");
+                        this.qualities = this.qualities.concat( item.split(",") );
+                    } else {
+                        this.qualities.push(item.trim());
                     }
 
                 }
@@ -95,7 +97,9 @@ export class Gear {
             }
         }
 
+        this.qualities.sort();
     }
+
     exportString(): string {
         let exportString = this.name;
 
@@ -112,7 +116,7 @@ export class Gear {
                 exportString += " Range ["+ this.range + "]"
 
             if( this.qualities.length > 0 )
-                exportString += ";" + this.qualities.join( ", ")
+                exportString += "; " + this.qualities.join( ", ")
 
             exportString += ")";
         } else if( this.type === "armor" ) {

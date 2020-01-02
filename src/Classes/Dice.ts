@@ -51,7 +51,7 @@ export default class Dice {
         boosts: number = 0,
 
         difficulty: number = 0,
-        challlenge: number = 0,
+        challenge: number = 0,
         setback: number = 0,
 
         force: number = 0,
@@ -440,7 +440,7 @@ export default class Dice {
         }
 
         // Challenge Dice
-        for( let dieCount = 0; dieCount < challlenge; dieCount++) {
+        for( let dieCount = 0; dieCount < challenge; dieCount++) {
             let roll = this.rollDie(12);
             let rawRoll = {
                 type: "challenge",
@@ -662,17 +662,11 @@ export default class Dice {
             grossAdvantages = netAdvantages - netThreats;
         }
 
-        if( netDespairs > netTriumphs ) {
-            grossDespairs = netDespairs - netTriumphs;
-        } else {
-            grossTriumphs = netTriumphs - netDespairs;
-        }
+        grossDespairs = netDespairs;
+        grossTriumphs = netTriumphs;
 
-        // if( netDarkSide > netLightSide ) {
-            grossDarkSide = netDarkSide; // - netLightSide;
-        // } else {
-            grossLightSide = netLightSide; // - netDarkSide;
-        // }
+        grossDarkSide = netDarkSide;
+        grossLightSide = netLightSide;
 
         return {
             rolls: rolls,

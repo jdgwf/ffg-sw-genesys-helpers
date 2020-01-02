@@ -1064,7 +1064,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
   <Modal onHide={this.closeSoakDefWoundStrain} show={this.state.editSoakDefWoundStrain != null}>
     <Modal.Header closeButton >
       {this.state.editSoakDefWoundStrainIndex > -1 ? (
-        <>Editing Soak, Defense, Wounds, Straintem</>
+        <>Editing Soak, Defense, Wounds, Strain item</>
       ) : (
         <>Adding Soak, Defense, Wounds, Strain</>
       )}
