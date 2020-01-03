@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/ffg-sw-genesys-helpers/static/css/main.de408d02.chunk.css",
-    "main.js": "/ffg-sw-genesys-helpers/static/js/main.78aaa295.chunk.js",
-    "main.js.map": "/ffg-sw-genesys-helpers/static/js/main.78aaa295.chunk.js.map",
+    "main.js": "/ffg-sw-genesys-helpers/static/js/main.d3d37a10.chunk.js",
+    "main.js.map": "/ffg-sw-genesys-helpers/static/js/main.d3d37a10.chunk.js.map",
     "runtime-main.js": "/ffg-sw-genesys-helpers/static/js/runtime-main.5b0fbea0.js",
     "runtime-main.js.map": "/ffg-sw-genesys-helpers/static/js/runtime-main.5b0fbea0.js.map",
     "static/css/2.833dd627.chunk.css": "/ffg-sw-genesys-helpers/static/css/2.833dd627.chunk.css",
-    "static/js/2.4b76bae1.chunk.js": "/ffg-sw-genesys-helpers/static/js/2.4b76bae1.chunk.js",
-    "static/js/2.4b76bae1.chunk.js.map": "/ffg-sw-genesys-helpers/static/js/2.4b76bae1.chunk.js.map",
+    "static/js/2.428758c3.chunk.js": "/ffg-sw-genesys-helpers/static/js/2.428758c3.chunk.js",
+    "static/js/2.428758c3.chunk.js.map": "/ffg-sw-genesys-helpers/static/js/2.428758c3.chunk.js.map",
     "index.html": "/ffg-sw-genesys-helpers/index.html",
-    "precache-manifest.363d589fe7677445023d85a60f745951.js": "/ffg-sw-genesys-helpers/precache-manifest.363d589fe7677445023d85a60f745951.js",
+    "precache-manifest.280a1196955249da72e5e09c86220fab.js": "/ffg-sw-genesys-helpers/precache-manifest.280a1196955249da72e5e09c86220fab.js",
     "service-worker.js": "/ffg-sw-genesys-helpers/service-worker.js",
     "static/css/2.833dd627.chunk.css.map": "/ffg-sw-genesys-helpers/static/css/2.833dd627.chunk.css.map",
     "static/css/main.de408d02.chunk.css.map": "/ffg-sw-genesys-helpers/static/css/main.de408d02.chunk.css.map",
-    "static/js/2.4b76bae1.chunk.js.LICENSE": "/ffg-sw-genesys-helpers/static/js/2.4b76bae1.chunk.js.LICENSE",
+    "static/js/2.428758c3.chunk.js.LICENSE": "/ffg-sw-genesys-helpers/static/js/2.428758c3.chunk.js.LICENSE",
     "static/media/index.scss": "/ffg-sw-genesys-helpers/static/media/genesys-bg.e854a717.png",
     "static/media/Die.scss": "/ffg-sw-genesys-helpers/static/media/genesys-font.b0d58337.woff",
     "static/media/AdversaryCreator.scss": "/ffg-sw-genesys-helpers/static/media/power-level-box.ab2a20e1.png"
@@ -21,8 +21,8 @@
   "entrypoints": [
     "static/js/runtime-main.5b0fbea0.js",
     "static/css/2.833dd627.chunk.css",
-    "static/js/2.4b76bae1.chunk.js",
+    "static/js/2.428758c3.chunk.js",
     "static/css/main.de408d02.chunk.css",
-    "static/js/main.78aaa295.chunk.js"
+    "static/js/main.d3d37a10.chunk.js"
   ]
 }
