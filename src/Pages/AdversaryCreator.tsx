@@ -18,6 +18,7 @@ import { AdversaryEquipmentPackages, IAdversaryEquipmentPackage } from '../Data/
 import NumericalDropDown from '../Components/NumericalDropdown';
 import { Modal } from 'react-bootstrap';
 import ShortCodesLegend from '../Components/ShortCodesLegend';
+import WoundDots from '../Components/WoundDots';
 
 export default class AdversaryCreator extends React.Component<IAdversaryCreatorProps, IAdversaryCreatorState> {
 
@@ -37,6 +38,20 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         if( lsValuesAsDice && +lsValuesAsDice > 0) {
           valuesAsDice = true;
         }
+
+
+        let lsShowWoundDots = localStorage.getItem("show_wound_dots");
+        let showWoundDots: boolean = false;
+        if( lsShowWoundDots && +lsShowWoundDots > 0) {
+          showWoundDots = true;
+        }
+
+        let lsNumberMinions = localStorage.getItem("number_minions");
+        let numberMinions: number = 1;
+        if( lsNumberMinions && +lsNumberMinions > 0) {
+          numberMinions = +lsNumberMinions;
+        }
+
 
         let equipmentText: string = workingEdit.equipment.join("\n");
 
@@ -61,6 +76,10 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 
             editSpecialAbilities: null,
             editSpecialAbilitiesIndex: -1,
+
+            showWoundDots: showWoundDots,
+
+            numberMinions: numberMinions,
         }
         this.updateName = this.updateName.bind(this);
         this.updateType = this.updateType.bind(this);
@@ -130,6 +149,10 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 
         this.togglePowerLevelOverride = this.togglePowerLevelOverride.bind(this);
         this.updatePowerLevelOverride = this.updatePowerLevelOverride.bind(this);
+
+        this.toggleShowWoundDots = this.toggleShowWoundDots.bind(this);
+        this.setNumberMinions = this.setNumberMinions.bind(this);
+
 
         this.props.appGlobals.makeDocumentTitle("AdversaryCreator");
     }
@@ -756,6 +779,25 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         localStorage.setItem("values_as_dice", "0");
       this.setState( {
         valuesAsDice: newValue,
+      })
+    }
+
+    toggleShowWoundDots() {
+      let newValue = !this.state.showWoundDots;
+      if( newValue )
+        localStorage.setItem("show_wound_dots", "1");
+      else
+        localStorage.setItem("show_wound_dots", "0");
+      this.setState( {
+        showWoundDots: newValue,
+      })
+    }
+
+    setNumberMinions( event: React.FormEvent<HTMLSelectElement>) {
+
+      localStorage.setItem("number_minions", event.currentTarget.value);
+      this.setState( {
+        numberMinions: +event.currentTarget.value,
       })
     }
 
@@ -1503,6 +1545,50 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                     onChange={this.toggleValuesAsDice}
                   />&nbsp;Values As Dice
                 </label>
+                &nbsp;|&nbsp;
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={this.state.showWoundDots}
+                    onChange={this.toggleShowWoundDots}
+                  />&nbsp;Show Wound Dots
+                </label>
+                {this.state.showWoundDots && this.state.workingEdit.adversaryType.toLowerCase() === "minion" ?
+                (
+                  <>
+                  &nbsp;|&nbsp;
+                  <label>
+                    # Minions&nbsp;
+                    <select
+                      value={this.state.numberMinions}
+                      onChange={this.setNumberMinions}
+                    >
+                      <option value={1}>1</option>
+                      <option value={2}>2</option>
+                      <option value={3}>3</option>
+                      <option value={4}>4</option>
+                      <option value={5}>5</option>
+                      <option value={6}>6</option>
+                      <option value={7}>7</option>
+                      <option value={8}>8</option>
+                      <option value={9}>9</option>
+                      <option value={10}>10</option>
+                      <option value={11}>11</option>
+                      <option value={12}>12</option>
+                      <option value={13}>13</option>
+                      <option value={14}>14</option>
+                      <option value={15}>15</option>
+                      <option value={16}>16</option>
+                      <option value={17}>17</option>
+                      <option value={18}>18</option>
+                      <option value={19}>19</option>
+                    </select>
+                  </label>
+                  </>
+                ) : (
+                  <>
+                  </>
+                )}
 
 <div className="relative">
   <div className="card-container">
@@ -1612,6 +1698,46 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
           raw={true}
         />
     </div>
+    ) : (
+      <></>
+    )}
+
+    {this.state.showWoundDots ? (
+      <>
+        <hr />
+        {this.state.workingEdit.adversaryType.toLowerCase() === "minion" ? (
+          <>
+          {Array( this.state.numberMinions ).fill(1).map( (indexValue, indexCount: number) => {
+            return(
+              <React.Fragment key={indexValue}>
+                <strong>Current Wounds #{indexCount+1}</strong>:&nbsp;
+                <WoundDots
+                  number={this.state.workingEdit.getWoundThreshold()}
+                /><br />
+              </React.Fragment>
+            )
+          })}
+          </>
+        ) : (
+          <>
+          <strong>Current Wounds</strong>:&nbsp;
+          <WoundDots
+              number={this.state.workingEdit.getWoundThreshold()}
+            /><br />
+          {this.state.workingEdit.adversaryType.toLowerCase() === "nemesis" ? (
+            <>
+              <strong>Current Strain</strong>:&nbsp;
+              <WoundDots
+                  number={this.state.workingEdit.getStrainThreshold()}
+              /><br />
+            </>
+          ) : (
+            <></>
+          )}
+
+          </>
+        )}
+      </>
     ) : (
       <></>
     )}
@@ -1765,6 +1891,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
                 })}
               </select>
             </label>
+
             <label>
               Description:
               <textarea
@@ -2269,4 +2396,7 @@ interface IAdversaryCreatorState {
 
   editSpecialAbilities: IAdversarySpecialAbility | null;
   editSpecialAbilitiesIndex: number;
+
+  showWoundDots: boolean;
+  numberMinions: number;
 }
