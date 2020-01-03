@@ -472,9 +472,9 @@ export class Adversary {
                     let pushToList = true;
 
                     for( let itemSplit of item.split(") or ")) {
-                        if( itemSplit.indexOf( " and ") > -1 ) {
+                        if( itemSplit.indexOf( ") and ") > -1 ) {
                             let andObjs: string[]= [];
-                            for( let andSplit of itemSplit.split(" and ")) {
+                            for( let andSplit of itemSplit.split(") and ")) {
                                 let gearObj = new Gear(andSplit);
                                 andObjs.push(gearObj.exportString())
                                 if( gearObj.type !== "weapon" )
