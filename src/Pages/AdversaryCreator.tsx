@@ -1707,9 +1707,9 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         <hr />
         {this.state.workingEdit.adversaryType.toLowerCase() === "minion" ? (
           <>
-          {Array( this.state.numberMinions ).fill(1).map( (indexValue, indexCount: number) => {
+          {Array( this.state.numberMinions ).fill("x").map( (indexValue, indexCount: number) => {
             return(
-              <React.Fragment key={indexValue}>
+              <React.Fragment key={indexCount}>
                 <strong>Current Wounds #{indexCount+1}</strong>:&nbsp;
                 <WoundDots
                   number={this.state.workingEdit.getWoundThreshold()}

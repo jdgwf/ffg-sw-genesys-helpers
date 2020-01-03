@@ -7,7 +7,6 @@ export default class WoundDots extends React.Component<IWoundDotsProps, IWoundDo
       for( let counter = 0; counter <  this.props.number; counter++ ) {
         totalDotsArray.push("O")
       };
-      console.log("totalDotsArray", totalDotsArray)
         return (
         <>
           {totalDotsArray.map( (dotText: string, indexNumber: number) => {
