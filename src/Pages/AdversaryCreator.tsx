@@ -1534,62 +1534,63 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 ) : (
   <></>
 )}
-            <p className="text-center">Using the <a target="buyme" href="https://www.fantasyflightgames.com/en/products/genesys/products/expanded-players-guide/">Expanded Players Guide</a>, this tool aims to make the calculations for creating and balancing your own adversaries quick and painless.</p>
+            <p className="text-center hide-print">Using the <a target="buyme" href="https://www.fantasyflightgames.com/en/products/genesys/products/expanded-players-guide/">Expanded Players Guide</a>, this tool aims to make the calculations for creating and balancing your own adversaries quick and painless.</p>
 
             <div className="row">
               <div className="col-md">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={this.state.valuesAsDice}
-                    onChange={this.toggleValuesAsDice}
-                  />&nbsp;Values As Dice
-                </label>
-                &nbsp;|&nbsp;
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={this.state.showWoundDots}
-                    onChange={this.toggleShowWoundDots}
-                  />&nbsp;Show Wound Dots
-                </label>
-                {this.state.showWoundDots && this.state.workingEdit.adversaryType.toLowerCase() === "minion" ?
-                (
-                  <>
+                <div className="hide-print">
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={this.state.valuesAsDice}
+                      onChange={this.toggleValuesAsDice}
+                    />&nbsp;Values As Dice
+                  </label>
                   &nbsp;|&nbsp;
                   <label>
-                    # Minions&nbsp;
-                    <select
-                      value={this.state.numberMinions}
-                      onChange={this.setNumberMinions}
-                    >
-                      <option value={1}>1</option>
-                      <option value={2}>2</option>
-                      <option value={3}>3</option>
-                      <option value={4}>4</option>
-                      <option value={5}>5</option>
-                      <option value={6}>6</option>
-                      <option value={7}>7</option>
-                      <option value={8}>8</option>
-                      <option value={9}>9</option>
-                      <option value={10}>10</option>
-                      <option value={11}>11</option>
-                      <option value={12}>12</option>
-                      <option value={13}>13</option>
-                      <option value={14}>14</option>
-                      <option value={15}>15</option>
-                      <option value={16}>16</option>
-                      <option value={17}>17</option>
-                      <option value={18}>18</option>
-                      <option value={19}>19</option>
-                    </select>
+                    <input
+                      type="checkbox"
+                      checked={this.state.showWoundDots}
+                      onChange={this.toggleShowWoundDots}
+                    />&nbsp;Show Wound Dots
                   </label>
-                  </>
-                ) : (
-                  <>
-                  </>
-                )}
-
+                  {this.state.showWoundDots && this.state.workingEdit.adversaryType.toLowerCase() === "minion" ?
+                  (
+                    <>
+                    &nbsp;|&nbsp;
+                    <label>
+                      # Minions&nbsp;
+                      <select
+                        value={this.state.numberMinions}
+                        onChange={this.setNumberMinions}
+                      >
+                        <option value={1}>1</option>
+                        <option value={2}>2</option>
+                        <option value={3}>3</option>
+                        <option value={4}>4</option>
+                        <option value={5}>5</option>
+                        <option value={6}>6</option>
+                        <option value={7}>7</option>
+                        <option value={8}>8</option>
+                        <option value={9}>9</option>
+                        <option value={10}>10</option>
+                        <option value={11}>11</option>
+                        <option value={12}>12</option>
+                        <option value={13}>13</option>
+                        <option value={14}>14</option>
+                        <option value={15}>15</option>
+                        <option value={16}>16</option>
+                        <option value={17}>17</option>
+                        <option value={18}>18</option>
+                        <option value={19}>19</option>
+                      </select>
+                    </label>
+                    </>
+                  ) : (
+                    <>
+                    </>
+                  )}
+              </div>
 <div className="relative">
   <div className="card-container">
     <div className="adversary-card front">
@@ -1859,7 +1860,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 </div>
 
               </div>
-              <div className="col-md">
+              <div className="col-md hide-print">
                 <div className="text-right">
                   <button
                     onClick={this.clearAdversary}

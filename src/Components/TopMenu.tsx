@@ -25,7 +25,7 @@ export default class TopMenu extends React.Component<ITopMenuProps, ITopMenuStat
     render() {
       return (
           <>
-          <header className="topmenu">
+          <header className="topmenu hide-print">
             <ul>
                 <li onClick={this.toggleMobile} className="mobile-menu-button d-inline d-md-none"><FontAwesomeIcon icon={faBars} /></li>
                 <li className="d-none d-md-inline"><Link className={this.props.current === "home" ? "current" : "" } to={`${process.env.PUBLIC_URL}/`}>Home</Link></li>

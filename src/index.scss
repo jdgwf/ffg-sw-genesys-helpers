@@ -734,3 +734,12 @@ body.retro {
     }
   }
 }
+
+@media print {
+  body {
+    background: transparent !important;
+    .hide-print {
+      display: none !important;
+    }
+  }
+}
