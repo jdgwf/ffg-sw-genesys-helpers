@@ -7,7 +7,7 @@ import { AdversaryTypes } from '../Data/AdversaryTypes';
 import { AdversaryCharacteristicArrays, IAdversaryCharacteristicArray } from '../Data/AdversaryCharacteristicArrays';
 import { AdversarySoakDefWoundStrain, IAdversarySoakDefWoundStrain } from '../Data/AdversarySoakDefWoundStrain';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit, faPrint } from '@fortawesome/free-solid-svg-icons';
 import { AdversarySkillPackages, IAdversarySkillPackage } from '../Data/AdversarySkillPackages';
 import { AdversaryTalents, IAdversaryTalent } from '../Data/AdversaryTalents';
 import { AdversarySpecialAbilities, IAdversarySpecialAbility } from '../Data/AdversarySpecialAbilities';
@@ -1862,6 +1862,12 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
               </div>
               <div className="col-md hide-print">
                 <div className="text-right">
+                  <button
+                    onClick={() => { window.print() }}
+                    className="btn btn-primary"
+                  >
+                    <FontAwesomeIcon icon={faPrint} /> Print
+                  </button>
                   <button
                     onClick={this.clearAdversary}
                     className="btn btn-primary"
