@@ -1618,6 +1618,16 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       {this.state.workingEdit.getSkillList() ? (
     <div>
 
+      {this.state.workingEdit.adversaryType.toLowerCase() === "minion" ? (
+        <>
+          <strong>Skills (group only):&nbsp;</strong>
+        <SanitizedHTML
+          html={this.state.workingEdit.getSkillList( this.state.valuesAsDice )}
+          raw={true}
+        />
+        </>
+      ) : (
+        <>
       <strong>Skills:&nbsp;</strong>
         <SanitizedHTML
           html={ replaceDieTags(
@@ -1629,6 +1639,9 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
           )}
           raw={true}
         />
+        </>
+      )}
+
 
     </div>
       ) : (
@@ -1708,16 +1721,21 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         <hr />
         {this.state.workingEdit.adversaryType.toLowerCase() === "minion" ? (
           <>
+          <strong>Unsoaked damage needed to incapacitate</strong>:<br />
+          <ul className="styleless">
           {Array( this.state.numberMinions ).fill("x").map( (indexValue, indexCount: number) => {
             return(
               <React.Fragment key={indexCount}>
-                <strong>Current Wounds #{indexCount+1}</strong>:&nbsp;
+                {/* <strong>Current Wounds #{indexCount+1}</strong>:&nbsp;
                 <WoundDots
                   number={this.state.workingEdit.getWoundThreshold()}
-                /><br />
+                /><br /> */}
+                <li>{this.state.workingEdit.getWoundThreshold() * (indexCount + 1) + 1 } - incapacitates {indexCount + 1} {this.state.workingEdit.name}</li>
+
               </React.Fragment>
             )
           })}
+          </ul>
           </>
         ) : (
           <>

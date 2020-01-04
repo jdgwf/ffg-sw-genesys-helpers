@@ -281,32 +281,37 @@ export class Adversary {
 
         let returnValue: string = "";
         for( let skill of activeSkills ) {
-            if( valuesAsDice === false ) {
-                returnValue += skill.name + ": " + skill.value.toString() + ", ";
+            if( this.adversaryType.toLowerCase() === "minion") {
+                valuesAsDice = false;
+                returnValue += skill.name + ", ";
             } else {
-                let abilityValue = this._getAttributeValue( skill.attribute );
-                let maxValue = 0;
-                let minValue = 0;
-                if( abilityValue > skill.value  ) {
-                    maxValue =  abilityValue;
-                    minValue =  skill.value;
+                if( valuesAsDice === false ) {
+                    returnValue += skill.name + ": " + skill.value.toString() + ", ";
                 } else {
-                    maxValue =  skill.value;
-                    minValue =  abilityValue;
-                }
-
-                let dieValue = "";
-
-                for( let lCount = 0; lCount < maxValue; lCount++ ) {
-                    if( lCount < minValue ) {
-                        dieValue += '[proficiency]';
+                    let abilityValue = this._getAttributeValue( skill.attribute );
+                    let maxValue = 0;
+                    let minValue = 0;
+                    if( abilityValue > skill.value  ) {
+                        maxValue =  abilityValue;
+                        minValue =  skill.value;
                     } else {
-                        dieValue += '[ability]';
+                        maxValue =  skill.value;
+                        minValue =  abilityValue;
                     }
+
+                    let dieValue = "";
+
+                    for( let lCount = 0; lCount < maxValue; lCount++ ) {
+                        if( lCount < minValue ) {
+                            dieValue += '[proficiency]';
+                        } else {
+                            dieValue += '[ability]';
+                        }
+                    }
+
+                    returnValue += "<div class=\"inline-block\">" + skill.name + ": " + dieValue + ",</div> ";
+
                 }
-
-                returnValue += "<div class=\"inline-block\">" + skill.name + ": " + dieValue + ",</div> ";
-
             }
         }
         if( returnValue ) {
