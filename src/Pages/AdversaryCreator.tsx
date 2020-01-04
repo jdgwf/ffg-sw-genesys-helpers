@@ -7,7 +7,7 @@ import { AdversaryTypes } from '../Data/AdversaryTypes';
 import { AdversaryCharacteristicArrays, IAdversaryCharacteristicArray } from '../Data/AdversaryCharacteristicArrays';
 import { AdversarySoakDefWoundStrain, IAdversarySoakDefWoundStrain } from '../Data/AdversarySoakDefWoundStrain';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faEdit, faPrint } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit, faPrint, faSkullCrossbones } from '@fortawesome/free-solid-svg-icons';
 import { AdversarySkillPackages, IAdversarySkillPackage } from '../Data/AdversarySkillPackages';
 import { AdversaryTalents, IAdversaryTalent } from '../Data/AdversaryTalents';
 import { AdversarySpecialAbilities, IAdversarySpecialAbility } from '../Data/AdversarySpecialAbilities';
@@ -1716,34 +1716,37 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
       <></>
     )}
 
-    {this.state.showWoundDots ? (
+{this.state.showWoundDots ? (
       <>
         <hr />
         {this.state.workingEdit.adversaryType.toLowerCase() === "minion" ? (
           <>
-          <table className="table less-padding small-text">
-            <thead>
-              <tr>
-                <th className="text-center">Unsoaked Damage</th>
-                <th>Effects</th>
-              </tr>
-            </thead>
-            <tbody>
-          {Array( this.state.numberMinions ).fill("x").map( (indexValue, indexCount: number) => {
+          <strong>Current Wounds</strong>:<br />
+          {/* {Array( this.state.numberMinions ).fill("x").map( (indexValue, indexCount: number) => {
             return(
-              <tr key={indexCount}>
-                {/* <strong>Current Wounds #{indexCount+1}</strong>:&nbsp;
+              <React.Fragment key={indexCount}>
+                <strong>{this.state.workingEdit.name} #{indexCount+1}</strong>:&nbsp;
                 <WoundDots
                   number={this.state.workingEdit.getWoundThreshold()}
-                /><br /> */}
-                <td className="text-center">{this.state.workingEdit.getWoundThreshold() * (indexCount + 1) + 1 }</td>
-                <td>incapacitates {indexCount + 1} {this.state.workingEdit.name}</td>
-
-              </tr>
+                /><br />
+              </React.Fragment>
             )
-          })}
-          </tbody>
-          </table>
+          })} */}
+          {Array( this.state.numberMinions * this.state.workingEdit.getWoundThreshold() + 1 ).fill("O").map(
+            (indexValue, indexCount: number) => {
+              if( indexCount > 0 && indexCount % this.state.workingEdit.getWoundThreshold() === 0 ) {
+                return (
+                  <span>{indexValue}&nbsp;
+                    <FontAwesomeIcon icon={faSkullCrossbones} />
+                  &nbsp;</span>
+                )
+              } else {
+                return (
+                  <span>{indexValue}&nbsp;</span>
+                )
+              }
+            }
+          )}
           </>
         ) : (
           <>
