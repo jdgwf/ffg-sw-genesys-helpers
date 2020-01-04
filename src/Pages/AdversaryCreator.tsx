@@ -1721,21 +1721,29 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         <hr />
         {this.state.workingEdit.adversaryType.toLowerCase() === "minion" ? (
           <>
-          <strong>Unsoaked damage needed to incapacitate</strong>:<br />
-          <ul className="styleless">
+          <table className="table small-text">
+            <thead>
+              <tr>
+                <th className="text-center">Unsoaked Damage</th>
+                <th>Effects</th>
+              </tr>
+            </thead>
+            <tbody>
           {Array( this.state.numberMinions ).fill("x").map( (indexValue, indexCount: number) => {
             return(
-              <React.Fragment key={indexCount}>
+              <tr key={indexCount}>
                 {/* <strong>Current Wounds #{indexCount+1}</strong>:&nbsp;
                 <WoundDots
                   number={this.state.workingEdit.getWoundThreshold()}
                 /><br /> */}
-                <li>{this.state.workingEdit.getWoundThreshold() * (indexCount + 1) + 1 } - incapacitates {indexCount + 1} {this.state.workingEdit.name}</li>
+                <td className="text-center">{this.state.workingEdit.getWoundThreshold() * (indexCount + 1) + 1 }</td>
+                <td>incapacitates {indexCount + 1} {this.state.workingEdit.name}</td>
 
-              </React.Fragment>
+              </tr>
             )
           })}
-          </ul>
+          </tbody>
+          </table>
           </>
         ) : (
           <>
