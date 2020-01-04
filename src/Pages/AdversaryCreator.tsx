@@ -1721,7 +1721,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         <hr />
         {this.state.workingEdit.adversaryType.toLowerCase() === "minion" ? (
           <>
-          <table className="table small-text">
+          <table className="table less-padding small-text">
             <thead>
               <tr>
                 <th className="text-center">Unsoaked Damage</th>

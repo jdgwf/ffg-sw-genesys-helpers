@@ -1,5 +1,15 @@
 @import '../common.scss';
 
+.less-padding {
+    thead, tbody, tfoot {
+        tr {
+            th, td {
+                padding: 0 0.5rem !important;
+            }
+        }
+    }
+}
+
 .form {
     textarea {
         width: 100%;

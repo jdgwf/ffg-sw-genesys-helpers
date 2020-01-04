@@ -679,6 +679,16 @@ body.retro {
     }
   }
 
+  .less-padding {
+    thead, tbody, tfoot {
+      tr {
+        th, td {
+          padding: 0 0.5rem !important;
+        }
+      }
+    }
+  }
+
   .modal-dialog {
     .modal-footer {
       background: $headerFooterBG;
