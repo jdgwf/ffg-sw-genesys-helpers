@@ -132,7 +132,7 @@ export class Adversary {
                 break;
             }
             case "rival": {
-                woundThreshold = 8;
+                woundThreshold = 8 + this.getBrawn();
                 break;
             }
             case "nemesis": {

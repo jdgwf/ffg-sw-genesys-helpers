@@ -4,7 +4,7 @@ robots.txt
 node_modules/*
 npm-debug.log
 .htaccess
-
+package-lock.json
 old
 old/*
 old*
