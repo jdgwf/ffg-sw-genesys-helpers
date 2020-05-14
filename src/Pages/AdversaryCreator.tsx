@@ -504,6 +504,10 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
             obj.derivedAttribute.strainThreshold = newValue;
             break;
           }
+          case "woundThreshold": {
+            obj.derivedAttribute.woundThreshold = newValue;
+            break;
+          }
           case "rangedDefense": {
             obj.derivedAttribute.rangedDefense = newValue;
             break;
@@ -1145,7 +1149,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
         </label>
 
         <label>
-          Soak Threshold:
+          Soak Value:
           <NumericalDropDown
               value={this.state.editSoakDefWoundStrain.derivedAttribute.soakThreshold ? this.state.editSoakDefWoundStrain.derivedAttribute.soakThreshold : 0}
               onChange={this.updateSoakDefWoundStrainDerivedAttribute}
@@ -1161,6 +1165,17 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
               value={this.state.editSoakDefWoundStrain.derivedAttribute.strainThreshold ? this.state.editSoakDefWoundStrain.derivedAttribute.strainThreshold : 0}
               onChange={this.updateSoakDefWoundStrainDerivedAttribute}
               attribute="strainThreshold"
+              start={0}
+              stop={5}
+            />
+        </label>
+
+        <label>
+          Wound Threshold:
+          <NumericalDropDown
+              value={this.state.editSoakDefWoundStrain.derivedAttribute.woundThreshold ? this.state.editSoakDefWoundStrain.derivedAttribute.woundThreshold : 0}
+              onChange={this.updateSoakDefWoundStrainDerivedAttribute}
+              attribute="woundThreshold"
               start={0}
               stop={5}
             />
