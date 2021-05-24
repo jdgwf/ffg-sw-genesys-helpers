@@ -21,7 +21,7 @@ export default class About extends React.Component<IAboutProps, IAboutState> {
 
         <h2>Credits</h2>
           <h4>Jeffrey D. Gordon</h4>
-          <strong>Developer and Designer</strong> - <a href="https://twitter.com/gauthic/">@Gauthic</a><br/>
+          <strong>Developer and Designer</strong> - <a href="https://twitter.com/JeffreyDGordon/">@JeffreyDGordon</a><br/>
           <p>Jeff has been playing tabletop role playing games since the very early 80's (or earlier!) and has been a professional developer since 1996. These tools, and several others, including &nbsp;<a target="_blank" rel="noopener noreferrer" href="https://jdgwf.github.io/savage-worlds-web-tools/">the Savage Worlds Web Tools project</a>, &nbsp;<a target="_blank" rel="noopener noreferrer" href="https://savaged.us">Savaged.us</a>, &nbsp;<a target="_blank" rel="noopener noreferrer" href="https://jdgwf.github.io/battletech-tools/">Gauthic's Battletech Tools</a>,&nbsp;and <a target="_blank" rel="noopener noreferrer" href="https://jdgwf.github.io/tournament-tracker/">Tournament Tracker</a>&nbsp;are all created and updated in his spare time while juggling work, family, and writing a handful of novels.</p>
 
         <h2>Copyrights and Attributions</h2>
@@ -43,7 +43,7 @@ export default class About extends React.Component<IAboutProps, IAboutState> {
         <p>Feel free to submit issues to the <a href="https://github.com/jdgwf/ffg-sw-genesys-helpers/issues">Github Repository</a></p>
 
         <h2>Privacy</h2>
-        <p>This app doesn't track who, where, or when you use it, so I've no idea how well used it is. If you like it, feel free to tweet me at <a href="https://twitter.com/gauthic/">@Gauthic</a></p>
+        <p>This app doesn't track who, where, or when you use it, so I've no idea how well used it is. If you like it, feel free to tweet me at <a href="https://twitter.com/JeffreyDGordon/">@JeffreyDGordon</a></p>
         <p>In the future a syncing function may be added which will likely use tracking cookies for the sync share (possibly Firebase or other open methods), at that point it will be all on the syncing server.</p>
         </UIPage>
       );
