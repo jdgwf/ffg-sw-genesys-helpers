@@ -120,8 +120,8 @@ export const AdversaryCharacteristicArrays: IAdversaryCharacteristicArray[] = [
         characteristics: {
             brawn: 1,
             agility: 2,
-            intellect: 2,
-            cunning: 3,
+            intellect: 3,
+            cunning: 2,
             willpower: 2,
             presence: 2,
         },
@@ -222,8 +222,8 @@ export const AdversaryCharacteristicArrays: IAdversaryCharacteristicArray[] = [
         characteristics: {
             brawn: 2,
             agility: 4,
-            intellect: 4,
-            cunning: 2,
+            intellect: 2,
+            cunning: 4,
             willpower: 2,
             presence: 2,
         },

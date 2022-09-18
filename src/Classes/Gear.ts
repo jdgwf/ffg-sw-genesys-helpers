@@ -113,7 +113,10 @@ export class Gear {
                 exportString += "Damage " + this.damage + ";"
 
             if( this.range )
-                exportString += " Range ["+ this.range + "]"
+                exportString += " Range ["+ this.range + "];"
+
+            if( this.critical )
+                exportString += " Critical " + this.critical + ""
 
             if( this.qualities.length > 0 )
                 exportString += "; " + this.qualities.join( ", ")
