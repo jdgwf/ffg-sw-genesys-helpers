@@ -1,0 +1,39 @@
+body {
+    .front-button {
+        width: 15rem;
+        margin: 1rem;
+        padding: 1rem;
+        min-height: 15rem;
+        .label {
+            // margin: 0 0 0 .25;
+            // padding: 0 0 0 .25;
+            border-bottom: solid 1px #fff;
+        }
+        .icon-container {
+            text-align: center;
+            min-height: 8rem;
+            .dice {
+                display: inline-block;
+                height: 4rem;
+                width: 4rem;
+                font-size: 4rem;
+            }
+            .svg-inline--fa {
+                height: 8rem !important;
+                width: 8rem !important;
+            }
+        }
+    }
+
+    &.retro  {
+        .front-button {
+            .label {
+                margin: 0 0 .5rem 0;
+                font-size: .9rem !important;
+                font-weight: 700;
+                border: none !important;
+            }
+        }
+
+    }
+}
