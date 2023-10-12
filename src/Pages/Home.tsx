@@ -18,7 +18,7 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
       this.props.appGlobals.makeDocumentTitle("Home");
     }
 
-    render() {
+    render(): JSX.Element {
       return (
         <UIPage current="home" className="text-center" appGlobals={this.props.appGlobals}>
 

@@ -203,47 +203,56 @@ export default class AppRouter extends React.Component<IAppRouterProps, IAppRout
                 </Modal.Footer>
             </Modal>
             <Routes>
-                <Route path={`${process.env.PUBLIC_URL}/`}>
+                <Route path={`${process.env.PUBLIC_URL}/`}
+                    element={
                     <Home
                         appGlobals={this.state.appGlobals}
                     />
-                </Route>
+                }/>
 
-                <Route path={`${process.env.PUBLIC_URL}/initiative`}>
+
+                <Route path={`${process.env.PUBLIC_URL}/initiative`}
+                    element={
                     <Initiative
                         appGlobals={this.state.appGlobals}
                     />
-                </Route>
-                <Route path={`${process.env.PUBLIC_URL}/about`}>
+                }/>
+                <Route path={`${process.env.PUBLIC_URL}/about`}
+                    element={
                     <About
                         appGlobals={this.state.appGlobals}
                     />
-                </Route>
-                <Route path={`${process.env.PUBLIC_URL}/temp`}>
+                }/>
+                <Route path={`${process.env.PUBLIC_URL}/temp`}
+                    element={
                     <Temp
                         appGlobals={this.state.appGlobals}
                     />
-                </Route>
-                <Route path={`${process.env.PUBLIC_URL}/dice`}>
+                }/>
+                <Route path={`${process.env.PUBLIC_URL}/dice`}
+                    element={
                     <Dice
                         appGlobals={this.state.appGlobals}
                     />
-                </Route>
-                <Route path={`${process.env.PUBLIC_URL}/adversary-creator`}>
+                }/>
+                <Route path={`${process.env.PUBLIC_URL}/adversary-creator`}
+                    element={
                     <AdversaryCreator
                         appGlobals={this.state.appGlobals}
                     />
-                </Route>
-                <Route path={`${process.env.PUBLIC_URL}/settings`}>
+                }/>
+                <Route path={`${process.env.PUBLIC_URL}/settings`}
+                    element={
                     <Settings
                         appGlobals={this.state.appGlobals}
                     />
-                </Route>
-                <Route>
+                }/>
+                <Route
+                    element={
                     <Error404
                         appGlobals={this.state.appGlobals}
                     />
-                </Route>
+                }/>
 
             </Routes>
             </Router>
