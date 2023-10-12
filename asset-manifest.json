@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ffg-sw-genesys-helpers/static/css/main.080cbb3b.css",
-    "main.js": "/ffg-sw-genesys-helpers/static/js/main.05d57fa4.js",
+    "main.js": "/ffg-sw-genesys-helpers/static/js/main.140515e1.js",
     "static/media/genesys-bg.png": "/ffg-sw-genesys-helpers/static/media/genesys-bg.8e6714716891297fe987.png",
     "static/media/nemesis-block.svg": "/ffg-sw-genesys-helpers/static/media/nemesis-block.561b7d307b917589ab1a.svg",
     "static/media/minion-rival-block.svg": "/ffg-sw-genesys-helpers/static/media/minion-rival-block.16913df411d7a5001366.svg",
@@ -13,10 +13,10 @@
     "index.html": "/ffg-sw-genesys-helpers/index.html",
     "static/media/index.cjs": "/ffg-sw-genesys-helpers/static/media/index.cd351d7c31d0d3fccf96.cjs",
     "main.080cbb3b.css.map": "/ffg-sw-genesys-helpers/static/css/main.080cbb3b.css.map",
-    "main.05d57fa4.js.map": "/ffg-sw-genesys-helpers/static/js/main.05d57fa4.js.map"
+    "main.140515e1.js.map": "/ffg-sw-genesys-helpers/static/js/main.140515e1.js.map"
   },
   "entrypoints": [
     "static/css/main.080cbb3b.css",
-    "static/js/main.05d57fa4.js"
+    "static/js/main.140515e1.js"
   ]
 }
