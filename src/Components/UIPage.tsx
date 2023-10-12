@@ -23,6 +23,7 @@ interface IUIPageProps {
     current?: string;
     sub?: string;
     className?: string;
+    children?: React.ReactNode | React.ReactNode[];
   }
 
   interface IUIPageState {

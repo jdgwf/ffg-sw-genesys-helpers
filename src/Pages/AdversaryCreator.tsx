@@ -1549,7 +1549,7 @@ export default class AdversaryCreator extends React.Component<IAdversaryCreatorP
 ) : (
   <></>
 )}
-            <p className="text-center hide-print">Using the <a target="buyme" href="https://www.fantasyflightgames.com/en/products/genesys/products/expanded-players-guide/">Expanded Players Guide</a>, this tool aims to make the calculations for creating and balancing your own adversaries quick and painless.</p>
+            <p className="text-center hide-print">Using the <a target="buyme" href="https://www.edge-studio.net//en/products/genesys/products/expanded-players-guide/">Expanded Players Guide</a>, this tool aims to make the calculations for creating and balancing your own adversaries quick and painless.</p>
 
             <div className="row">
               <div className="col-md">

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import Error404 from "./Pages/Error404";
 import Initiative from "./Pages/Initiative";
@@ -202,39 +202,39 @@ export default class AppRouter extends React.Component<IAppRouterProps, IAppRout
 
                 </Modal.Footer>
             </Modal>
-            <Switch>
-                <Route path={`${process.env.PUBLIC_URL}/`} exact>
+            <Routes>
+                <Route path={`${process.env.PUBLIC_URL}/`}>
                     <Home
                         appGlobals={this.state.appGlobals}
                     />
                 </Route>
 
-                <Route path={`${process.env.PUBLIC_URL}/initiative`} exact>
+                <Route path={`${process.env.PUBLIC_URL}/initiative`}>
                     <Initiative
                         appGlobals={this.state.appGlobals}
                     />
                 </Route>
-                <Route path={`${process.env.PUBLIC_URL}/about`} exact>
+                <Route path={`${process.env.PUBLIC_URL}/about`}>
                     <About
                         appGlobals={this.state.appGlobals}
                     />
                 </Route>
-                <Route path={`${process.env.PUBLIC_URL}/temp`} exact>
+                <Route path={`${process.env.PUBLIC_URL}/temp`}>
                     <Temp
                         appGlobals={this.state.appGlobals}
                     />
                 </Route>
-                <Route path={`${process.env.PUBLIC_URL}/dice`} exact>
+                <Route path={`${process.env.PUBLIC_URL}/dice`}>
                     <Dice
                         appGlobals={this.state.appGlobals}
                     />
                 </Route>
-                <Route path={`${process.env.PUBLIC_URL}/adversary-creator`} exact>
+                <Route path={`${process.env.PUBLIC_URL}/adversary-creator`}>
                     <AdversaryCreator
                         appGlobals={this.state.appGlobals}
                     />
                 </Route>
-                <Route path={`${process.env.PUBLIC_URL}/settings`} exact>
+                <Route path={`${process.env.PUBLIC_URL}/settings`}>
                     <Settings
                         appGlobals={this.state.appGlobals}
                     />
@@ -245,7 +245,7 @@ export default class AppRouter extends React.Component<IAppRouterProps, IAppRout
                     />
                 </Route>
 
-            </Switch>
+            </Routes>
             </Router>
         );
     }

@@ -29,7 +29,7 @@ export default class NumericalDropDown extends React.Component<INumericalDropDow
     }
 
     render() {
-        let options: React.ReactFragment[] = [];
+        let options: JSX.Element[] = [];
 
         for( let counter = this.start; counter < this.stop + 1; counter++ ) {
           options.push(
@@ -53,6 +53,7 @@ interface INumericalDropDownProps {
     attribute: string;
     start?: number;
     stop?: number;
+    children?: JSX.Element | JSX.Element[];
   }
 
   interface INumericalDropDownState {

@@ -22,7 +22,7 @@ export default class Home extends React.Component<IHomeProps, IHomeState> {
       return (
         <UIPage current="home" className="text-center" appGlobals={this.props.appGlobals}>
 
-            This Progressive Web App is my collection of quick utilities and online and offline tools to help Fantasy <a target="out" href="https://www.fantasyflightgames.com/">Flight Games</a>' <a target="out" href="https://www.fantasyflightgames.com/en/starwarsrpg/">Star Wars</a> and <a href="https://www.fantasyflightgames.com/en/products/genesys/" target="out">Genesys</a> games.
+            This Progressive Web App is my collection of quick utilities and online and offline tools to help Fantasy <a target="out" href="https://www.edge-studio.net//">Flight Games</a>' <a target="out" href="https://www.edge-studio.net//en/starwarsrpg/">Star Wars</a> and <a href="https://www.edge-studio.net//en/products/genesys/" target="out">Genesys</a> games.
             <div className='text-center'>
               <div className="row">
                 <div className="col-md">

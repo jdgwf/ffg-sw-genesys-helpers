@@ -25,13 +25,13 @@ export default class About extends React.Component<IAboutProps, IAboutState> {
           <p>Jeff has been playing tabletop role playing games since the very early 80's (or earlier!) and has been a professional developer since 1996. These tools, and several others, including &nbsp;<a target="_blank" rel="noopener noreferrer" href="https://jdgwf.github.io/savage-worlds-web-tools/">the Savage Worlds Web Tools project</a>, &nbsp;<a target="_blank" rel="noopener noreferrer" href="https://savaged.us">Savaged.us</a>, &nbsp;<a target="_blank" rel="noopener noreferrer" href="https://jdgwf.github.io/battletech-tools/">Gauthic's Battletech Tools</a>,&nbsp;and <a target="_blank" rel="noopener noreferrer" href="https://jdgwf.github.io/tournament-tracker/">Tournament Tracker</a>&nbsp;are all created and updated in his spare time while juggling work, family, and writing a handful of novels.</p>
 
         <h2>Copyrights and Attributions</h2>
-          <p>Genesys and its logo, and Genesys Foundry and its logo, are trademarks of Fantasy Flight Games in the U.S.A. and other countries. All Fantasy Flight Games characters and character names, and the distinctive likenesses thereof, are trademarks of Fantasy Flight Games. <a href="http://www.FantasyFlightGames.com">www.FantasyFlightGames.com</a>.</p>
+          <p>Genesys and its logo, and Genesys Foundry and its logo, are trademarks of Edge Studio in the U.S.A. and other countries. All Edge Studio characters and character names, and the distinctive likenesses thereof, are trademarks of Edge Studio. <a href="https://www.edge-studio.net/">https://www.edge-studio.net/</a>.</p>
 
           <p>All other original material in this work is copyright 2019 by Jeffrey Gordon and published under the GPL. </p>
 
           <p>Star Wars and its logo are owned by Lucasfilm/Disney.</p>
 
-          <p>Die icons are owned by Fantasy Flight Games and/or Lucasfilm/Disney.</p>
+          <p>Die icons are owned by Edge Studio and/or Lucasfilm/Disney.</p>
 
           <p>Some images and icons are from
 
