@@ -1,26 +1,22 @@
 {
   "files": {
-    "main.css": "/ffg-sw-genesys-helpers/static/css/main.73d9d5ce.chunk.css",
-    "main.js": "/ffg-sw-genesys-helpers/static/js/main.17057145.chunk.js",
-    "main.js.map": "/ffg-sw-genesys-helpers/static/js/main.17057145.chunk.js.map",
-    "runtime-main.js": "/ffg-sw-genesys-helpers/static/js/runtime-main.35613b2f.js",
-    "runtime-main.js.map": "/ffg-sw-genesys-helpers/static/js/runtime-main.35613b2f.js.map",
-    "static/css/2.d5e620ed.chunk.css": "/ffg-sw-genesys-helpers/static/css/2.d5e620ed.chunk.css",
-    "static/js/2.2b74c68b.chunk.js": "/ffg-sw-genesys-helpers/static/js/2.2b74c68b.chunk.js",
-    "static/js/2.2b74c68b.chunk.js.map": "/ffg-sw-genesys-helpers/static/js/2.2b74c68b.chunk.js.map",
+    "main.css": "/ffg-sw-genesys-helpers/static/css/main.080cbb3b.css",
+    "main.js": "/ffg-sw-genesys-helpers/static/js/main.05d57fa4.js",
+    "static/media/genesys-bg.png": "/ffg-sw-genesys-helpers/static/media/genesys-bg.8e6714716891297fe987.png",
+    "static/media/nemesis-block.svg": "/ffg-sw-genesys-helpers/static/media/nemesis-block.561b7d307b917589ab1a.svg",
+    "static/media/minion-rival-block.svg": "/ffg-sw-genesys-helpers/static/media/minion-rival-block.16913df411d7a5001366.svg",
+    "static/media/DotMatrixRegular.woff": "/ffg-sw-genesys-helpers/static/media/DotMatrixRegular.2285cb056455fb192a60.woff",
+    "static/media/power-level-box.png": "/ffg-sw-genesys-helpers/static/media/power-level-box.0d98f50f0784f97c9f92.png",
+    "static/media/DotMatrixRegular.woff2": "/ffg-sw-genesys-helpers/static/media/DotMatrixRegular.edd8046edf3a33902e07.woff2",
+    "static/media/eote-font.woff": "/ffg-sw-genesys-helpers/static/media/eote-font.126d47132e3012f31a66.woff",
+    "static/media/genesys-font.woff": "/ffg-sw-genesys-helpers/static/media/genesys-font.97f5136db2a3d0c47ece.woff",
     "index.html": "/ffg-sw-genesys-helpers/index.html",
-    "static/css/2.d5e620ed.chunk.css.map": "/ffg-sw-genesys-helpers/static/css/2.d5e620ed.chunk.css.map",
-    "static/css/main.73d9d5ce.chunk.css.map": "/ffg-sw-genesys-helpers/static/css/main.73d9d5ce.chunk.css.map",
-    "static/js/2.2b74c68b.chunk.js.LICENSE.txt": "/ffg-sw-genesys-helpers/static/js/2.2b74c68b.chunk.js.LICENSE.txt",
-    "static/media/index.scss": "/ffg-sw-genesys-helpers/static/media/genesys-bg.8e671471.png",
-    "static/media/Die.scss": "/ffg-sw-genesys-helpers/static/media/genesys-font.97f5136d.woff",
-    "static/media/AdversaryCreator.scss": "/ffg-sw-genesys-helpers/static/media/power-level-box.0d98f50f.png"
+    "static/media/index.cjs": "/ffg-sw-genesys-helpers/static/media/index.cd351d7c31d0d3fccf96.cjs",
+    "main.080cbb3b.css.map": "/ffg-sw-genesys-helpers/static/css/main.080cbb3b.css.map",
+    "main.05d57fa4.js.map": "/ffg-sw-genesys-helpers/static/js/main.05d57fa4.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.35613b2f.js",
-    "static/css/2.d5e620ed.chunk.css",
-    "static/js/2.2b74c68b.chunk.js",
-    "static/css/main.73d9d5ce.chunk.css",
-    "static/js/main.17057145.chunk.js"
+    "static/css/main.080cbb3b.css",
+    "static/js/main.05d57fa4.js"
   ]
 }
